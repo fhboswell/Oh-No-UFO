@@ -14,17 +14,21 @@ import SceneKit
 
 class EnemyController{
     
-    
+     //MARK: - Instance Varriables
     let level:Int
     var delegate: EnemyControllerDelegate?
     
     
+    
+    //MARK: - Lifecycle
     init(level: Int){
         
         self.level = level
     }
     
     
+    
+    //MARK: - Init Control Nodes
     func addEnemyShips(){
         for index in 1...enemyTotal {
             let newControlNode = SCNNode()
@@ -44,6 +48,8 @@ class EnemyController{
         
     }
     
+    
+    //MARK: - Animation
     func paradeShip(controlNode: SCNNode){
         
         
@@ -65,6 +71,9 @@ class EnemyController{
         }
         
     }
+    
+    
+    //MARK: - Visible Assets
     func addUFO(x: Float = 0, y: Float = 0, z: Float = 2.5) ->  SCNNode{
         let ufoNode = SCNNode()
         guard let ufoScene = SCNScene(named: "UFO.dae") else { return ufoNode}

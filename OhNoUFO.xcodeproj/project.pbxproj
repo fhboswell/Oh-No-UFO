@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		946A48E72057C20E0083899E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Extensions.swift */; };
+		946A48E72057C20E0083899E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Protocols.swift */; };
 		946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* EnemyController.swift */; };
 		946A48ED2057D57D0083899E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EC2057D57D0083899E /* Constants.swift */; };
 		94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		946A48E62057C20E0083899E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		946A48EA2057D0BE0083899E /* EnemyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
 		946A48EC2057D57D0083899E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94B6E8EB20574F9C006F9CFC /* OhNoUFO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhNoUFO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +119,7 @@
 				94B6E8F220574F9C006F9CFC /* ViewController.swift */,
 				946A48EA2057D0BE0083899E /* EnemyController.swift */,
 				946A48EC2057D57D0083899E /* Constants.swift */,
-				946A48E62057C20E0083899E /* Extensions.swift */,
+				946A48E62057C20E0083899E /* Protocols.swift */,
 				94B6E8F720574F9C006F9CFC /* Assets.xcassets */,
 				94B6E92B20579C50006F9CFC /* 3D Objects */,
 				94B6E8F420574F9C006F9CFC /* Main.storyboard */,
@@ -302,7 +302,7 @@
 			files = (
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
 				94B6E8F320574F9C006F9CFC /* ViewController.swift in Sources */,
-				946A48E72057C20E0083899E /* Extensions.swift in Sources */,
+				946A48E72057C20E0083899E /* Protocols.swift in Sources */,
 				946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */,
 				94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */,
 			);
