@@ -1,5 +1,5 @@
 //
-//  Extensions.swift
+//  Constants.swift
 //  OhNoUFO
 //
 //  Created by Henry Boswell on 3/13/18.
@@ -11,6 +11,6 @@ import UIKit
 import ARKit
 import SceneKit
 
-protocol EnemyControllerDelegate {
-    func addToRootNode(nodeToAdd: SCNNode)
-}
+var enemyControlNode = [SCNNode]()
+var enemyNode = [SCNNode]()
+var enemyTotal = 12

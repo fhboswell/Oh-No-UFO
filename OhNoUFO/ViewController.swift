@@ -11,7 +11,7 @@ import UIKit
 import ARKit
 import SceneKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, EnemyControllerDelegate{
     
     @IBOutlet weak var sceneView: ARSCNView!
     
@@ -19,10 +19,9 @@ class ViewController: UIViewController {
     
     var sphereNode: SCNNode!
     var cubeNode: SCNNode!
+   
     
-    var enemyControlNode = [SCNNode]()
-    var enemyNode = [SCNNode]()
-    var enemyTotal = 12
+    var enemyController: EnemyController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +53,13 @@ class ViewController: UIViewController {
         tapRecognizer.addTarget(self, action: #selector(sceneTapped(recognizer:)))
         sceneView.gestureRecognizers = [tapRecognizer]
         
-        addEnemyShips()
+  
+        if (self.enemyController == nil) {
+            self.enemyController = EnemyController(level: 1)
+            self.enemyController?.delegate = self
+        }
+        
+        self.enemyController?.addEnemyShips()
     }
     
     
@@ -71,78 +76,7 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
-    
-    
-    
-    
-    
-    
-    func addEnemyShips(){
-        for index in 1...enemyTotal {
-            let newControlNode = SCNNode()
-            let heightOfControlNode = (Double(index%6)/5.0) - 1
-            newControlNode.position = SCNVector3(0, heightOfControlNode, 0)
-            sceneView.scene.rootNode.addChildNode(newControlNode)
-            enemyControlNode.append(newControlNode)
-            
-            newControlNode.addChildNode(addUFO())
-            
-            paradeShip(controlNode: newControlNode)
-            
-            
-        }
-        
-    }
-    
-    func paradeShip(controlNode: SCNNode){
-        
-        
-        let random = arc4random_uniform(200)
-        let interval = Double(random)/100.0
-        if (enemyControlNode.count < (enemyTotal/2)+1 ){
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-                
-                let action = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 2)
-                action.timingMode = .easeInEaseOut
-                controlNode.runAction(action)
-            }
-        }else{
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-                let action = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 2)
-                action.timingMode = .easeInEaseOut
-                controlNode.runAction(action)
-            }
-        }
-   
-    }
-    func addUFO(x: Float = 0, y: Float = 0, z: Float = 2.5) ->  SCNNode{
-        let ufoNode = SCNNode()
-        guard let ufoScene = SCNScene(named: "UFO.dae") else { return ufoNode}
-        
-        let ufoSceneChildNodes = ufoScene.rootNode.childNodes
-        for childNode in ufoSceneChildNodes {
-            ufoNode.addChildNode(childNode)
-        }
-        ufoNode.position = SCNVector3(x, y, z)
-        ufoNode.scale = SCNVector3(0.01, 0.01, 0.01)
-        ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
-        
-        
-        let random = arc4random_uniform(5)
-        let interval = Double(random)/10.0
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-            let random = arc4random_uniform(20) + 20
-            let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 20)
-            ufoNode.runAction(action)
-        }
-        
-        
-        return ufoNode
-        
-        
-    }
-    
-    
+ 
     
     @objc func sceneTapped(recognizer: UITapGestureRecognizer) {
         print("tapped")
@@ -157,6 +91,12 @@ class ViewController: UIViewController {
     func configureLighting() {
         sceneView.autoenablesDefaultLighting = true
         sceneView.automaticallyUpdatesLighting = true
+    }
+    
+    
+    //MARK: - delegate methods
+    func addToRootNode(nodeToAdd: SCNNode){
+        sceneView.scene.rootNode.addChildNode(nodeToAdd)
     }
 }
 
