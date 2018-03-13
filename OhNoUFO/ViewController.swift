@@ -6,75 +6,101 @@
 //  Copyright © 2018 Henry Boswell. All rights reserved.
 //
 
+
 import UIKit
-import SceneKit
 import ARKit
+import SceneKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
-
-    @IBOutlet var sceneView: ARSCNView!
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var sceneView: ARSCNView!
+    
+ 
+    
+    var sphereNode: SCNNode!
+    var cubeNode: SCNNode!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the view's delegate
-        sceneView.delegate = self
-        
+        configureLighting()
+      
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        // SceneKit/AR coordinates are in meters
+        cubeNode = SCNNode()
+        cubeNode.position = SCNVector3(0, 0, 0)
+        sceneView.scene.rootNode.addChildNode(cubeNode)
+       
+        let sphereGeometry = SCNSphere(radius: 0.1)
+        let sphereMaterial = SCNMaterial()
+        sphereMaterial.diffuse.contents = UIColor.green
+        sphereGeometry.materials = [sphereMaterial]
+        sphereNode = SCNNode(geometry: sphereGeometry)
         
-        // Set the scene to the view
-        sceneView.scene = scene
+        sphereNode.position = SCNVector3(4, 0, 0)
+        cubeNode.addChildNode(sphereNode)
+        
+       // var action = SCNAction.rotateBy(x: 0, y: 4, z: 0, duration: 2)
+        //cubeNode.runAction(action)
+       
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.numberOfTouchesRequired = 1
+        tapRecognizer.addTarget(self, action: #selector(sceneTapped(recognizer:)))
+        sceneView.gestureRecognizers = [tapRecognizer]
+        
+        addUFO()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
-        // Run the view's session
         sceneView.session.run(configuration)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Pause the view's session
         sceneView.session.pause()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    // MARK: - ARSCNViewDelegate
-    
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
-     
-        return node
-    }
-*/
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
+    func addUFO(x: Float = 0, y: Float = 0, z: Float = -2.5) {
+        guard let ufoScene = SCNScene(named: "UFO.dae") else { return }
+        let ufoNode = SCNNode()
+        let ufoSceneChildNodes = ufoScene.rootNode.childNodes
+        for childNode in ufoSceneChildNodes {
+            ufoNode.addChildNode(childNode)
+        }
+        ufoNode.position = SCNVector3(x, y, z)
+        ufoNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(M_PI / 2))
+        
+        
+        cubeNode.addChildNode(ufoNode)
+        
+       // let action = SCNAction.rotateBy(x: -CGFloat(M_PI/2.0), y: 0, z: 0, duration: 4)
+        //carNode.runAction(action)
         
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+    
+    
+    @objc func sceneTapped(recognizer: UITapGestureRecognizer) {
+        print("tapped")
+        let location = recognizer.location(in: sceneView)
+        
+        
+        
+        var action = SCNAction.rotateBy(x: 0, y: 10, z: 0, duration: 5)
+        cubeNode.runAction(action)
+      
+        
         
     }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
+    func configureLighting() {
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
     }
 }
+
+

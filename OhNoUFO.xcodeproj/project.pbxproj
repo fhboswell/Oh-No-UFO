@@ -15,6 +15,12 @@
 		94B6E8FB20574F9C006F9CFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E8F920574F9C006F9CFC /* LaunchScreen.storyboard */; };
 		94B6E90620574F9C006F9CFC /* OhNoUFOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E90520574F9C006F9CFC /* OhNoUFOTests.swift */; };
 		94B6E91120574F9C006F9CFC /* OhNoUFOUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E91020574F9C006F9CFC /* OhNoUFOUITests.swift */; };
+		94B6E93420579C50006F9CFC /* UFO.dae in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E92C20579C50006F9CFC /* UFO.dae */; };
+		94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E92D20579C50006F9CFC /* UFO_D.tga */; };
+		94B6E93620579C50006F9CFC /* UFO.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E92E20579C50006F9CFC /* UFO.mtl */; };
+		94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93020579C50006F9CFC /* UFO_Light_D.tga */; };
+		94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93220579C50006F9CFC /* UFO_N.tga */; };
+		94B6E93B20579C50006F9CFC /* UFO.obj in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93320579C50006F9CFC /* UFO.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		94B6E90C20574F9C006F9CFC /* OhNoUFOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OhNoUFOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B6E91020574F9C006F9CFC /* OhNoUFOUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OhNoUFOUITests.swift; sourceTree = "<group>"; };
 		94B6E91220574F9C006F9CFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94B6E92C20579C50006F9CFC /* UFO.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO.dae; sourceTree = "<group>"; };
+		94B6E92D20579C50006F9CFC /* UFO_D.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_D.tga; sourceTree = "<group>"; };
+		94B6E92E20579C50006F9CFC /* UFO.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UFO.mtl; sourceTree = "<group>"; };
+		94B6E93020579C50006F9CFC /* UFO_Light_D.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_Light_D.tga; sourceTree = "<group>"; };
+		94B6E93220579C50006F9CFC /* UFO_N.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_N.tga; sourceTree = "<group>"; };
+		94B6E93320579C50006F9CFC /* UFO.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UFO.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */,
+				94B6E92B20579C50006F9CFC /* 3D Objects */,
 				94B6E8F020574F9C006F9CFC /* art.scnassets */,
 				94B6E8F220574F9C006F9CFC /* ViewController.swift */,
 				94B6E8F420574F9C006F9CFC /* Main.storyboard */,
@@ -126,6 +139,19 @@
 				94B6E91220574F9C006F9CFC /* Info.plist */,
 			);
 			path = OhNoUFOUITests;
+			sourceTree = "<group>";
+		};
+		94B6E92B20579C50006F9CFC /* 3D Objects */ = {
+			isa = PBXGroup;
+			children = (
+				94B6E92C20579C50006F9CFC /* UFO.dae */,
+				94B6E92D20579C50006F9CFC /* UFO_D.tga */,
+				94B6E92E20579C50006F9CFC /* UFO.mtl */,
+				94B6E93020579C50006F9CFC /* UFO_Light_D.tga */,
+				94B6E93220579C50006F9CFC /* UFO_N.tga */,
+				94B6E93320579C50006F9CFC /* UFO.obj */,
+			);
+			path = "3D Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,8 +262,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				94B6E8F120574F9C006F9CFC /* art.scnassets in Resources */,
+				94B6E93620579C50006F9CFC /* UFO.mtl in Resources */,
 				94B6E8FB20574F9C006F9CFC /* LaunchScreen.storyboard in Resources */,
+				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
+				94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */,
+				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
+				94B6E93B20579C50006F9CFC /* UFO.obj in Resources */,
 				94B6E8F820574F9C006F9CFC /* Assets.xcassets in Resources */,
+				94B6E93420579C50006F9CFC /* UFO.dae in Resources */,
 				94B6E8F620574F9C006F9CFC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NN7HR27RDT;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Boswell.OhNoUFO;
@@ -445,6 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NN7HR27RDT;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Boswell.OhNoUFO;
