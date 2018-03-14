@@ -8,6 +8,6 @@ The inspiration for this game is similar to brick breaker. Many levels but there
 
 Modes:
 
-Seeing how far you can get in the level going level by level like paceman
+Seeing how far you can get going level by level like pacman
 
 Win level by level each unlocking the next or some mutation of that
