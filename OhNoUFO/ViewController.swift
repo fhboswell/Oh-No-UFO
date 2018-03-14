@@ -186,6 +186,8 @@ extension ViewController : SCNPhysicsContactDelegate {
     }
     
     func hitEnemy(bullet: SCNNode, enemy: SCNNode){
+        //this does not remove it from the datastore in the respective classes
+        //TODO: Propagate Removal of objects
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
         print("hit")
