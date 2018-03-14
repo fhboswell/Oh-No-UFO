@@ -11,6 +11,11 @@ import UIKit
 import ARKit
 import SceneKit
 
+struct PhysicsMask {
+    static let playerLazer = 0
+    static let enemyShip = 1
+}
+
 class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     
     
@@ -32,8 +37,9 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
         addGestures()
         prepareLazerController()
         prepareEnemyController()
-        
+       // setupScene()
         //demoMethod()
+        sceneView.scene.physicsWorld.contactDelegate = self
    
     }
 
@@ -48,6 +54,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
+    
     
     //MARK: -Player Fire Control
     
@@ -153,4 +160,29 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     }
 }
 
+//MARK: Scene Physics Contact Delegate
 
+extension ViewController : SCNPhysicsContactDelegate {
+    
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        print("physics world")
+        let maskA = contact.nodeA.physicsBody!.contactTestBitMask
+        let maskB = contact.nodeB.physicsBody!.contactTestBitMask
+        
+        switch(maskA, maskB){
+        case (PhysicsMask.enemyShip, PhysicsMask.playerLazer):
+            hitEnemy(bullet: contact.nodeB, enemy: contact.nodeA)
+        case (PhysicsMask.playerLazer, PhysicsMask.enemyShip):
+            hitEnemy(bullet: contact.nodeA, enemy: contact.nodeB)
+        default:
+            break
+        }
+    }
+    
+    func hitEnemy(bullet: SCNNode, enemy: SCNNode){
+        bullet.removeFromParentNode()
+        enemy.removeFromParentNode()
+        print("hit")
+        
+    }
+}

@@ -19,7 +19,7 @@ class LazersController{
     //MARK: - Instance Varriables
     let level:Int
     var delegate: SceneRootNodeAccessDelegate?
-    
+    var lazerNodes = [SCNNode]()
     
     //MARK: - Lifecycle
     init(level: Int){
@@ -37,6 +37,14 @@ class LazersController{
         sphereGeometry.materials = [sphereMaterial]
         let laserNode = SCNNode(geometry: sphereGeometry)
         
+        
+        let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
+        let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
+        laserNode.physicsBody = sphere1Body
+        //laserNode.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        laserNode.physicsBody?.contactTestBitMask = PhysicsMask.playerLazer
+        laserNode.physicsBody?.isAffectedByGravity = false
+        
         laserNode.position = pos
        
         laserNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
@@ -47,6 +55,7 @@ class LazersController{
         let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 1)
         let pulseThreeTimes = SCNAction.repeat(action, count: 3)
         laserNode.runAction(pulseThreeTimes)
+        lazerNodes.append(laserNode)
     }
     
     

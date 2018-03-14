@@ -74,6 +74,9 @@ class EnemyController{
     
     //MARK: - Visible Assets
     func addUFO(x: Float = 0, y: Float = 0, z: Float = 2.5) ->  SCNNode{
+        
+        
+        
         let ufoNode = SCNNode()
         guard let ufoScene = SCNScene(named: "UFO.dae") else { return ufoNode}
         
@@ -85,6 +88,13 @@ class EnemyController{
         ufoNode.scale = SCNVector3(0.01, 0.01, 0.01)
         ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
+        let sphereGeometry = SCNSphere(radius: 1.5)
+        let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
+        let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
+        ufoNode.physicsBody = sphere1Body
+        //ufoNode.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        ufoNode.physicsBody?.contactTestBitMask = PhysicsMask.enemyShip
+        ufoNode.physicsBody?.isAffectedByGravity = false
         
         let random = arc4random_uniform(5)
         let interval = Double(random)/10.0
