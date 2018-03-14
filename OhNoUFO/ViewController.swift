@@ -58,7 +58,13 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     }
     
     
-    //MARK: -Player Fire Control
+    //MARK: - Player Fire Control
+    func prepareLazerController(){
+        if (self.lazersController == nil) {
+            self.lazersController = LazersController(level: 1)
+            self.lazersController?.delegate = self
+        }
+    }
     
     func getUserVector() -> (SCNVector3, SCNVector3) { // (direction, position)
         if let frame = self.sceneView.session.currentFrame {
@@ -78,12 +84,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     
     
     
-    func prepareLazerController(){
-        if (self.lazersController == nil) {
-            self.lazersController = LazersController(level: 1)
-            self.lazersController?.delegate = self
-        }
-    }
+    
     
     //MARK: - Sprite Controllers
     func prepareEnemyController(){
@@ -188,6 +189,11 @@ extension ViewController : SCNPhysicsContactDelegate {
     func hitEnemy(bullet: SCNNode, enemy: SCNNode){
         //this does not remove it from the datastore in the respective classes
         //TODO: Propagate Removal of objects
+        let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
+        let systemNode = SCNNode()
+        systemNode.addParticleSystem(particleSystem!)
+        systemNode.position = bullet.position
+        sceneView.scene.rootNode.addChildNode(systemNode)
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
         print("hit")

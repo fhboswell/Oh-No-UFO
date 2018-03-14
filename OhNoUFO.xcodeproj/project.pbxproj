@@ -10,6 +10,8 @@
 		9445B8F12058A17200B64F9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F02058A17200B64F9C /* Extensions.swift */; };
 		9445B8F32058AE2200B64F9C /* LazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F22058AE2200B64F9C /* LazersController.swift */; };
 		9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F52058EF7D00B64F9C /* UFO.dae */; };
+		9445B8F92058FB7500B64F9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F72058FB7500B64F9C /* spark.png */; };
+		9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F82058FB7500B64F9C /* Explosion.scnp */; };
 		946A48E72057C20E0083899E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Protocols.swift */; };
 		946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* EnemyController.swift */; };
 		946A48ED2057D57D0083899E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EC2057D57D0083899E /* Constants.swift */; };
@@ -49,6 +51,8 @@
 		9445B8F22058AE2200B64F9C /* LazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazersController.swift; sourceTree = "<group>"; };
 		9445B8F42058EDA200B64F9C /* UFO.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = UFO.scn; sourceTree = "<group>"; };
 		9445B8F52058EF7D00B64F9C /* UFO.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO.dae; sourceTree = "<group>"; };
+		9445B8F72058FB7500B64F9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		9445B8F82058FB7500B64F9C /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
 		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		946A48EA2057D0BE0083899E /* EnemyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
 		946A48EC2057D57D0083899E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 			children = (
 				94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */,
 				94B6E8F220574F9C006F9CFC /* ViewController.swift */,
+				9445B8F72058FB7500B64F9C /* spark.png */,
+				9445B8F82058FB7500B64F9C /* Explosion.scnp */,
 				946A48EA2057D0BE0083899E /* EnemyController.swift */,
 				9445B8F22058AE2200B64F9C /* LazersController.swift */,
 				946A48EC2057D57D0083899E /* Constants.swift */,
@@ -280,7 +286,9 @@
 				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
 				94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */,
 				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
+				9445B8F92058FB7500B64F9C /* spark.png in Resources */,
 				94B6E93B20579C50006F9CFC /* UFO.obj in Resources */,
+				9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */,
 				9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */,
 				94B6E8F820574F9C006F9CFC /* Assets.xcassets in Resources */,
 				94B6E8F620574F9C006F9CFC /* Main.storyboard in Resources */,
