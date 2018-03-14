@@ -114,7 +114,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
  
     
     @objc func sceneTapped(recognizer: UITapGestureRecognizer) {
-        print("tapped")
+        
         let location = recognizer.location(in: sceneView)
         self.fireLazer()
         
@@ -171,7 +171,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
 extension ViewController : SCNPhysicsContactDelegate {
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        print("physics world")
+        
         let maskA = contact.nodeA.physicsBody!.contactTestBitMask
         let maskB = contact.nodeB.physicsBody!.contactTestBitMask
         
