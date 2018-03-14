@@ -88,7 +88,7 @@ class EnemyController{
         ufoNode.scale = SCNVector3(0.01, 0.01, 0.01)
         ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
-        let sphereGeometry = SCNSphere(radius: 1.5)
+        let sphereGeometry = SCNSphere(radius: 0.2)
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
         let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
         ufoNode.physicsBody = sphere1Body

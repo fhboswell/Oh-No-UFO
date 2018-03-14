@@ -40,6 +40,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
        // setupScene()
         //demoMethod()
         sceneView.scene.physicsWorld.contactDelegate = self
+        //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
    
     }
 
@@ -47,6 +48,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        
         
     }
     
@@ -155,6 +157,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
         
         sphereNode.position = SCNVector3(4, 0, 0)
         cubeNode.addChildNode(sphereNode)
+        
         
         
     }
