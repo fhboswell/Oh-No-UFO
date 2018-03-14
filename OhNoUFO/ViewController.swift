@@ -138,6 +138,9 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
      - When you tap the screen a green orb will take a few orbits of SCNVector3(0, 0, 0) of the scene's root node
      - This is where the phone was located exactly when the AR session was initalized
      - This code only initalizes the objects, the actual code to move the objects is located in the "sceneTapped" method
+     
+     NOTE:
+     -also uncomment code in scene tapped
      */
     
     func demoMethod(){
