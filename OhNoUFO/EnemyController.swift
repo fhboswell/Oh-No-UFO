@@ -16,7 +16,10 @@ class EnemyController{
     
      //MARK: - Instance Varriables
     let level:Int
-    var delegate: EnemyControllerDelegate?
+    var delegate: SceneRootNodeAccessDelegate?
+    var enemyControlNode = [SCNNode]()
+    var enemyNode = [SCNNode]()
+    var enemyTotal = 12
     
     
     

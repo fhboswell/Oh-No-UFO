@@ -11,6 +11,6 @@ import UIKit
 import ARKit
 import SceneKit
 
-protocol EnemyControllerDelegate {
+protocol SceneRootNodeAccessDelegate {
     func addToRootNode(nodeToAdd: SCNNode)
 }

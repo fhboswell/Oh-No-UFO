@@ -11,7 +11,7 @@ import UIKit
 import ARKit
 import SceneKit
 
-class ViewController: UIViewController, EnemyControllerDelegate{
+class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     
     
     //MARK: - Instance Varriables
@@ -21,6 +21,7 @@ class ViewController: UIViewController, EnemyControllerDelegate{
    
     
     var enemyController: EnemyController? = nil
+    var lazersController: LazersController? = nil
     
     
     //MARK: - Lifecycle
@@ -29,7 +30,8 @@ class ViewController: UIViewController, EnemyControllerDelegate{
         configureLighting()
       
         addGestures()
-        prepareEnemys()
+        prepareLazerController()
+        prepareEnemyController()
         
         //demoMethod()
    
@@ -60,51 +62,22 @@ class ViewController: UIViewController, EnemyControllerDelegate{
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
     
+    func fireLazer(){
+        var userLocationTuple = getUserVector()
+        lazersController?.fireLaser(dir: userLocationTuple.0, pos: userLocationTuple.1)
+    }
     
-    //MARK: - Visible Assets
-    func fireLaser(){
-        
-        
-        let sphereGeometry = SCNSphere(radius: 0.01)
-        let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIColor.green
-        sphereGeometry.materials = [sphereMaterial]
-        let laserNode = SCNNode(geometry: sphereGeometry)
-        
-        
-        var userVector = getUserVector()
-        laserNode.position = userVector.1
-        
-        //laserNode.scale = SCNVector3(0.01, 0.01, 0.01)
-        print("direction")
-        print(userVector.0.normalized())
-        print("position")
-        print(userVector.1)
-        laserNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
-        
-        
-//        let random = arc4random_uniform(5)
-//        let interval = Double(random)/10.0
-//        Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-//            let random = arc4random_uniform(20) + 20
-//            let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 20)
-//            ufoNode.runAction(action)
-//        }
-        
-        
-       sceneView.scene.rootNode.addChildNode(laserNode)
-        
-        
-        let action = SCNAction.moveBy(x: CGFloat(userVector.0.normalized().x), y: CGFloat(userVector.0.normalized().y), z: CGFloat(userVector.0.normalized().z), duration: 1)
-        //paperPlaneNode.runAction(action)
-        
-        let pulseThreeTimes = SCNAction.repeat(action,
-                                              count: 3)
-        laserNode.runAction(pulseThreeTimes)
+    
+    
+    func prepareLazerController(){
+        if (self.lazersController == nil) {
+            self.lazersController = LazersController(level: 1)
+            self.lazersController?.delegate = self
+        }
     }
     
     //MARK: - Sprite Controllers
-    func prepareEnemys(){
+    func prepareEnemyController(){
         if (self.enemyController == nil) {
             self.enemyController = EnemyController(level: 1)
             self.enemyController?.delegate = self
@@ -134,10 +107,12 @@ class ViewController: UIViewController, EnemyControllerDelegate{
     @objc func sceneTapped(recognizer: UITapGestureRecognizer) {
         print("tapped")
         let location = recognizer.location(in: sceneView)
-        fireLaser()
+        self.fireLazer()
+        
+        
         //this code moves the basic objects initalized in "demoMothod"
-      //  let action = SCNAction.rotateBy(x: 0, y: 10, z: 0, duration: 5)
-  //      cubeNode.runAction(action)
+        //let action = SCNAction.rotateBy(x: 0, y: 10, z: 0, duration: 5)
+        //cubeNode.runAction(action)
   
     }
 
@@ -174,8 +149,7 @@ class ViewController: UIViewController, EnemyControllerDelegate{
         sphereNode.position = SCNVector3(4, 0, 0)
         cubeNode.addChildNode(sphereNode)
         
-        // var action = SCNAction.rotateBy(x: 0, y: 4, z: 0, duration: 2)
-        //cubeNode.runAction(action)
+        
     }
 }
 

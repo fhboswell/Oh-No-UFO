@@ -11,6 +11,4 @@ import UIKit
 import ARKit
 import SceneKit
 
-var enemyControlNode = [SCNNode]()
-var enemyNode = [SCNNode]()
-var enemyTotal = 12
+
