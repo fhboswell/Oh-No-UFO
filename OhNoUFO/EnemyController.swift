@@ -36,14 +36,10 @@ class EnemyController{
             newControlNode.position = SCNVector3(0, heightOfControlNode, 0)
             
             self.delegate?.addToRootNode(nodeToAdd: newControlNode)
-            
             enemyControlNode.append(newControlNode)
-            
             newControlNode.addChildNode(addUFO())
-            
             paradeShip(controlNode: newControlNode)
-            
-            
+
         }
         
     }
