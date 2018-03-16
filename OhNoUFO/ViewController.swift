@@ -13,10 +13,11 @@ import SceneKit
 
 struct PhysicsMask {
     static let playerLazer = 0
-    static let enemyShip = 1
+    static let enemyLazer = 1
+    static let enemyShip = 2
 }
 
-class ViewController: UIViewController, SceneRootNodeAccessDelegate{
+class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocationAccessDelegate{
     
     
     //MARK: - Instance Varriables
@@ -26,7 +27,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
    
     
     var enemyController: EnemyController? = nil
-    var lazersController: LazersController? = nil
+    var playerLazersController: PlayerLazersController? = nil
     
     
     //MARK: - Lifecycle
@@ -60,9 +61,9 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     
     //MARK: - Player Fire Control
     func prepareLazerController(){
-        if (self.lazersController == nil) {
-            self.lazersController = LazersController(level: 1)
-            self.lazersController?.delegate = self
+        if (self.playerLazersController == nil) {
+            self.playerLazersController = PlayerLazersController(level: 1)
+            self.playerLazersController?.delegate = self
         }
     }
     
@@ -79,7 +80,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     
     func fireLazer(){
         var userLocationTuple = getUserVector()
-        lazersController?.fireLaser(dir: userLocationTuple.0, pos: userLocationTuple.1)
+        playerLazersController?.fireLaser(dir: userLocationTuple.0, pos: userLocationTuple.1)
     }
     
     
@@ -90,10 +91,12 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     func prepareEnemyController(){
         if (self.enemyController == nil) {
             self.enemyController = EnemyController(level: 1)
-            self.enemyController?.delegate = self
+            self.enemyController?.rootNodeDelegate = self
+            self.enemyController?.playerLocationDelegate = self
         }
         
         self.enemyController?.addEnemyShips()
+        self.enemyController?.prepareEnemyLazerController()
         
     }
     
@@ -118,6 +121,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
         
         let location = recognizer.location(in: sceneView)
         self.fireLazer()
+        self.enemyController?.fireAllLazers()
         
         
         //this code moves the basic objects initalized in "demoMothod"
@@ -129,6 +133,10 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate{
     //MARK: - delegate methods
     func addToRootNode(nodeToAdd: SCNNode){
         sceneView.scene.rootNode.addChildNode(nodeToAdd)
+    }
+    
+    func playerPOV() -> SCNNode{
+        return sceneView.pointOfView!
     }
     
     //MARK: - Demo
@@ -194,8 +202,8 @@ extension ViewController : SCNPhysicsContactDelegate {
         systemNode.addParticleSystem(particleSystem!)
         systemNode.position = bullet.position
         sceneView.scene.rootNode.addChildNode(systemNode)
-        bullet.removeFromParentNode()
-        enemy.removeFromParentNode()
+        //bullet.removeFromParentNode()
+        //enemy.removeFromParentNode()
         print("hit")
         
     }

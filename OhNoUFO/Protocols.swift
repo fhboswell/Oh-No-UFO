@@ -14,3 +14,7 @@ import SceneKit
 protocol SceneRootNodeAccessDelegate {
     func addToRootNode(nodeToAdd: SCNNode)
 }
+
+protocol PlayerLocationAccessDelegate {
+    func playerPOV() -> SCNNode
+}

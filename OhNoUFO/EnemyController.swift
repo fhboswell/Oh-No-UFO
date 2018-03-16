@@ -16,10 +16,13 @@ class EnemyController{
     
      //MARK: - Instance Varriables
     let level:Int
-    var delegate: SceneRootNodeAccessDelegate?
+    var rootNodeDelegate: SceneRootNodeAccessDelegate?
+    var playerLocationDelegate: PlayerLocationAccessDelegate?
     var enemyControlNode = [SCNNode]()
     var enemyNode = [SCNNode]()
     var enemyTotal = 12
+    
+    var enemyLazersController: EnemyLazersController? = nil
     
     
     
@@ -27,6 +30,18 @@ class EnemyController{
     init(level: Int){
         
         self.level = level
+       
+        
+    }
+    
+    
+    func fireAllLazers(){
+        for enemyShipNode in enemyNode{
+            print("here")
+            self.enemyLazersController?.fireLaser(enemyNode: enemyShipNode)
+            
+        }
+        
     }
     
     
@@ -38,13 +53,24 @@ class EnemyController{
             let heightOfControlNode = (Double(index%6)/5.0) - 1
             newControlNode.position = SCNVector3(0, heightOfControlNode, 0)
             
-            self.delegate?.addToRootNode(nodeToAdd: newControlNode)
+            self.rootNodeDelegate?.addToRootNode(nodeToAdd: newControlNode)
             enemyControlNode.append(newControlNode)
             newControlNode.addChildNode(addUFO())
+            
             paradeShip(controlNode: newControlNode)
+            
 
         }
         
+    }
+    
+   
+    func prepareEnemyLazerController(){
+        if (self.enemyLazersController == nil) {
+            self.enemyLazersController = EnemyLazersController(level: 1)
+            self.enemyLazersController?.playerLocationDelegate = playerLocationDelegate
+            self.enemyLazersController?.rootNodeDelegate = rootNodeDelegate
+        }
     }
     
     
@@ -104,6 +130,8 @@ class EnemyController{
             ufoNode.runAction(action)
         }
         
+        
+        enemyNode.append(ufoNode)
         
         return ufoNode
         

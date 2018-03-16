@@ -12,7 +12,7 @@ import ARKit
 import SceneKit
 import Foundation
 
-class LazersController{
+class PlayerLazersController{
     
     
     
@@ -41,7 +41,6 @@ class LazersController{
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
         let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
         laserNode.physicsBody = sphere1Body
-        //laserNode.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
         laserNode.physicsBody?.contactTestBitMask = PhysicsMask.playerLazer
         laserNode.physicsBody?.isAffectedByGravity = false
         
@@ -49,7 +48,6 @@ class LazersController{
        
         laserNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
-        //sceneView.scene.rootNode.addChildNode(laserNode)
         self.delegate?.addToRootNode(nodeToAdd: laserNode)
         
         let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 1)
