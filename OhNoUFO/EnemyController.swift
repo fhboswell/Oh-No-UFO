@@ -92,7 +92,7 @@ class EnemyController{
                 
                 
                 let moveAndWait = SCNAction.group([moveAction, waitAction])
-                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 6)
+                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 1)
                 controlNode.runAction(moveAndWaitRepeat)
                 
                 
@@ -105,7 +105,7 @@ class EnemyController{
                 
                 
                 let moveAndWait = SCNAction.group([moveAction, waitAction])
-                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 6)
+                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 1)
                 controlNode.runAction(moveAndWaitRepeat)
                
             }

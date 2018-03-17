@@ -17,6 +17,7 @@ struct PhysicsMask {
     static let playerLazer = 0
     static let enemyLazer = 1
     static let enemyShip = 2
+    static let player = 4
 }
 
 class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocationAccessDelegate{
@@ -38,6 +39,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
         super.viewDidLoad()
         configureLighting()
       
+        initPlayer()
         addGestures()
         prepareLazerController()
         prepareEnemyController()
@@ -61,6 +63,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
+    
     
     
     //MARK: - Player Fire Control
@@ -89,6 +92,22 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
     
     
     
+    func initPlayer(){
+        let node = SCNNode()
+        
+        // this puts the node in front & slightly below the camera
+        let orientation = SCNVector3(x: 0, y: 0, z: 0)
+        
+        node.position = orientation
+        let physicsBody = SCNPhysicsBody(
+            type: .kinematic,
+            shape: SCNPhysicsShape(geometry: SCNSphere(radius: 0.4))
+        )
+        node.physicsBody = physicsBody
+        node.physicsBody?.contactTestBitMask = PhysicsMask.player
+        
+        sceneView.pointOfView?.addChildNode(node)
+    }
     
     
     //MARK: - Sprite Controllers
@@ -192,6 +211,16 @@ extension ViewController : SCNPhysicsContactDelegate {
             hitEnemy(bullet: contact.nodeB, enemy: contact.nodeA)
         case (PhysicsMask.playerLazer, PhysicsMask.enemyShip):
             hitEnemy(bullet: contact.nodeA, enemy: contact.nodeB)
+        default:
+            break
+        }
+        
+        
+        switch(maskA, maskB){
+        case (PhysicsMask.player, PhysicsMask.enemyLazer):
+            print("player hit")
+        case (PhysicsMask.enemyLazer, PhysicsMask.player):
+            print("player hit")
         default:
             break
         }
