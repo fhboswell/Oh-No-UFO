@@ -16,8 +16,9 @@
 		946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* EnemyController.swift */; };
 		946A48ED2057D57D0083899E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EC2057D57D0083899E /* Constants.swift */; };
 		948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */; };
+		948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */; };
 		94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */; };
-		94B6E8F320574F9C006F9CFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E8F220574F9C006F9CFC /* ViewController.swift */; };
+		94B6E8F320574F9C006F9CFC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E8F220574F9C006F9CFC /* GameViewController.swift */; };
 		94B6E8F620574F9C006F9CFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E8F420574F9C006F9CFC /* Main.storyboard */; };
 		94B6E8F820574F9C006F9CFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E8F720574F9C006F9CFC /* Assets.xcassets */; };
 		94B6E8FB20574F9C006F9CFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E8F920574F9C006F9CFC /* LaunchScreen.storyboard */; };
@@ -58,9 +59,10 @@
 		946A48EA2057D0BE0083899E /* EnemyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
 		946A48EC2057D57D0083899E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyLazersController.swift; sourceTree = "<group>"; };
+		948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		94B6E8EB20574F9C006F9CFC /* OhNoUFO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhNoUFO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		94B6E8F220574F9C006F9CFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		94B6E8F220574F9C006F9CFC /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		94B6E8F520574F9C006F9CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94B6E8F720574F9C006F9CFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94B6E8FA20574F9C006F9CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -127,10 +129,11 @@
 			isa = PBXGroup;
 			children = (
 				94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */,
-				94B6E8F220574F9C006F9CFC /* ViewController.swift */,
+				94B6E8F220574F9C006F9CFC /* GameViewController.swift */,
 				9445B8F72058FB7500B64F9C /* spark.png */,
 				9445B8F82058FB7500B64F9C /* Explosion.scnp */,
 				946A48EA2057D0BE0083899E /* EnemyController.swift */,
+				948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */,
 				9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */,
 				948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */,
 				946A48EC2057D57D0083899E /* Constants.swift */,
@@ -319,11 +322,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */,
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
 				948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */,
 				9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */,
 				9445B8F12058A17200B64F9C /* Extensions.swift in Sources */,
-				94B6E8F320574F9C006F9CFC /* ViewController.swift in Sources */,
+				94B6E8F320574F9C006F9CFC /* GameViewController.swift in Sources */,
 				946A48E72057C20E0083899E /* Protocols.swift in Sources */,
 				946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */,
 				94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */,

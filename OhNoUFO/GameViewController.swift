@@ -20,7 +20,7 @@ struct PhysicsMask {
     static let player = 4
 }
 
-class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocationAccessDelegate{
+class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocationAccessDelegate{
     
     
     //MARK: - Instance Varriables
@@ -207,7 +207,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
 
 //MARK: Scene Physics Contact Delegate
 
-extension ViewController : SCNPhysicsContactDelegate {
+extension GameViewController : SCNPhysicsContactDelegate {
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
@@ -227,8 +227,10 @@ extension ViewController : SCNPhysicsContactDelegate {
         switch(maskA, maskB){
         case (PhysicsMask.player, PhysicsMask.enemyLazer):
             print("player hit")
+            self.dismiss(animated: true, completion: nil)
         case (PhysicsMask.enemyLazer, PhysicsMask.player):
             print("player hit")
+            self.dismiss(animated: true, completion: nil)
         default:
             break
         }
@@ -251,7 +253,7 @@ extension ViewController : SCNPhysicsContactDelegate {
 
 
 //MARK: AR SceneView Delegate
-extension ViewController : ARSCNViewDelegate{
+extension GameViewController : ARSCNViewDelegate{
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
         if time > shootTime && playerReady{

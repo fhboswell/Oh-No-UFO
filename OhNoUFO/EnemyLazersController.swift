@@ -37,22 +37,13 @@ class EnemyLazersController{
         
      
         let pov = self.playerLocationDelegate?.playerPOV()
-        
-        
-        //SCNGeometry.line
         var position: SCNVector3
         var pos: SCNVector3
         var dir : SCNVector3
        
         position = SCNVector3Make(0, 0, 0.05)
         pos = enemyNode.convertPosition(position, to: nil)
-        print(pov?.position)
-        print(enemyNode.position)
-        print(pos)
         dir = (pov?.position)! - pos
-        
-        print(pos)
-        
         
         let sphereGeometry = SCNSphere(radius: 0.01)
         let sphereMaterial = SCNMaterial()
