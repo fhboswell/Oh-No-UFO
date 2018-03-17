@@ -38,6 +38,8 @@ class EnemyController{
     func fireAllLazers(){
         for enemyShipNode in enemyNode{
             print("here")
+            
+            
             self.enemyLazersController?.fireLaser(enemyNode: enemyShipNode)
             
         }
@@ -58,6 +60,7 @@ class EnemyController{
             newControlNode.addChildNode(addUFO())
             
             paradeShip(controlNode: newControlNode)
+            //fireAllLazers()
             
 
         }
@@ -77,21 +80,34 @@ class EnemyController{
     //MARK: - Animation
     func paradeShip(controlNode: SCNNode){
         
-        
+       
         let random = arc4random_uniform(200)
         let interval = Double(random)/100.0
         if (enemyControlNode.count < (enemyTotal/2)+1 ){
             Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
                 
-                let action = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 2)
-                action.timingMode = .easeInEaseOut
-                controlNode.runAction(action)
+                let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 5)
+                moveAction.timingMode = .easeInEaseOut
+                let waitAction = SCNAction.wait(duration: 2)
+                
+                
+                let moveAndWait = SCNAction.group([moveAction, waitAction])
+                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 6)
+                controlNode.runAction(moveAndWaitRepeat)
+                
+                
             }
         }else{
             Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-                let action = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 2)
-                action.timingMode = .easeInEaseOut
-                controlNode.runAction(action)
+                let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 5)
+                moveAction.timingMode = .easeInEaseOut
+                let waitAction = SCNAction.wait(duration: 2)
+                
+                
+                let moveAndWait = SCNAction.group([moveAction, waitAction])
+                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 6)
+                controlNode.runAction(moveAndWaitRepeat)
+               
             }
         }
         
@@ -129,6 +145,7 @@ class EnemyController{
             let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 20)
             ufoNode.runAction(action)
         }
+        
         
         
         enemyNode.append(ufoNode)

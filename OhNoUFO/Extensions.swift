@@ -10,6 +10,10 @@ import Foundation
 
 import SceneKit
 
+import CoreGraphics
+
+
+
 extension SCNVector3
 {
     /**

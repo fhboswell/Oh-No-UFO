@@ -10,6 +10,8 @@
 import UIKit
 import ARKit
 import SceneKit
+import CoreGraphics
+import Foundation
 
 struct PhysicsMask {
     static let playerLazer = 0
@@ -24,6 +26,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
     @IBOutlet weak var sceneView: ARSCNView!
     var sphereNode: SCNNode!
     var cubeNode: SCNNode!
+    var shootTime:TimeInterval = 0
    
     
     var enemyController: EnemyController? = nil
@@ -40,6 +43,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
         prepareEnemyController()
        // setupScene()
         //demoMethod()
+        sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
    
@@ -94,10 +98,9 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
             self.enemyController?.rootNodeDelegate = self
             self.enemyController?.playerLocationDelegate = self
         }
-        
-        self.enemyController?.addEnemyShips()
         self.enemyController?.prepareEnemyLazerController()
-        
+        self.enemyController?.addEnemyShips()
+       
     }
     
     //MARK: - Root Scene reqs
@@ -202,9 +205,62 @@ extension ViewController : SCNPhysicsContactDelegate {
         systemNode.addParticleSystem(particleSystem!)
         systemNode.position = bullet.position
         sceneView.scene.rootNode.addChildNode(systemNode)
-        //bullet.removeFromParentNode()
-        //enemy.removeFromParentNode()
+        bullet.removeFromParentNode()
+        enemy.removeFromParentNode()
         print("hit")
         
     }
 }
+
+
+//MARK: AR SceneView Delegate
+extension ViewController : ARSCNViewDelegate{
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        
+        if time > shootTime {
+            self.enemyController?.fireAllLazers()
+           
+            shootTime = time + TimeInterval(1.5)
+        }
+        
+    }
+    
+    
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        switch camera.trackingState {
+        case .notAvailable:
+            print("Camera Not Available")
+        case .limited(let reason):
+            switch reason {
+            case .excessiveMotion:
+                print("Camera Tracking State Limited Due to Excessive Motion")
+            case .initializing:
+                print("Camera Tracking State Limited Due to Initalization")
+            case .insufficientFeatures:
+                print("Camera Tracking State Limited Due to Insufficient Features")
+                
+            }
+        case .normal:
+            print("Camera Tracking State Normal")
+        }
+    }
+    func session(_ session: ARSession, didFailWithError error: Error) {
+        print("Session Failed with error: \(error.localizedDescription)")
+        // Present an error message to the user
+        
+    }
+    
+    func sessionWasInterrupted(_ session: ARSession) {
+        print("Session Interrupted")
+        // Inform the user that the session has been interrupted, for example, by presenting an overlay
+        
+    }
+    
+    func sessionInterruptionEnded(_ session: ARSession) {
+        print("Session no longer being interrupted")
+        // Reset tracking and/or remove existing anchors if consistent tracking is required
+        
+    }
+    
+}
+
