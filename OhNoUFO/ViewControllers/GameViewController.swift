@@ -102,7 +102,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         node.position = orientation
         let physicsBody = SCNPhysicsBody(
             type: .kinematic,
-            shape: SCNPhysicsShape(geometry: SCNSphere(radius: 0.4))
+            shape: SCNPhysicsShape(geometry: SCNSphere(radius: 0.1))
         )
         node.physicsBody = physicsBody
         node.physicsBody?.contactTestBitMask = PhysicsMask.player
@@ -151,7 +151,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         
         let location = recognizer.location(in: sceneView)
         self.fireLazer()
-        self.enemyController?.fireAllLazers()
+        //self.enemyController?.fireAllLazers()
         
         
         //this code moves the basic objects initalized in "demoMothod"
@@ -226,11 +226,11 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         switch(maskA, maskB){
         case (PhysicsMask.player, PhysicsMask.enemyLazer):
-            print("player hit")
-            self.dismiss(animated: true, completion: nil)
+         //   print("player hit")
+            hitPlayer()
         case (PhysicsMask.enemyLazer, PhysicsMask.player):
-            print("player hit")
-            self.dismiss(animated: true, completion: nil)
+         //   print("player hit")
+            hitPlayer()
         default:
             break
         }
@@ -247,6 +247,14 @@ extension GameViewController : SCNPhysicsContactDelegate {
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
         print("hit")
+    }
+    
+    func hitPlayer(){
+        
+        if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
+            self.dismiss(animated: true, completion: nil)
+        }
+        print(PlayerAttributes.sharedPlayerAttributes.getLives())
         
     }
 }

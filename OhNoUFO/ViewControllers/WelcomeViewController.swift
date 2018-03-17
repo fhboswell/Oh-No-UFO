@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func showARSimulation(){
         print("Play")
+        PlayerAttributes.sharedPlayerAttributes.resetLives()
         performSegue(withIdentifier: "playGame", sender: nil)
     }
     
