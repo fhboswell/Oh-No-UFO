@@ -145,7 +145,8 @@ class EnemyController{
             let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 20)
             ufoNode.runAction(action)
         }
-        
+        //test
+        //test2
         
         
         enemyNodes.append(ufoNode)
