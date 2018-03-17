@@ -64,7 +64,7 @@ class EnemyLazersController{
         
         self.rootNodeDelegate?.addToRootNode(nodeToAdd: laserNode)
         
-        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.5)
+        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 1)
         let pulseThreeTimes = SCNAction.repeat(action, count: 10)
         laserNode.runAction(pulseThreeTimes)
         lazerNodes.append(laserNode)

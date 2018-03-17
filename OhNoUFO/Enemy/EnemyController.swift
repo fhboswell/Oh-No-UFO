@@ -18,8 +18,8 @@ class EnemyController{
     let level:Int
     var rootNodeDelegate: SceneRootNodeAccessDelegate?
     var playerLocationDelegate: PlayerLocationAccessDelegate?
-    var enemyControlNode = [SCNNode]()
-    var enemyNode = [SCNNode]()
+    var enemyControlNodes = [SCNNode]()
+    var enemyNodes = [SCNNode]()
     var enemyTotal = 12
     
     var enemyLazersController: EnemyLazersController? = nil
@@ -36,7 +36,7 @@ class EnemyController{
     
     
     func fireAllLazers(){
-        for enemyShipNode in enemyNode{
+        for enemyShipNode in enemyNodes{
             print("here")
             
             
@@ -56,10 +56,12 @@ class EnemyController{
             newControlNode.position = SCNVector3(0, heightOfControlNode, 0)
             
             self.rootNodeDelegate?.addToRootNode(nodeToAdd: newControlNode)
-            enemyControlNode.append(newControlNode)
+            enemyControlNodes.append(newControlNode)
             newControlNode.addChildNode(addUFO())
             
-            paradeShip(controlNode: newControlNode)
+            
+            
+            movePattern1(controlNode: newControlNode)
             //fireAllLazers()
             
 
@@ -78,12 +80,12 @@ class EnemyController{
     
     
     //MARK: - Animation
-    func paradeShip(controlNode: SCNNode){
+    func movePattern1(controlNode: SCNNode){
         
        
         let random = arc4random_uniform(200)
         let interval = Double(random)/100.0
-        if (enemyControlNode.count < (enemyTotal/2)+1 ){
+        if (enemyControlNodes.count < (enemyTotal/2)+1 ){
             Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
                 
                 let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 5)
@@ -113,7 +115,6 @@ class EnemyController{
         
     }
     
-    
     //MARK: - Visible Assets
     func addUFO(x: Float = 0, y: Float = 0, z: Float = 2.5) ->  SCNNode{
         
@@ -134,7 +135,6 @@ class EnemyController{
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
         let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
         ufoNode.physicsBody = sphere1Body
-        //ufoNode.physicsBody = SCNPhysicsBody(type: .static, shape: nil)
         ufoNode.physicsBody?.contactTestBitMask = PhysicsMask.enemyShip
         ufoNode.physicsBody?.isAffectedByGravity = false
         
@@ -148,7 +148,7 @@ class EnemyController{
         
         
         
-        enemyNode.append(ufoNode)
+        enemyNodes.append(ufoNode)
         
         return ufoNode
         
