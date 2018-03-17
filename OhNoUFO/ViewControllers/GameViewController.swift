@@ -14,10 +14,11 @@ import CoreGraphics
 import Foundation
 
 struct PhysicsMask {
-    static let playerLazer = 0
-    static let enemyLazer = 1
-    static let enemyShip = 2
-    static let player = 4
+    static let playerLazer = 1
+    static let enemyLazer = 5
+    static let enemyShip = 3
+    static let player = 5
+   
 }
 
 class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocationAccessDelegate{
