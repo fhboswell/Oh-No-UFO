@@ -32,6 +32,7 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
     
     var enemyController: EnemyController? = nil
     var playerLazersController: PlayerLazersController? = nil
+    var playerReady = false
     
     
     //MARK: - Lifecycle
@@ -107,6 +108,13 @@ class ViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocat
         node.physicsBody?.contactTestBitMask = PhysicsMask.player
         
         sceneView.pointOfView?.addChildNode(node)
+        
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(5), repeats: false) {_ in
+            
+            self.playerReady = true
+            
+            
+        }
     }
     
     
@@ -246,10 +254,10 @@ extension ViewController : SCNPhysicsContactDelegate {
 extension ViewController : ARSCNViewDelegate{
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         
-        if time > shootTime {
+        if time > shootTime && playerReady{
             self.enemyController?.fireAllLazers()
            
-            shootTime = time + TimeInterval(1.5)
+            shootTime = time + TimeInterval(5.5)
         }
         
     }
