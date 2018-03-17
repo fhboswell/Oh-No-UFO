@@ -215,7 +215,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         let maskA = contact.nodeA.physicsBody!.contactTestBitMask
         let maskB = contact.nodeB.physicsBody!.contactTestBitMask
-        print("physics coll")
+        
         switch(maskA, maskB){
         case (PhysicsMask.enemyShip, PhysicsMask.playerLazer):
             hitEnemy(bullet: contact.nodeB, enemy: contact.nodeA)
@@ -249,7 +249,11 @@ extension GameViewController : SCNPhysicsContactDelegate {
         sceneView.scene.rootNode.addChildNode(systemNode)
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
-        print("hit")
+        var removableEnemy = self.enemyController?.enemyNodes.filter{ $0.parent == enemy }
+        var removableEnemyController = self.enemyController?.enemyNodes.filter{ $0 == enemy }
+        print("found controller")
+        print(removableEnemyController)
+        
     }
     
     func hitPlayer(){
@@ -257,8 +261,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
             self.dismiss(animated: true, completion: nil)
         }
-        print(PlayerAttributes.sharedPlayerAttributes.getLives())
-        
+       
     }
 }
 

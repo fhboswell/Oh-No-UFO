@@ -37,7 +37,7 @@ class EnemyController{
     
     func fireAllLazers(){
         for enemyShipNode in enemyNodes{
-            print("here")
+           
             
             
             self.enemyLazersController?.fireLaser(enemyNode: enemyShipNode)
