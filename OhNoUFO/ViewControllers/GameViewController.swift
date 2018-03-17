@@ -48,7 +48,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         //demoMethod()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-        //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
+        sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
    
     }
 
@@ -124,6 +124,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
             self.enemyController = EnemyController(level: 1)
             self.enemyController?.rootNodeDelegate = self
             self.enemyController?.playerLocationDelegate = self
+            
         }
         self.enemyController?.prepareEnemyLazerController()
         self.enemyController?.addEnemyShips()
@@ -213,7 +214,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         let maskA = contact.nodeA.physicsBody!.contactTestBitMask
         let maskB = contact.nodeB.physicsBody!.contactTestBitMask
-        
+        print("physics coll")
         switch(maskA, maskB){
         case (PhysicsMask.enemyShip, PhysicsMask.playerLazer):
             hitEnemy(bullet: contact.nodeB, enemy: contact.nodeA)
@@ -234,6 +235,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         default:
             break
         }
+ 
     }
     
     func hitEnemy(bullet: SCNNode, enemy: SCNNode){
