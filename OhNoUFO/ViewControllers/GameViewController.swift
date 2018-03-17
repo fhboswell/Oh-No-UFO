@@ -249,10 +249,9 @@ extension GameViewController : SCNPhysicsContactDelegate {
         sceneView.scene.rootNode.addChildNode(systemNode)
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
-        var removableEnemy = self.enemyController?.enemyNodes.filter{ $0.parent == enemy }
-        var removableEnemyController = self.enemyController?.enemyNodes.filter{ $0 == enemy }
-        print("found controller")
-        print(removableEnemyController)
+       
+        self.enemyController?.enemyNodes = (self.enemyController?.enemyNodes.filter{ $0 !== enemy })!
+        
         
     }
     
