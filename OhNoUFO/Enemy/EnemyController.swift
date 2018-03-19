@@ -18,29 +18,25 @@ class EnemyController{
     let level:Int
     var rootNodeDelegate: SceneRootNodeAccessDelegate?
     var playerLocationDelegate: PlayerLocationAccessDelegate?
-    var enemyControlNodes = [SCNNode]()
-    var enemyNodes = [SCNNode]()
+    
+    var enemies = [Enemy]()
+    
     var enemyTotal = 12
     
     var enemyLazersController: EnemyLazersController? = nil
-    
-    
     
     //MARK: - Lifecycle
     init(level: Int){
         
         self.level = level
-       
         
     }
     
     
     func fireAllLazers(){
-        for enemyShipNode in enemyNodes{
-           
-            
-            
-            self.enemyLazersController?.fireLaser(enemyNode: enemyShipNode)
+        for enemy in enemies{
+
+            self.enemyLazersController?.fireLaser(enemyNode: enemy.enemyNode)
             
         }
         
@@ -51,19 +47,21 @@ class EnemyController{
     //MARK: - Init Control Nodes
     func addEnemyShips(){
         for index in 1...enemyTotal {
-            let newControlNode = SCNNode()
             let heightOfControlNode = (Double(index%6)/5.0) - 1
-            newControlNode.position = SCNVector3(0, heightOfControlNode, 0)
+            let position = SCNVector3(0, heightOfControlNode, 0)
             
-            self.rootNodeDelegate?.addToRootNode(nodeToAdd: newControlNode)
-            enemyControlNodes.append(newControlNode)
-            newControlNode.addChildNode(addUFO())
-            
-            
-            
-            movePattern1(controlNode: newControlNode)
-            //fireAllLazers()
-            
+            if (enemies.count < (enemyTotal/2)+1 ){
+                let newEnemy = Enemy(0, position, nil)
+                enemies.append(newEnemy)
+                self.rootNodeDelegate?.addToRootNode(nodeToAdd: newEnemy.controlNode)
+                newEnemy.animate()
+            }
+            else{
+                let newEnemy = Enemy(1, position, nil)
+                enemies.append(newEnemy)
+                self.rootNodeDelegate?.addToRootNode(nodeToAdd: newEnemy.controlNode)
+                newEnemy.animate()
+            }
 
         }
         
@@ -77,84 +75,5 @@ class EnemyController{
             self.enemyLazersController?.rootNodeDelegate = rootNodeDelegate
         }
     }
-    
-    
-    //MARK: - Animation
-    func movePattern1(controlNode: SCNNode){
-        
-       
-        let random = arc4random_uniform(200)
-        let interval = Double(random)/100.0
-        if (enemyControlNodes.count < (enemyTotal/2)+1 ){
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-                
-                let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 5)
-                moveAction.timingMode = .easeInEaseOut
-                let waitAction = SCNAction.wait(duration: 2)
-                
-                
-                let moveAndWait = SCNAction.group([moveAction, waitAction])
-                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 1)
-                controlNode.runAction(moveAndWaitRepeat)
-                
-                
-            }
-        }else{
-            Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-                let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 5)
-                moveAction.timingMode = .easeInEaseOut
-                let waitAction = SCNAction.wait(duration: 2)
-                
-                
-                let moveAndWait = SCNAction.group([moveAction, waitAction])
-                let moveAndWaitRepeat = SCNAction.repeat(moveAndWait, count: 1)
-                controlNode.runAction(moveAndWaitRepeat)
-               
-            }
-        }
-        
-    }
-    
-    //MARK: - Visible Assets
-    func addUFO(x: Float = 0, y: Float = 0, z: Float = 2.5) ->  SCNNode{
-        
-        
-        
-        let ufoNode = SCNNode()
-        guard let ufoScene = SCNScene(named: "UFO2.dae") else { return ufoNode}
-        
-        let ufoSceneChildNodes = ufoScene.rootNode.childNodes
-        for childNode in ufoSceneChildNodes {
-            ufoNode.addChildNode(childNode)
-        }
-        ufoNode.position = SCNVector3(x, y, z)
-        ufoNode.scale = SCNVector3(0.2, 0.2, 0.2)
-        ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
-        
-        let sphereGeometry = SCNSphere(radius: 0.2)
-        let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
-        let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
-        ufoNode.physicsBody = sphere1Body
-        ufoNode.physicsBody?.contactTestBitMask = PhysicsMask.enemyShip
-        ufoNode.physicsBody?.isAffectedByGravity = false
-        
-        let random = arc4random_uniform(5)
-        let interval = Double(random)/10.0
-        Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: false) {_ in
-            let random = arc4random_uniform(20) + 20
-            let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 20)
-            ufoNode.runAction(action)
-        }
-       
-        
-        
-        enemyNodes.append(ufoNode)
-        
-        return ufoNode
-        
-        
-    }
-    
-    
    
 }

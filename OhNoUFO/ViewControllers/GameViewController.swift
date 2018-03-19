@@ -250,7 +250,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
        
-        self.enemyController?.enemyNodes = (self.enemyController?.enemyNodes.filter{ $0 !== enemy })!
+        self.enemyController?.enemies = (self.enemyController?.enemies.filter{ $0.enemyNode !== enemy })!
         
         
     }
