@@ -18,25 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPn-Hy-Wpo">
-                                <rect key="frame" x="147" y="289" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="showARSimulation" destination="jqp-X7-wjV" eventType="touchUpInside" id="z4O-T1-CLV"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dqn-ZU-n5L">
+                                <rect key="frame" x="0.0" y="126" width="375" height="541"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArcadeMode" rowHeight="158" id="Vng-Od-JnJ" customClass="ArcadeModeCell" customModule="OhNoUFO" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="158"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ArcadeMode" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vng-Od-JnJ" id="iaj-gl-cHS" customClass="ArcadeModeCell" customModule="OhNoUFO" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="157.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="trailing" secondItem="6t9-zq-7p6" secondAttribute="trailing" id="HXT-oR-skU"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="bottom" secondItem="6t9-zq-7p6" secondAttribute="bottom" id="d1b-jA-0eM"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="6t9-zq-7p6" secondAttribute="top" constant="106" id="eQf-zI-cg5"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="centerX" secondItem="6t9-zq-7p6" secondAttribute="centerX" id="r3u-49-9ul"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="leading" secondItem="6t9-zq-7p6" secondAttribute="leading" id="wX7-Fg-SVy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6t9-zq-7p6"/>
                     </view>
                     <connections>
+                        <outlet property="welcomeTableView" destination="Dqn-ZU-n5L" id="DUC-zJ-8tu"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="playGame" id="jSx-jk-BGE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p9D-Bp-T1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-770" y="32"/>
+            <point key="canvasLocation" x="-776.79999999999995" y="132.68365817091455"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">

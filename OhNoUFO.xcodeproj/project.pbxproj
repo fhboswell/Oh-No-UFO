@@ -13,6 +13,7 @@
 		9445B8F92058FB7500B64F9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F72058FB7500B64F9C /* spark.png */; };
 		9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F82058FB7500B64F9C /* Explosion.scnp */; };
 		94621ADD205F440800CCB73B /* UFO2.dae in Resources */ = {isa = PBXBuildFile; fileRef = 94621ADC205F440800CCB73B /* UFO2.dae */; };
+		9464352120606964008A472A /* ArcadeModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464352020606964008A472A /* ArcadeModeCell.swift */; };
 		946A48E72057C20E0083899E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Protocols.swift */; };
 		946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* EnemyController.swift */; };
 		946A48ED2057D57D0083899E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EC2057D57D0083899E /* Constants.swift */; };
@@ -58,6 +59,7 @@
 		9445B8F72058FB7500B64F9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9445B8F82058FB7500B64F9C /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
 		94621ADC205F440800CCB73B /* UFO2.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO2.dae; sourceTree = "<group>"; };
+		9464352020606964008A472A /* ArcadeModeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeModeCell.swift; sourceTree = "<group>"; };
 		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		946A48EA2057D0BE0083899E /* EnemyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
 		946A48EC2057D57D0083899E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -130,6 +132,14 @@
 			path = UFO2;
 			sourceTree = "<group>";
 		};
+		946435222060696D008A472A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9464352020606964008A472A /* ArcadeModeCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		948E4E68205CD8C500DC6FF9 /* Enemy */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 				948E4E69205CD8F000DC6FF9 /* App */,
 				948E4E68205CD8C500DC6FF9 /* Enemy */,
 				948E4E6A205CD92500DC6FF9 /* Player */,
+				946435222060696D008A472A /* Cells */,
 				948E4E6D205CDADE00DC6FF9 /* ViewControllers */,
 				94B6E8F720574F9C006F9CFC /* Assets.xcassets */,
 				94B6E8F420574F9C006F9CFC /* Main.storyboard */,
@@ -380,6 +391,7 @@
 				948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */,
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
 				948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */,
+				9464352120606964008A472A /* ArcadeModeCell.swift in Sources */,
 				BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */,
 				948E4E6C205CDACC00DC6FF9 /* PlayerAttributes.swift in Sources */,
 				9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */,
@@ -555,7 +567,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27RHNLCLG4;
+				DEVELOPMENT_TEAM = NN7HR27RDT;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Boswell.OhNoUFO;
@@ -570,7 +582,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 27RHNLCLG4;
+				DEVELOPMENT_TEAM = NN7HR27RDT;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Boswell.OhNoUFO;
