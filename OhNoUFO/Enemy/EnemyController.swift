@@ -121,14 +121,14 @@ class EnemyController{
         
         
         let ufoNode = SCNNode()
-        guard let ufoScene = SCNScene(named: "UFO.dae") else { return ufoNode}
+        guard let ufoScene = SCNScene(named: "UFO2.dae") else { return ufoNode}
         
         let ufoSceneChildNodes = ufoScene.rootNode.childNodes
         for childNode in ufoSceneChildNodes {
             ufoNode.addChildNode(childNode)
         }
         ufoNode.position = SCNVector3(x, y, z)
-        ufoNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        ufoNode.scale = SCNVector3(0.2, 0.2, 0.2)
         ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
         let sphereGeometry = SCNSphere(radius: 0.2)
