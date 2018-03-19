@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,8 +20,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dqn-ZU-n5L">
-                                <rect key="frame" x="0.0" y="126" width="375" height="541"/>
+                                <rect key="frame" x="0.0" y="227" width="375" height="440"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="DPP-Fw-bXv"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArcadeMode" rowHeight="158" id="Vng-Od-JnJ" customClass="ArcadeModeCell" customModule="OhNoUFO" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="158"/>
@@ -32,18 +36,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvf-zY-kHs">
+                                <rect key="frame" x="0.0" y="20" width="375" height="207"/>
+                            </sceneKitView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="trailing" secondItem="6t9-zq-7p6" secondAttribute="trailing" id="HXT-oR-skU"/>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="bottom" secondItem="6t9-zq-7p6" secondAttribute="bottom" id="d1b-jA-0eM"/>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="6t9-zq-7p6" secondAttribute="top" constant="106" id="eQf-zI-cg5"/>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="centerX" secondItem="6t9-zq-7p6" secondAttribute="centerX" id="r3u-49-9ul"/>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="leading" secondItem="6t9-zq-7p6" secondAttribute="leading" id="wX7-Fg-SVy"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="leading" secondItem="6t9-zq-7p6" secondAttribute="leading" id="Hj9-BB-C51"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="bottom" secondItem="6t9-zq-7p6" secondAttribute="bottom" id="MV8-PO-ABd"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="6t9-zq-7p6" secondAttribute="top" constant="207" id="PZB-0A-rjc"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="nvf-zY-kHs" secondAttribute="bottom" id="Ttw-O0-tTC"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="trailing" secondItem="6t9-zq-7p6" secondAttribute="trailing" id="Wvg-hI-rgr"/>
+                            <constraint firstItem="nvf-zY-kHs" firstAttribute="trailing" secondItem="6t9-zq-7p6" secondAttribute="trailing" id="Z4w-Br-dfb"/>
+                            <constraint firstItem="nvf-zY-kHs" firstAttribute="leading" secondItem="6t9-zq-7p6" secondAttribute="leading" id="eed-5u-LnY"/>
+                            <constraint firstItem="nvf-zY-kHs" firstAttribute="top" secondItem="LCE-uw-8DK" secondAttribute="topMargin" id="ppg-h1-dFV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6t9-zq-7p6"/>
                     </view>
                     <connections>
+                        <outlet property="welcomeSceneView" destination="nvf-zY-kHs" id="mpr-mL-t8M"/>
                         <outlet property="welcomeTableView" destination="Dqn-ZU-n5L" id="DUC-zJ-8tu"/>
                         <segue destination="BV1-FR-VrT" kind="show" identifier="playGame" id="jSx-jk-BGE"/>
                     </connections>

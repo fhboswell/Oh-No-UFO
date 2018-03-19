@@ -8,29 +8,50 @@
 
 
 import UIKit
+import UIKit
+import ARKit
+import SceneKit
+import CoreGraphics
 
 class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
     //MARK: Instance Varriables
     @IBOutlet var welcomeTableView: UITableView!
+    @IBOutlet var welcomeSceneView: SCNView!
+    
+    var scene: WelcomeScene?
     
     //MARK: - Lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+       scene?.isPaused = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        scene?.isPaused = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         welcomeTableView.delegate = self
         welcomeTableView.dataSource = self
+         setupScene()
 
     }
     
-    //MARK: - Game Setup Logit
+    //MARK: - scene
+    func setupScene(){
+        self.scene = WelcomeScene()
+        welcomeSceneView.backgroundColor = UIColor.black
+        welcomeSceneView.autoenablesDefaultLighting = true
+        
+        self.welcomeSceneView.scene = scene
+        self.scene?.initializeScene()
+    }
+    
+    
+    //MARK: - Game Setup Logic
     func prepareToPlay(){
         PlayerAttributes.sharedPlayerAttributes.resetLives()
     }
