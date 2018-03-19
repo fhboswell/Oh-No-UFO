@@ -33,12 +33,7 @@ struct EnemyType{
             let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 5)
             moveAction.timingMode = .easeInEaseOut
             let waitAction = SCNAction.wait(duration: interval)
-            let printAction = SCNAction.run({ (node) in
-                print("done waiting")
-            })
-            print("wait for \(interval)")
-            return moveAction
-            //return SCNAction.group([waitAction,printAction, moveAction])
+            return SCNAction.group([waitAction, moveAction])
         }
         var closureToGenerateResourceAction = { () -> SCNAction in
             var random = arc4random_uniform(5)

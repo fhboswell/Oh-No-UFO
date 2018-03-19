@@ -49,7 +49,8 @@ class Enemy{
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
         let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
         enemyNode.physicsBody = sphere1Body
-        enemyNode.physicsBody?.contactTestBitMask = PhysicsMask.enemyShip
+        enemyNode.physicsBody?.categoryBitMask = PhysicsMask.enemyShip
+        enemyNode.physicsBody?.contactTestBitMask = PhysicsMask.playerLazer
         enemyNode.physicsBody?.isAffectedByGravity = false
 
         controlNode.addChildNode(enemyNode)

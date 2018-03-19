@@ -55,7 +55,8 @@ class EnemyLazersController{
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
         let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
         laserNode.physicsBody = sphere1Body
-        laserNode.physicsBody?.contactTestBitMask = PhysicsMask.enemyLazer
+        laserNode.physicsBody?.categoryBitMask = PhysicsMask.enemyLazer
+        laserNode.physicsBody?.contactTestBitMask = PhysicsMask.player
         laserNode.physicsBody?.isAffectedByGravity = false
         
         laserNode.position = pos

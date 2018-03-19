@@ -14,10 +14,10 @@ import CoreGraphics
 import Foundation
 
 struct PhysicsMask {
-    static let playerLazer = 1
-    static let enemyLazer = 5
-    static let enemyShip = 3
-    static let player = 5
+    static let playerLazer = 0
+    static let enemyLazer = 2
+    static let enemyShip = 4
+    static let player = 8
    
 }
 
@@ -106,8 +106,10 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
             shape: SCNPhysicsShape(geometry: SCNSphere(radius: 0.1))
         )
         node.physicsBody = physicsBody
-        node.physicsBody?.contactTestBitMask = PhysicsMask.player
         
+        node.physicsBody?.categoryBitMask = PhysicsMask.player
+        node.physicsBody?.contactTestBitMask = PhysicsMask.enemyLazer
+
         sceneView.pointOfView?.addChildNode(node)
         
         Timer.scheduledTimer(withTimeInterval: TimeInterval(5), repeats: false) {_ in
