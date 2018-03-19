@@ -247,7 +247,9 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
         let systemNode = SCNNode()
         systemNode.addParticleSystem(particleSystem!)
-        systemNode.position = bullet.position
+        var convertedPosition = bullet.convertPosition(bullet.position, to: nil)
+        
+        systemNode.position = convertedPosition
         sceneView.scene.rootNode.addChildNode(systemNode)
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
