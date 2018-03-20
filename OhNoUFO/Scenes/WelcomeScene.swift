@@ -14,14 +14,24 @@ import SceneKit
 class WelcomeScene: SCNScene {
     
    let ufoNode = SCNNode()
+    
+    
     func initializeScene(){
-
+        setupCamera()
         addUFO()
+    }
+    
+    func setupCamera(){
+        var cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        cameraNode.position = SCNVector3(x: 0, y: 0.5, z: 0.2)
+        self.rootNode.addChildNode(cameraNode)
+        
     }
     
     
     
-    func addUFO(x: Float = 0, y: Float = 0, z: Float = -2.5){
+    func addUFO(x: Float = -0.7, y: Float = 0, z: Float = -1.5){
    
         guard let ufoScene = SCNScene(named: "UFO.dae") else { return }
         
@@ -30,7 +40,7 @@ class WelcomeScene: SCNScene {
             ufoNode.addChildNode(childNode)
         }
         ufoNode.position = SCNVector3(x, y, z)
-        ufoNode.scale = SCNVector3(0.01, 0.01, 0.01)
+        ufoNode.scale = SCNVector3(0.03, 0.03, 0.03)
         ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
         let sphereGeometry = SCNSphere(radius: 0.2)
@@ -41,8 +51,8 @@ class WelcomeScene: SCNScene {
         
         let random = arc4random_uniform(5)
         let interval = Double(random)/10.0
-        let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 20)
-        let runManyTimes = SCNAction.repeat(action, count: 10)
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 10)
+        let runManyTimes = SCNAction.repeat(action, count: 20)
         self.ufoNode.runAction(runManyTimes)
         
    

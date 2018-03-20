@@ -45,7 +45,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         self.scene = WelcomeScene()
         welcomeSceneView.backgroundColor = UIColor.black
         welcomeSceneView.autoenablesDefaultLighting = true
-        
         self.welcomeSceneView.scene = scene
         self.scene?.initializeScene()
     }
