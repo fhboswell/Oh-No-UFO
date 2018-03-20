@@ -13,7 +13,7 @@ import ARKit
 import SceneKit
 import CoreGraphics
 
-class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LevelCellDelegate {
    
     //MARK: Instance Varriables
     @IBOutlet var welcomeTableView: UITableView!
@@ -61,13 +61,32 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeCell
-        cell.initalize()
+        
+        if(indexPath.row == 0){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
+            cell.initalize()
+            return cell
+            
+        }else if(indexPath.row == 1){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
+            cell.initalize()
+            return cell
+        }else if(indexPath.row == 2){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LevelSelect", for: indexPath) as! LevelTableViewCell
+            cell.initalize(levelList: levelList, delegate: self)
+            cell.contentView.backgroundColor = UIColor.blue
+            return cell
+            
+            
+        }
+        //just remove the final if else and replace with else
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath)
         return cell
+       
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,8 +97,14 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
+    
+    //MARK: - protocol conform
+    func recieveLevelIndex(index: Int){
+        print(index)
+    }
+    
 }
 
 

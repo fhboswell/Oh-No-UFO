@@ -1,5 +1,5 @@
 //
-//  ArcadeModeCell.swift
+//  ArcadeModeTableViewCell.swift
 //  OhNoUFO
 //
 //  Created by Henry Boswell on 3/19/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ArcadeModeCell: UITableViewCell {
+class ArcadeModeTableViewCell: UITableViewCell {
 
     //MARK: - Instance Varriables
     var titleLabel: UILabel?

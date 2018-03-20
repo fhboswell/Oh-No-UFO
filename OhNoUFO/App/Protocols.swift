@@ -18,3 +18,7 @@ protocol SceneRootNodeAccessDelegate {
 protocol PlayerLocationAccessDelegate {
     func playerPOV() -> SCNNode
 }
+
+protocol LevelCellDelegate {
+    func recieveLevelIndex(index: Int)
+}

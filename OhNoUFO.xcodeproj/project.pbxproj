@@ -13,7 +13,7 @@
 		9445B8F92058FB7500B64F9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F72058FB7500B64F9C /* spark.png */; };
 		9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F82058FB7500B64F9C /* Explosion.scnp */; };
 		94621ADD205F440800CCB73B /* UFO2.dae in Resources */ = {isa = PBXBuildFile; fileRef = 94621ADC205F440800CCB73B /* UFO2.dae */; };
-		9464352120606964008A472A /* ArcadeModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464352020606964008A472A /* ArcadeModeCell.swift */; };
+		9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464352020606964008A472A /* ArcadeModeTableViewCell.swift */; };
 		946435242060759D008A472A /* WelcomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946435232060759D008A472A /* WelcomeScene.swift */; };
 		946A48E72057C20E0083899E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Protocols.swift */; };
 		946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* EnemyController.swift */; };
@@ -32,6 +32,9 @@
 		94B6E93620579C50006F9CFC /* UFO.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E92E20579C50006F9CFC /* UFO.mtl */; };
 		94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93020579C50006F9CFC /* UFO_Light_D.tga */; };
 		94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93220579C50006F9CFC /* UFO_N.tga */; };
+		94D661F3206093230085A698 /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F2206093230085A698 /* LevelTableViewCell.swift */; };
+		94D661F5206093900085A698 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F4206093900085A698 /* LevelCollectionViewCell.swift */; };
+		94D661F72060941A0085A698 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F62060941A0085A698 /* Structs.swift */; };
 		BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F6205F496100A9E9AD /* Enemy.swift */; };
 		BD0A48F9205F49EF00A9E9AD /* EnemyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F8205F49EF00A9E9AD /* EnemyTypes.swift */; };
 /* End PBXBuildFile section */
@@ -60,7 +63,7 @@
 		9445B8F72058FB7500B64F9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9445B8F82058FB7500B64F9C /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
 		94621ADC205F440800CCB73B /* UFO2.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO2.dae; sourceTree = "<group>"; };
-		9464352020606964008A472A /* ArcadeModeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeModeCell.swift; sourceTree = "<group>"; };
+		9464352020606964008A472A /* ArcadeModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeModeTableViewCell.swift; sourceTree = "<group>"; };
 		946435232060759D008A472A /* WelcomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScene.swift; sourceTree = "<group>"; };
 		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		946A48EA2057D0BE0083899E /* EnemyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
@@ -85,6 +88,9 @@
 		94B6E92E20579C50006F9CFC /* UFO.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UFO.mtl; sourceTree = "<group>"; };
 		94B6E93020579C50006F9CFC /* UFO_Light_D.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_Light_D.tga; sourceTree = "<group>"; };
 		94B6E93220579C50006F9CFC /* UFO_N.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_N.tga; sourceTree = "<group>"; };
+		94D661F2206093230085A698 /* LevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTableViewCell.swift; sourceTree = "<group>"; };
+		94D661F4206093900085A698 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		94D661F62060941A0085A698 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		BD0A48F6205F496100A9E9AD /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		BD0A48F8205F49EF00A9E9AD /* EnemyTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,7 +143,9 @@
 		946435222060696D008A472A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9464352020606964008A472A /* ArcadeModeCell.swift */,
+				9464352020606964008A472A /* ArcadeModeTableViewCell.swift */,
+				94D661F2206093230085A698 /* LevelTableViewCell.swift */,
+				94D661F4206093900085A698 /* LevelCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 			children = (
 				94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */,
 				946A48E62057C20E0083899E /* Protocols.swift */,
+				94D661F62060941A0085A698 /* Structs.swift */,
 				9445B8F02058A17200B64F9C /* Extensions.swift */,
 				946A48EC2057D57D0083899E /* Constants.swift */,
 			);
@@ -402,12 +411,15 @@
 				948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */,
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
 				948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */,
-				9464352120606964008A472A /* ArcadeModeCell.swift in Sources */,
+				94D661F3206093230085A698 /* LevelTableViewCell.swift in Sources */,
+				9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */,
 				BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */,
 				948E4E6C205CDACC00DC6FF9 /* PlayerAttributes.swift in Sources */,
+				94D661F5206093900085A698 /* LevelCollectionViewCell.swift in Sources */,
 				9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */,
 				946435242060759D008A472A /* WelcomeScene.swift in Sources */,
 				9445B8F12058A17200B64F9C /* Extensions.swift in Sources */,
+				94D661F72060941A0085A698 /* Structs.swift in Sources */,
 				94B6E8F320574F9C006F9CFC /* GameViewController.swift in Sources */,
 				946A48E72057C20E0083899E /* Protocols.swift in Sources */,
 				946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */,

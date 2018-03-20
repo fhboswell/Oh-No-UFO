@@ -13,13 +13,6 @@ import SceneKit
 import CoreGraphics
 import Foundation
 
-struct PhysicsMask {
-    static let playerLazer = 0
-    static let enemyLazer = 2
-    static let enemyShip = 4
-    static let player = 8
-   
-}
 
 class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerLocationAccessDelegate{
     
