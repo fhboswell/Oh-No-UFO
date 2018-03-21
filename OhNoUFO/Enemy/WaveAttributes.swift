@@ -15,14 +15,7 @@ class WaveAttributes{
     var currentWave = 0
     
 
-    /*
-    TODO: - Messy index
-     
-    Messy im sure there is a better way to handel index VS number
- 
-    NOTE:    Much of this would be fixed if this singleton holds the enemy double array currently in enemyController
- 
-     */
+  
     func incrementCurrentWave() -> Bool{
         if currentWave < waveList.count{
             currentWave = currentWave + 1
@@ -33,11 +26,9 @@ class WaveAttributes{
         
     }
     func getCurrentWaveObject() -> Wave{
-        return waveList[currentWave - 1]
+        return waveList[self.getCurrentWaveIndex()]
     }
-    func getCurrentWaveNumber() -> Int{ //not usually used
-        return currentWave
-    }
+    
     func getCurrentWaveIndex() -> Int{
         return currentWave - 1
     }
