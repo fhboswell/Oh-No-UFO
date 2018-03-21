@@ -87,7 +87,6 @@ struct EnemyType{
             let straight = SCNAction.moveBy(x: 0, y: 0, z: 8, duration: 5)
             let secondMove = SCNAction.group([center,straight])
             let last = SCNAction.rotateBy(x: 0, y: CGFloat((Double.pi - 0.45)/2.0), z: 0, duration: 5)
-            
             let last2 = SCNAction.moveBy(x: -2, y: 0, z: 0, duration: 0)
             let last3 = SCNAction.group([last,last2])
             var all =  SCNAction.sequence([firstAction,secondMove,last3])
