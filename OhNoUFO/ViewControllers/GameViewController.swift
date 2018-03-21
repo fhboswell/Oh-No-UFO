@@ -271,7 +271,7 @@ extension GameViewController : ARSCNViewDelegate{
         if time > shootTime && playerReady{
             self.enemyController?.fireAllLazers()
            
-            shootTime = time + TimeInterval(5.5)
+            shootTime = time + TimeInterval(9)
         }
         
     }

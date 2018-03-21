@@ -38,21 +38,25 @@ class WaveAttributes{
         var waveList = [Wave]()
         
         var total = 12
-        var type = [0 , 1]
+        var type = [6 , 7]
         var stagger = [0.2, 0.2]
         
         var newWave:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave)
         
-        type = [2 , 3]
+        type = [4 , 5]
         
         var newWave2:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave2)
         
      
-        type = [4 , 5]
+        type = [2 , 5]
         var newWave3:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave3)
+        
+        type = [0 , 1]
+        var newWave4:Wave = Wave(total: total, type: type, stagger: stagger)
+        waveList.append(newWave4)
         
         
         
