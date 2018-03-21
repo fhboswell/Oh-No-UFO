@@ -12,3 +12,10 @@ import Foundation
 struct Level:Decodable {
     var level: String
 }
+
+struct Wave{
+    var total: Int
+    var type:[Int]
+    var stagger:[Double]
+    
+}

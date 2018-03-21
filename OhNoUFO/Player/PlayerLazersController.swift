@@ -32,6 +32,8 @@ class PlayerLazersController{
         
         
         let sphereGeometry = SCNSphere(radius: 0.01)
+        
+        
         let sphereMaterial = SCNMaterial()
         sphereMaterial.diffuse.contents = UIColor.green
         sphereGeometry.materials = [sphereMaterial]
@@ -51,7 +53,7 @@ class PlayerLazersController{
         
         self.delegate?.addToRootNode(nodeToAdd: laserNode)
         
-        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 1)
+        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.2)
         let pulseThreeTimes = SCNAction.repeat(action, count: 3)
         laserNode.runAction(pulseThreeTimes)
         lazerNodes.append(laserNode)

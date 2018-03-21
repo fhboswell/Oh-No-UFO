@@ -19,7 +19,7 @@ struct EnemyType{
         var offset = SCNVector3(0,0,2.5)
         var position : SCNVector3? = nil
         
-        var closureToGenerateControlAction = { () -> SCNAction in
+        var closureToGenerateControlAction = { () -> SCNAction in //name these with human names "parade action"
             var random = arc4random_uniform(200)
             var interval = Double(random)/100.0
             let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 5)
@@ -27,7 +27,7 @@ struct EnemyType{
             let waitAction = SCNAction.wait(duration: interval)
             return SCNAction.group([waitAction,moveAction])
         }
-        var closureToGenerateControlAction2 = { () -> SCNAction in
+        var closureToGenerateControlAction2 = { () -> SCNAction in //name these with human names "parade action left"
             let random = arc4random_uniform(200)
             let interval = Double(random)/100.0
             let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 5)
@@ -35,7 +35,7 @@ struct EnemyType{
             let waitAction = SCNAction.wait(duration: interval)
             return SCNAction.group([waitAction, moveAction])
         }
-        var closureToGenerateResourceAction = { () -> SCNAction in
+        var closureToGenerateResourceAction = { () -> SCNAction in //name these with human names "parade action" or UFO spin
             var random = arc4random_uniform(5)
             let interval = Double(random)/10.0
             let waitAction = SCNAction.wait(duration: interval)

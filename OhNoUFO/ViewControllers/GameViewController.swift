@@ -223,10 +223,10 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         switch(maskA, maskB){
         case (PhysicsMask.player, PhysicsMask.enemyLazer):
-            print("player hit")
+        
             hitPlayer()
         case (PhysicsMask.enemyLazer, PhysicsMask.player):
-            print("player hit")
+           
             hitPlayer()
         default:
             break
@@ -249,6 +249,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
        
         
         self.enemyController?.enemies = (self.enemyController?.enemies.filter{ $0.enemyNode !== enemy })!
+        self.enemyController?.hitOnEnemy() // could weasle this into the call above
         
         
     }

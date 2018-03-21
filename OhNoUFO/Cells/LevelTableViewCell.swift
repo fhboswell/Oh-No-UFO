@@ -12,10 +12,10 @@ import UIKit
 
 class LevelTableViewCell : UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
+    
+    
     var delegate: LevelCellDelegate?
-    
     var levelList: [Level]?
-    
     @IBOutlet var levelCollectionView: UICollectionView!
     
     
@@ -41,7 +41,7 @@ class LevelTableViewCell : UITableViewCell, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let delegate = self.delegate {
-           
+            
             delegate.recieveLevelIndex(index: indexPath.row)
         }
     }
