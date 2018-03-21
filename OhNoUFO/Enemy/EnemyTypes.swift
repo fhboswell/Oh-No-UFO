@@ -35,6 +35,40 @@ struct EnemyType{
             let waitAction = SCNAction.wait(duration: interval)
             return SCNAction.group([waitAction, moveAction])
         }
+        
+        var closureToGenerateControlAction3 = { () -> SCNAction in //name these with human names "parade action"
+            var random = arc4random_uniform(200)
+            var interval = Double(random)/100.0
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.3), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let waitAction = SCNAction.wait(duration: interval)
+            return SCNAction.group([waitAction,moveAction])
+        }
+        var closureToGenerateControlAction4 = { () -> SCNAction in //name these with human names "parade action left"
+            let random = arc4random_uniform(200)
+            let interval = Double(random)/100.0
+            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.3), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let waitAction = SCNAction.wait(duration: interval)
+            return SCNAction.group([waitAction, moveAction])
+        }
+        var closureToGenerateControlAction5 = { () -> SCNAction in //name these with human names "parade action"
+            var random = arc4random_uniform(200)
+            var interval = Double(random)/100.0
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.45), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let waitAction = SCNAction.wait(duration: interval)
+            return SCNAction.group([waitAction,moveAction])
+        }
+        var closureToGenerateControlAction6 = { () -> SCNAction in //name these with human names "parade action left"
+            let random = arc4random_uniform(200)
+            let interval = Double(random)/100.0
+            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.45), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let waitAction = SCNAction.wait(duration: interval)
+            return SCNAction.group([waitAction, moveAction])
+        }
+        
         var closureToGenerateResourceAction = { () -> SCNAction in //name these with human names "parade action" or UFO spin
             var random = arc4random_uniform(5)
             let interval = Double(random)/10.0
@@ -46,10 +80,18 @@ struct EnemyType{
         
         var enemyTypeOne = EnemyType(name, position, offset, closureToGenerateControlAction, closureToGenerateResourceAction)
         var enemyTypeTwo = EnemyType(name, position, offset, closureToGenerateControlAction2, closureToGenerateResourceAction)
+        var enemyTypeThree = EnemyType(name, position, offset, closureToGenerateControlAction3, closureToGenerateResourceAction)
+        var enemyTypeFour = EnemyType(name, position, offset, closureToGenerateControlAction4, closureToGenerateResourceAction)
+        var enemyTypeFive = EnemyType(name, position, offset, closureToGenerateControlAction5, closureToGenerateResourceAction)
+        var enemyTypeSix = EnemyType(name, position, offset, closureToGenerateControlAction6, closureToGenerateResourceAction)
         var enemyTypes = [EnemyType]()
         
         enemyTypes.append(enemyTypeOne)
         enemyTypes.append(enemyTypeTwo)
+        enemyTypes.append(enemyTypeThree)
+        enemyTypes.append(enemyTypeFour)
+        enemyTypes.append(enemyTypeFive)
+        enemyTypes.append(enemyTypeSix)
         
         
         return enemyTypes

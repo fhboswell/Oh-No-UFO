@@ -42,7 +42,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         //demoMethod()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-        sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
+        //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
    
     }
 

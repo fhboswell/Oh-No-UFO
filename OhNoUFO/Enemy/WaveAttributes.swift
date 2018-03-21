@@ -44,13 +44,13 @@ class WaveAttributes{
         var newWave:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave)
         
-    
+        type = [2 , 3]
         
         var newWave2:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave2)
         
      
-        
+        type = [4 , 5]
         var newWave3:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave3)
         
