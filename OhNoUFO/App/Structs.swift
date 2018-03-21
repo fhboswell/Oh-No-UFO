@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SceneKit
 
 
 struct Level:Decodable {
@@ -16,6 +17,7 @@ struct Level:Decodable {
 struct Wave{
     var total: Int
     var type:[Int]
-    var stagger:[Double]
+    var stagger:[SCNVector3]
+    
     
 }

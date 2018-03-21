@@ -61,12 +61,16 @@ class EnemyController{
             
             for index in 0...enemyTypeCount{
                 
-                var accumeStagger = -1.0
+                var invert = SCNVector3(1, 1, 1)
+                if( index%2 == 0){
+                    invert = SCNVector3(-1, 1, 1)
+                }
+                var accumeStagger = SCNVector3(0, -1.0, 0)
                 
                 for subIndex in 0...enemysPerType{
-                     accumeStagger = accumeStagger + wave.stagger[index]
-                    let position = SCNVector3(0, accumeStagger, 0)
-                    let newEnemy = Enemy(wave.type[index], position, nil)
+                     accumeStagger = accumeStagger + (wave.stagger[index])*invert
+                   
+                    let newEnemy = Enemy(wave.type[index], accumeStagger, nil)
                     enemies.append(newEnemy)
                     
                     self.rootNodeDelegate?.addToRootNode(nodeToAdd: newEnemy.controlNode)

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SceneKit
 
 class WaveAttributes{
     static var sharedWaveAttributes:WaveAttributes = WaveAttributes()
@@ -39,7 +40,7 @@ class WaveAttributes{
         
         var total = 12
         var type = [6 , 7]
-        var stagger = [0.2, 0.2]
+        var stagger = [SCNVector3(0.1,0.2,0), SCNVector3(0.1,0.2,0)]
         
         var newWave:Wave = Wave(total: total, type: type, stagger: stagger)
         waveList.append(newWave)
