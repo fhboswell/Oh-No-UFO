@@ -149,7 +149,7 @@ class DefaultGameSettings{
         return enemyTypes
     }()
     
-    static func makeSymetricalWaveForParams(total : Int, type: [Int], stagger : [SCNVector3]) -> [EnemyInstantiationParameters]{
+    private static func makeSymetricalWaveForParams(total : Int, type: [Int], stagger : [SCNVector3]) -> [EnemyInstantiationParameters]{
         var paramArray = [EnemyInstantiationParameters]()
         
 

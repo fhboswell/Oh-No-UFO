@@ -12,14 +12,12 @@
 		9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F52058EF7D00B64F9C /* UFO.dae */; };
 		9445B8F92058FB7500B64F9C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F72058FB7500B64F9C /* spark.png */; };
 		9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F82058FB7500B64F9C /* Explosion.scnp */; };
-		9446914C2061F34600159C85 /* WaveAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9446914B2061F34600159C85 /* WaveAttributes.swift */; };
 		94621ADD205F440800CCB73B /* UFO2.dae in Resources */ = {isa = PBXBuildFile; fileRef = 94621ADC205F440800CCB73B /* UFO2.dae */; };
 		9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464352020606964008A472A /* ArcadeModeTableViewCell.swift */; };
 		946435242060759D008A472A /* WelcomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946435232060759D008A472A /* WelcomeScene.swift */; };
 		946A48E72057C20E0083899E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Protocols.swift */; };
 		946A48EB2057D0BE0083899E /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* GameController.swift */; };
 		946A48ED2057D57D0083899E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EC2057D57D0083899E /* Constants.swift */; };
-		948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */; };
 		948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */; };
 		948E4E6C205CDACC00DC6FF9 /* PlayerAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E6B205CDACC00DC6FF9 /* PlayerAttributes.swift */; };
 		94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6E8EE20574F9C006F9CFC /* AppDelegate.swift */; };
@@ -66,14 +64,12 @@
 		9445B8F52058EF7D00B64F9C /* UFO.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO.dae; sourceTree = "<group>"; };
 		9445B8F72058FB7500B64F9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9445B8F82058FB7500B64F9C /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
-		9446914B2061F34600159C85 /* WaveAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveAttributes.swift; sourceTree = "<group>"; };
 		94621ADC205F440800CCB73B /* UFO2.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO2.dae; sourceTree = "<group>"; };
 		9464352020606964008A472A /* ArcadeModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeModeTableViewCell.swift; sourceTree = "<group>"; };
 		946435232060759D008A472A /* WelcomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScene.swift; sourceTree = "<group>"; };
 		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		946A48EA2057D0BE0083899E /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		946A48EC2057D57D0083899E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyLazersController.swift; sourceTree = "<group>"; };
 		948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		948E4E6B205CDACC00DC6FF9 /* PlayerAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAttributes.swift; sourceTree = "<group>"; };
 		94B6E8EB20574F9C006F9CFC /* OhNoUFO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OhNoUFO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,8 +168,6 @@
 				946A48EA2057D0BE0083899E /* GameController.swift */,
 				BD0A48F6205F496100A9E9AD /* Enemy.swift */,
 				BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */,
-				948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */,
-				9446914B2061F34600159C85 /* WaveAttributes.swift */,
 				BDB70A0520633114006575C3 /* WaveController.swift */,
 			);
 			path = Enemy;
@@ -424,7 +418,6 @@
 				BDB70A0820633312006575C3 /* PotentiallyUnsafeGlobals.swift in Sources */,
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
 				BDB70A0A206339BC006575C3 /* DefaultGameSettings.swift in Sources */,
-				948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */,
 				94D661F3206093230085A698 /* LevelTableViewCell.swift in Sources */,
 				9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */,
 				BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */,
@@ -433,7 +426,6 @@
 				9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */,
 				946435242060759D008A472A /* WelcomeScene.swift in Sources */,
 				9445B8F12058A17200B64F9C /* Extensions.swift in Sources */,
-				9446914C2061F34600159C85 /* WaveAttributes.swift in Sources */,
 				94D661F72060941A0085A698 /* Structs.swift in Sources */,
 				BDB70A0620633114006575C3 /* WaveController.swift in Sources */,
 				94B6E8F320574F9C006F9CFC /* GameViewController.swift in Sources */,
