@@ -17,7 +17,7 @@
 		9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464352020606964008A472A /* ArcadeModeTableViewCell.swift */; };
 		946435242060759D008A472A /* WelcomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946435232060759D008A472A /* WelcomeScene.swift */; };
 		946A48E72057C20E0083899E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48E62057C20E0083899E /* Protocols.swift */; };
-		946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* EnemyController.swift */; };
+		946A48EB2057D0BE0083899E /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EA2057D0BE0083899E /* GameController.swift */; };
 		946A48ED2057D57D0083899E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A48EC2057D57D0083899E /* Constants.swift */; };
 		948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */; };
 		948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */; };
@@ -37,7 +37,10 @@
 		94D661F5206093900085A698 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F4206093900085A698 /* LevelCollectionViewCell.swift */; };
 		94D661F72060941A0085A698 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F62060941A0085A698 /* Structs.swift */; };
 		BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F6205F496100A9E9AD /* Enemy.swift */; };
-		BD0A48F9205F49EF00A9E9AD /* EnemyTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F8205F49EF00A9E9AD /* EnemyTypes.swift */; };
+		BD0A48F9205F49EF00A9E9AD /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */; };
+		BDB70A0620633114006575C3 /* WaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A0520633114006575C3 /* WaveController.swift */; };
+		BDB70A0820633312006575C3 /* PotentiallyUnsafeGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A0720633312006575C3 /* PotentiallyUnsafeGlobals.swift */; };
+		BDB70A0A206339BC006575C3 /* DefaultGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A09206339BC006575C3 /* DefaultGameSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +71,7 @@
 		9464352020606964008A472A /* ArcadeModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeModeTableViewCell.swift; sourceTree = "<group>"; };
 		946435232060759D008A472A /* WelcomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScene.swift; sourceTree = "<group>"; };
 		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		946A48EA2057D0BE0083899E /* EnemyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
+		946A48EA2057D0BE0083899E /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		946A48EC2057D57D0083899E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyLazersController.swift; sourceTree = "<group>"; };
 		948E4E66205C9F0200DC6FF9 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +97,10 @@
 		94D661F4206093900085A698 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
 		94D661F62060941A0085A698 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		BD0A48F6205F496100A9E9AD /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
-		BD0A48F8205F49EF00A9E9AD /* EnemyTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyTypes.swift; sourceTree = "<group>"; };
+		BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
+		BDB70A0520633114006575C3 /* WaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveController.swift; sourceTree = "<group>"; };
+		BDB70A0720633312006575C3 /* PotentiallyUnsafeGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotentiallyUnsafeGlobals.swift; sourceTree = "<group>"; };
+		BDB70A09206339BC006575C3 /* DefaultGameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGameSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,11 +169,12 @@
 		948E4E68205CD8C500DC6FF9 /* Enemy */ = {
 			isa = PBXGroup;
 			children = (
-				946A48EA2057D0BE0083899E /* EnemyController.swift */,
+				946A48EA2057D0BE0083899E /* GameController.swift */,
 				BD0A48F6205F496100A9E9AD /* Enemy.swift */,
-				BD0A48F8205F49EF00A9E9AD /* EnemyTypes.swift */,
+				BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */,
 				948E4E64205C537600DC6FF9 /* EnemyLazersController.swift */,
 				9446914B2061F34600159C85 /* WaveAttributes.swift */,
+				BDB70A0520633114006575C3 /* WaveController.swift */,
 			);
 			path = Enemy;
 			sourceTree = "<group>";
@@ -180,6 +187,8 @@
 				94D661F62060941A0085A698 /* Structs.swift */,
 				9445B8F02058A17200B64F9C /* Extensions.swift */,
 				946A48EC2057D57D0083899E /* Constants.swift */,
+				BDB70A0720633312006575C3 /* PotentiallyUnsafeGlobals.swift */,
+				BDB70A09206339BC006575C3 /* DefaultGameSettings.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -412,7 +421,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */,
+				BDB70A0820633312006575C3 /* PotentiallyUnsafeGlobals.swift in Sources */,
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
+				BDB70A0A206339BC006575C3 /* DefaultGameSettings.swift in Sources */,
 				948E4E65205C537600DC6FF9 /* EnemyLazersController.swift in Sources */,
 				94D661F3206093230085A698 /* LevelTableViewCell.swift in Sources */,
 				9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */,
@@ -424,10 +435,11 @@
 				9445B8F12058A17200B64F9C /* Extensions.swift in Sources */,
 				9446914C2061F34600159C85 /* WaveAttributes.swift in Sources */,
 				94D661F72060941A0085A698 /* Structs.swift in Sources */,
+				BDB70A0620633114006575C3 /* WaveController.swift in Sources */,
 				94B6E8F320574F9C006F9CFC /* GameViewController.swift in Sources */,
 				946A48E72057C20E0083899E /* Protocols.swift in Sources */,
-				946A48EB2057D0BE0083899E /* EnemyController.swift in Sources */,
-				BD0A48F9205F49EF00A9E9AD /* EnemyTypes.swift in Sources */,
+				946A48EB2057D0BE0083899E /* GameController.swift in Sources */,
+				BD0A48F9205F49EF00A9E9AD /* EnemyType.swift in Sources */,
 				94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,7 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NN7HR27RDT;
+				DEVELOPMENT_TEAM = 27RHNLCLG4;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Boswell.OhNoUFO;
@@ -610,7 +622,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NN7HR27RDT;
+				DEVELOPMENT_TEAM = 27RHNLCLG4;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Boswell.OhNoUFO;

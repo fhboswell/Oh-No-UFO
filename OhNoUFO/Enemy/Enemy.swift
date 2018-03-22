@@ -14,13 +14,14 @@ class Enemy{
     public var enemyType : EnemyType
     public var controlNode : SCNNode
     public var enemyNode : SCNNode
+    public var lazerNodes = [SCNNode]()
     
-    init(_ enemyTypeIndex : Int, _ controlNodeLocation : SCNVector3?, _ offsetInControlNode : SCNVector3?){
+    init(_ enemyInstantiationParameters : EnemyInstantiationParameters){
         
-        var offsetInControlNode = offsetInControlNode
-        var controlNodeLocation = controlNodeLocation
+        var offsetInControlNode = enemyInstantiationParameters.offsetInControlNode
+        var controlNodeLocation = enemyInstantiationParameters.controlNodeLocation
         
-        enemyType = EnemyType.enemyTypes[enemyTypeIndex]
+        enemyType = DefaultGameSettings.enemyTypes[enemyInstantiationParameters.enemyTypeIndex]
         
         if controlNodeLocation == nil {
             controlNodeLocation = enemyType.controlNodeLocation
@@ -62,6 +63,62 @@ class Enemy{
             self.enemyNode.runAction(self.enemyType.enemyNodeAction!)
         }
 
+    }
+    
+    //maybe put this in EnemyType
+    func startFireSequence(){
+        
+        let random = arc4random_uniform(200)
+        let interval = Double(random)/100.0 + 6
+        
+        print(interval)
+        let fireAction = SCNAction.run { (node) in
+            self.fireLaser()
+        }
+        
+        let waitAction = SCNAction.wait(duration: interval)
+        
+        let doAction = SCNAction.sequence([waitAction,fireAction])
+        enemyNode.runAction(SCNAction.repeatForever(doAction))
+
+    }
+    
+    func fireLaser(){
+        
+        
+        let pov = PotentiallyUnsafeGlobals.playerPOV()
+        var position: SCNVector3
+        var pos: SCNVector3
+        var dir : SCNVector3
+        
+        position = SCNVector3Make(0, 0, 0.05)
+        pos = enemyNode.convertPosition(position, to: nil)
+        dir = (pov.position) - pos
+        
+        let sphereGeometry = SCNSphere(radius: 0.01)
+        let sphereMaterial = SCNMaterial()
+        sphereMaterial.diffuse.contents = UIColor.green
+        sphereGeometry.materials = [sphereMaterial]
+        let laserNode = SCNNode(geometry: sphereGeometry)
+        
+        
+        let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
+        let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
+        laserNode.physicsBody = sphere1Body
+        laserNode.physicsBody?.categoryBitMask = PhysicsMask.enemyLazer
+        laserNode.physicsBody?.contactTestBitMask = PhysicsMask.player
+        laserNode.physicsBody?.isAffectedByGravity = false
+        
+        laserNode.position = pos
+        
+        laserNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
+        
+        
+        controlNode.parent?.addChildNode(laserNode)
+        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 1)
+        let pulseThreeTimes = SCNAction.repeat(action, count: 10)
+        laserNode.runAction(pulseThreeTimes)
+        lazerNodes.append(laserNode)
     }
     
 }

@@ -15,9 +15,18 @@ struct Level:Decodable {
 }
 
 struct Wave{
-    var total: Int
-    var type:[Int]
-    var stagger:[SCNVector3]
+    public var enemyParameters : [EnemyInstantiationParameters]
+}
+struct EnemyInstantiationParameters{
+    var enemyTypeIndex : Int
+    var controlNodeLocation : SCNVector3?
+    var offsetInControlNode : SCNVector3?
     
-    
+    init(   _ enemyTypeIndex : Int,
+            _ controlNodeLocation : SCNVector3?,
+            _ offsetInControlNode : SCNVector3?){
+        self.enemyTypeIndex = enemyTypeIndex
+        self.controlNodeLocation = controlNodeLocation
+        self.offsetInControlNode = offsetInControlNode
+    }
 }

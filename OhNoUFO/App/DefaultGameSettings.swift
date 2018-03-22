@@ -1,26 +1,26 @@
 //
-//  EnemyTypes.swift
+//  DefaultGameSettings.swift
 //  OhNoUFO
 //
-//  Created by Aaron Boswell on 2018-03-18.
+//  Created by Aaron Boswell on 2018-03-21.
 //  Copyright © 2018 Henry Boswell. All rights reserved.
 //
 
 import Foundation
 import SceneKit
 
-struct EnemyType{
+class DefaultGameSettings{
     
     //Setup the important info for each enemy type
     //The actions are prepared in closures in order to make sure they are random each time
     
     /*
      A sequence action
-        has multiple child actions. Each action in the sequence begins after the previous action ends.
+     has multiple child actions. Each action in the sequence begins after the previous action ends.
      A group action
-        has multiple child actions. All actions stored in the group begin executing at the same time.
+     has multiple child actions. All actions stored in the group begin executing at the same time.
      A repeating action
-        stores a single child action. When the child action completes, it is restarted.
+     stores a single child action. When the child action completes, it is restarted.
      */
     
     static var enemyTypes : [EnemyType] = {
@@ -94,7 +94,7 @@ struct EnemyType{
         }
         
         var closureToGenerateControlAction8 = { () -> SCNAction in //name these with human names "parade action"
-           
+            
             let rightAction = SCNAction.moveBy(x: 2, y: 0, z: -2, duration: 0.5)
             let crossAction = SCNAction.moveBy(x: -4, y: 0, z: -6, duration: 5)
             let firstAction =  SCNAction.sequence([rightAction,crossAction])
@@ -149,32 +149,57 @@ struct EnemyType{
         return enemyTypes
     }()
     
-    var resourceName : String
-    
-    var controlNodeLocation : SCNVector3?
-    var offsetInControlNode : SCNVector3?
-    
-    var controlNodeAction : SCNAction?{
-        return generateControlNodeAction()
-    }
-    var enemyNodeAction : SCNAction?{
-        return generateEnemyNodeAction()
-    }
-    
-    private var generateControlNodeAction : () -> SCNAction?
-    private var generateEnemyNodeAction : () -> SCNAction?
+    static func makeSymetricalWaveForParams(total : Int, type: [Int], stagger : [SCNVector3]) -> [EnemyInstantiationParameters]{
+        var paramArray = [EnemyInstantiationParameters]()
+        
 
-    init(_ resourceName : String,
-         _ controlNodeLocation : SCNVector3?,
-         _ offsetInControlNode : SCNVector3?,
-         _ generateControlNodeAction : @escaping () -> SCNAction?,
-         _ generateEnemyNodeAction : @escaping () -> SCNAction?){
+        let enemyTypeCount = type.count
+        let enemysPerType = total / enemyTypeCount
         
-        self.resourceName = resourceName
-        self.controlNodeLocation = controlNodeLocation
-        self.offsetInControlNode = offsetInControlNode
-        self.generateControlNodeAction = generateControlNodeAction
-        self.generateEnemyNodeAction = generateEnemyNodeAction
-        
+        for index in 0 ..< enemyTypeCount{
+            
+            var invert = SCNVector3(1, 1, 1)
+            if( index%2 == 0){
+                invert = SCNVector3(-1, 1, 1)
+            }
+            var accumeStagger = SCNVector3(0, -1.0, 0)
+            
+            for _ in 0 ..< enemysPerType{
+                accumeStagger = accumeStagger + (stagger[index])*invert
+                let enemyInstantiationParameters = EnemyInstantiationParameters(type[index], accumeStagger, nil)
+                paramArray.append(enemyInstantiationParameters)
+            }
+        }
+        return paramArray
     }
+    static var preCuratedWavesList: [[EnemyInstantiationParameters]] = {
+        
+        var waveList = [[EnemyInstantiationParameters]]()
+        
+        var total = 12
+        var type = [6 , 7]
+        var stagger = [SCNVector3(0.1,0.2,0), SCNVector3(0.1,0.2,0)]
+        
+        var newWave = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave)
+        
+        type = [4 , 5]
+        
+        var newWave2 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave2)
+        
+        
+        type = [2 , 5]
+        var newWave3 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave3)
+        
+        type = [0 , 1]
+        var newWave4 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave4)
+   
+        return waveList
+        
+        
+    }()
+            
 }

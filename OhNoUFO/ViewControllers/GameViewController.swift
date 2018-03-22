@@ -18,13 +18,18 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     
     //MARK: - Instance Varriables
-    @IBOutlet weak var sceneView: ARSCNView!
+    @IBOutlet weak var sceneView: ARSCNView!{
+        willSet{
+            PotentiallyUnsafeGlobals.sceneView = newValue
+        }
+    }
+    
     var sphereNode: SCNNode!
     var cubeNode: SCNNode!
     var shootTime:TimeInterval = 0
    
     
-    var enemyController: EnemyController? = nil
+    var gameController: GameController? = nil
     var playerLazersController: PlayerLazersController? = nil
     var playerReady = false
     
@@ -81,7 +86,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     }
     
     func fireLazer(){
-        var userLocationTuple = getUserVector()
+        let userLocationTuple = getUserVector()
         playerLazersController?.fireLaser(dir: userLocationTuple.0, pos: userLocationTuple.1)
     }
     
@@ -116,14 +121,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     //MARK: - Sprite Controllers
     func prepareEnemyController(){
-        if (self.enemyController == nil) {
-            self.enemyController = EnemyController(level: 1)
-            self.enemyController?.rootNodeDelegate = self
-            self.enemyController?.playerLocationDelegate = self
-            
-        }
-        self.enemyController?.prepareEnemyLazerController()
-        self.enemyController?.addEnemyShips()
+        self.gameController = GameController(level: 1)
+        gameController?.incrementWave()
        
     }
     
@@ -240,18 +239,15 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
         let systemNode = SCNNode()
         systemNode.addParticleSystem(particleSystem!)
-        var convertedPosition = bullet.convertPosition(bullet.position, to: nil)
+        let convertedPosition = bullet.convertPosition(bullet.position, to: nil)
         
         systemNode.position = convertedPosition
         sceneView.scene.rootNode.addChildNode(systemNode)
         bullet.removeFromParentNode()
         enemy.removeFromParentNode()
        
-        
-        self.enemyController?.enemies = (self.enemyController?.enemies.filter{ $0.enemyNode !== enemy })!
-        self.enemyController?.hitOnEnemy() // could weasle this into the call above
-        
-        
+        gameController!.hitEnemyWithNode(enemy)
+
     }
     
     func hitPlayer(){
@@ -267,12 +263,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
 //MARK: AR SceneView Delegate
 extension GameViewController : ARSCNViewDelegate{
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
-        
-        if time > shootTime && playerReady{
-            self.enemyController?.fireAllLazers()
-           
-            shootTime = time + TimeInterval(9)
-        }
+
         
     }
     
