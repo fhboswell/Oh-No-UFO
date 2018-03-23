@@ -110,13 +110,13 @@ class DefaultGameSettings{
         }
         
         var closureToGenerateControlAction9 = { () -> SCNAction in //name these with human names "parade action"
-            let upAction = SCNAction.moveBy(x: 0.5, y: 2, z: -2, duration: 0)
-            let forwardAction = SCNAction.moveBy(x: 0, y: 0, z: -5, duration: 2)
-            let downAction = SCNAction.moveBy(x: 0, y: -4, z: 0, duration: 2)
+            let upAction = SCNAction.moveBy(x: 0.2, y: 2, z: -2, duration: 0)
+            let forwardAction = SCNAction.moveBy(x: 0, y: 0, z: -4, duration: 2)
+            let downAction = SCNAction.moveBy(x: 0, y: -2, z: 0, duration: 2)
             var all =  SCNAction.sequence([upAction,forwardAction])
-            let backAction = SCNAction.moveBy(x: 0, y: 0, z: 5, duration: 1)
+            let backAction = SCNAction.moveBy(x: 0, y: 0, z: 4, duration: 1)
             
-            let upAction2 = SCNAction.moveBy(x: 0, y: 4, z: 0, duration: 0)
+            let upAction2 = SCNAction.moveBy(x: 0, y: 2, z: 0, duration: 0)
             let repeatAction =  SCNAction.sequence([forwardAction,downAction,backAction, upAction2])
             let repeactA = SCNAction.repeat(repeatAction, count: 5)
             
@@ -125,16 +125,167 @@ class DefaultGameSettings{
         }
         var closureToGenerateControlAction10 = { () -> SCNAction in //name these with human names "parade action left"
             
-            let upAction = SCNAction.moveBy(x: -0.5, y: 2, z: -2, duration: 0)
-            let forwardAction = SCNAction.moveBy(x: 0, y: 0, z: -5, duration: 2)
+            let upAction = SCNAction.moveBy(x: -0.2, y: 2, z: -2, duration: 0)
+            let forwardAction = SCNAction.moveBy(x: 0, y: 0, z: -4, duration: 2)
             var all =  SCNAction.sequence([upAction,forwardAction])
-            let downAction = SCNAction.moveBy(x: 0, y: -4, z: 0, duration: 2)
-            let backAction = SCNAction.moveBy(x: 0, y: 0, z: 5, duration: 1)
-            let upAction2 = SCNAction.moveBy(x: 0, y: 4, z: 0, duration: 0)
+            let downAction = SCNAction.moveBy(x: 0, y: -2, z: 0, duration: 2)
+            let backAction = SCNAction.moveBy(x: 0, y: 0, z: 4, duration: 1)
+            let upAction2 = SCNAction.moveBy(x: 0, y: 2, z: 0, duration: 0)
             let repeatAction =  SCNAction.sequence([forwardAction,downAction,backAction, upAction2])
             let repeactA = SCNAction.repeat(repeatAction, count: 5)
             
             return SCNAction.sequence([upAction,repeactA])
+        }
+        
+        
+        
+       
+        
+        
+        var closureToGenerateControlAction11 = { () -> SCNAction in //name these with human names "parade action"
+            
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+           
+            
+            let rotateAround = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1)*5, z: 0, duration: 10)
+            
+            let repeactA = SCNAction.repeat(rotateAround, count: 5)
+            let waitAction = SCNAction.wait(duration: 1.0)
+            let sync = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 1.0)
+            return SCNAction.sequence([moveAction,waitAction,sync,repeactA])
+        }
+        var closureToGenerateControlAction12 = { () -> SCNAction in //name these with human names "parade action left"
+           
+            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let rotateAround = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1)*5, z: 0, duration: 10)
+            
+            let repeactA = SCNAction.repeat(rotateAround, count: 5)
+            let waitAction = SCNAction.wait(duration: 0.5)
+             let sync = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 1.5)
+            return SCNAction.sequence([moveAction,waitAction,sync,repeactA])
+        }
+        
+        var closureToGenerateControlAction13 = { () -> SCNAction in //name these with human names "parade action"
+          
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.3), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let rotateAround = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1)*5, z: 0, duration: 10)
+            
+            let repeactA = SCNAction.repeat(rotateAround, count: 5)
+            let waitAction = SCNAction.wait(duration: 1.5)
+            let sync = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 0.5)
+            return SCNAction.sequence([moveAction,waitAction,sync,repeactA])
+        }
+        var closureToGenerateControlAction14 = { () -> SCNAction in //name these with human names "parade action left"
+           
+            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.3), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let rotateAround = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1)*5, z: 0, duration: 10)
+            
+            let repeactA = SCNAction.repeat(rotateAround, count: 5)
+            let waitAction = SCNAction.wait(duration: 0)
+            let sync = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 2)
+            return SCNAction.sequence([moveAction,waitAction,sync,repeactA])
+        }
+        var closureToGenerateControlAction15 = { () -> SCNAction in //name these with human names "parade action"
+            var random = arc4random_uniform(200)
+            var interval = Double(random)/100.0
+            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let moveUp = SCNAction.moveBy(x: 0.2, y: 0.7, z: 0, duration: 0)
+            return SCNAction.group([moveUp, moveAction])
+        }
+        var closureToGenerateControlAction16 = { () -> SCNAction in //name these with human names "parade action left"
+            let random = arc4random_uniform(200)
+            let interval = Double(random)/100.0
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi ), z: 0, duration: 5)
+            moveAction.timingMode = .easeInEaseOut
+            let moveUp = SCNAction.moveBy(x: -0.2, y: 0.7, z: 0, duration: 0)
+            return SCNAction.group([moveUp, moveAction])
+        }
+        
+        
+        var closureToGenerateControlAction17 = { () -> SCNAction in //name these with human names "parade action left"
+            
+            let spin = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi + 1), z: 0, duration: 3)
+            spin.timingMode = .easeInEaseOut
+            let move = SCNAction.moveBy(x: 1, y: 0, z: 0, duration: 0)
+            var moveAction = SCNAction.group([spin, move])
+            
+            let rotateAround = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi)/2, z: 0, duration: 2)
+            rotateAround.timingMode = .easeInEaseOut
+            
+            let back = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi)/4, z: 0, duration: 2)
+            let forth = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi)/4, z: 0, duration: 2)
+            back.timingMode = .easeInEaseOut
+            forth.timingMode = .easeInEaseOut
+            
+            var scrub =  SCNAction.sequence([back,forth])
+            let repeatScrub = SCNAction.repeat(scrub, count: 5)
+            return SCNAction.sequence([moveAction,rotateAround,repeatScrub])
+        }
+        var closureToGenerateControlAction18 = { () -> SCNAction in //name these with human names "parade action left"
+            
+            
+            
+            let spin = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi + 1), z: 0, duration: 3)
+            spin.timingMode = .easeInEaseOut
+            let move = SCNAction.moveBy(x: -1, y: 0.7, z: 0, duration: 0)
+            var moveAction = SCNAction.group([spin, move])
+            
+            let rotateAround = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi)/2, z: 0, duration: 2)
+            rotateAround.timingMode = .easeInEaseOut
+            
+            let back = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi)/4, z: 0, duration: 2)
+            let forth = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi)/4, z: 0, duration: 2)
+            back.timingMode = .easeInEaseOut
+            forth.timingMode = .easeInEaseOut
+            
+            var scrub =  SCNAction.sequence([back,forth])
+            let repeatScrub = SCNAction.repeat(scrub, count: 5)
+            return SCNAction.sequence([moveAction,rotateAround,repeatScrub])
+        }
+        var closureToGenerateControlAction19 = { () -> SCNAction in //name these with human names "parade action left"
+            
+            let spin = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi + 1), z: 0, duration: 3)
+            spin.timingMode = .easeInEaseOut
+            let move = SCNAction.moveBy(x: 1, y: 0.35, z: 0, duration: 0)
+            var moveAction = SCNAction.group([spin, move])
+            
+            let rotateAround = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi)/2, z: 0, duration: 2)
+            rotateAround.timingMode = .easeInEaseOut
+            
+            let back = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi)/4, z: 0, duration: 2)
+            let forth = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi)/4, z: 0, duration: 2)
+            back.timingMode = .easeInEaseOut
+            forth.timingMode = .easeInEaseOut
+            
+            var scrub =  SCNAction.sequence([back,forth])
+            let repeatScrub = SCNAction.repeat(scrub, count: 5)
+            return SCNAction.sequence([moveAction,rotateAround,repeatScrub])
+        }
+        var closureToGenerateControlAction20 = { () -> SCNAction in //name these with human names "parade action left"
+            
+            
+            
+            let spin = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi + 1), z: 0, duration: 3)
+            spin.timingMode = .easeInEaseOut
+            let move = SCNAction.moveBy(x: -1, y: 1.0, z: 0, duration: 0)
+            var moveAction = SCNAction.group([spin, move])
+            
+            let rotateAround = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi)/2, z: 0, duration: 2)
+            rotateAround.timingMode = .easeInEaseOut
+            
+            let back = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi)/4, z: 0, duration: 2)
+            let forth = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi)/4, z: 0, duration: 2)
+            back.timingMode = .easeInEaseOut
+            forth.timingMode = .easeInEaseOut
+            
+            var scrub =  SCNAction.sequence([back,forth])
+            let repeatScrub = SCNAction.repeat(scrub, count: 5)
+            return SCNAction.sequence([moveAction,rotateAround,repeatScrub])
         }
         
         
@@ -163,7 +314,20 @@ class DefaultGameSettings{
         var enemyTypeNine = EnemyType(name, position, offset, closureToGenerateControlAction9, closureToGenerateResourceAction)
         var enemyTypeTen = EnemyType(name, position, offset, closureToGenerateControlAction10, closureToGenerateResourceAction)
         
+        //orbit
+        var enemyType11 = EnemyType(name, position, offset, closureToGenerateControlAction11, closureToGenerateResourceAction)
+        var enemyType12 = EnemyType(name, position, offset, closureToGenerateControlAction12, closureToGenerateResourceAction)
+        var enemyType13 = EnemyType(name, position, offset, closureToGenerateControlAction13, closureToGenerateResourceAction)
+        var enemyType14 = EnemyType(name, position, offset, closureToGenerateControlAction14, closureToGenerateResourceAction)
+        //sit
         
+        var enemyType15 = EnemyType(name, position, offset, closureToGenerateControlAction15, closureToGenerateResourceAction)
+        var enemyType16 = EnemyType(name, position, offset, closureToGenerateControlAction16, closureToGenerateResourceAction)
+        //scrub
+        var enemyType17 = EnemyType(name, position, offset, closureToGenerateControlAction17, closureToGenerateResourceAction)
+        var enemyType18 = EnemyType(name, position, offset, closureToGenerateControlAction18, closureToGenerateResourceAction)
+        var enemyType19 = EnemyType(name, position, offset, closureToGenerateControlAction19, closureToGenerateResourceAction)
+        var enemyType20 = EnemyType(name, position, offset, closureToGenerateControlAction20, closureToGenerateResourceAction)
         
         var enemyTypes = [EnemyType]()
         
@@ -178,6 +342,18 @@ class DefaultGameSettings{
         
         enemyTypes.append(enemyTypeNine)
         enemyTypes.append(enemyTypeTen)
+        enemyTypes.append(enemyType11)
+        enemyTypes.append(enemyType12)
+        enemyTypes.append(enemyType13)
+        enemyTypes.append(enemyType14)
+        
+        enemyTypes.append(enemyType15)
+        enemyTypes.append(enemyType16)
+        
+        enemyTypes.append(enemyType17)
+        enemyTypes.append(enemyType18)
+        enemyTypes.append(enemyType19)
+        enemyTypes.append(enemyType20)
         
         
         return enemyTypes
@@ -210,14 +386,38 @@ class DefaultGameSettings{
         
         var waveList = [[EnemyInstantiationParameters]]()
         
-        
+
         
         var total = 12
-        var type = [8 , 9]
-        var stagger = [SCNVector3(0,0,0.2), SCNVector3(0,0,0.2)]
+        var type = [16 , 17, 18,19]
+        var stagger = [SCNVector3(0.4,0,0), SCNVector3(0.4,0,0),SCNVector3(0.4,0,0), SCNVector3(0.4,0,0)]
         
         var newWave = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
         waveList.append(newWave)
+
+        total = 12
+        type = [10 , 11 ,12 ,13, 14, 15]
+        stagger = [SCNVector3(0,0.2,0), SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0.4,0,0),SCNVector3(0.4,0,0)]
+        
+        var newWave2 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave2)
+
+
+        total = 12
+        type = [0 , 1 ,2 ,3]
+        stagger = [SCNVector3(0,0.2,0), SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0,0.2,0)]
+        
+        var newWave3 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave3)
+        
+        
+        
+        total = 10
+        type = [8 , 9]
+        stagger = [SCNVector3(0.2,0,0.4), SCNVector3(0.2,0,0.4)]
+        
+        var newWave4 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave4)
         
         
         /*
