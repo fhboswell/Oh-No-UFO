@@ -109,6 +109,34 @@ class DefaultGameSettings{
             return SCNAction.repeat(all, count: 4)
         }
         
+        var closureToGenerateControlAction9 = { () -> SCNAction in //name these with human names "parade action"
+            let upAction = SCNAction.moveBy(x: 0.5, y: 2, z: -2, duration: 0)
+            let forwardAction = SCNAction.moveBy(x: 0, y: 0, z: -5, duration: 2)
+            let downAction = SCNAction.moveBy(x: 0, y: -4, z: 0, duration: 2)
+            var all =  SCNAction.sequence([upAction,forwardAction])
+            let backAction = SCNAction.moveBy(x: 0, y: 0, z: 5, duration: 1)
+            
+            let upAction2 = SCNAction.moveBy(x: 0, y: 4, z: 0, duration: 0)
+            let repeatAction =  SCNAction.sequence([forwardAction,downAction,backAction, upAction2])
+            let repeactA = SCNAction.repeat(repeatAction, count: 5)
+            
+            return SCNAction.sequence([upAction,repeactA])
+            
+        }
+        var closureToGenerateControlAction10 = { () -> SCNAction in //name these with human names "parade action left"
+            
+            let upAction = SCNAction.moveBy(x: -0.5, y: 2, z: -2, duration: 0)
+            let forwardAction = SCNAction.moveBy(x: 0, y: 0, z: -5, duration: 2)
+            var all =  SCNAction.sequence([upAction,forwardAction])
+            let downAction = SCNAction.moveBy(x: 0, y: -4, z: 0, duration: 2)
+            let backAction = SCNAction.moveBy(x: 0, y: 0, z: 5, duration: 1)
+            let upAction2 = SCNAction.moveBy(x: 0, y: 4, z: 0, duration: 0)
+            let repeatAction =  SCNAction.sequence([forwardAction,downAction,backAction, upAction2])
+            let repeactA = SCNAction.repeat(repeatAction, count: 5)
+            
+            return SCNAction.sequence([upAction,repeactA])
+        }
+        
         
         
         var closureToGenerateResourceAction = { () -> SCNAction in //name these with human names "parade action" or UFO spin
@@ -131,6 +159,9 @@ class DefaultGameSettings{
         var enemyTypeSeven = EnemyType(name, position, offset, closureToGenerateControlAction7, closureToGenerateResourceAction)
         var enemyTypeEight = EnemyType(name, position, offset, closureToGenerateControlAction8, closureToGenerateResourceAction)
         
+        //bombingrun
+        var enemyTypeNine = EnemyType(name, position, offset, closureToGenerateControlAction9, closureToGenerateResourceAction)
+        var enemyTypeTen = EnemyType(name, position, offset, closureToGenerateControlAction10, closureToGenerateResourceAction)
         
         
         
@@ -144,6 +175,9 @@ class DefaultGameSettings{
         enemyTypes.append(enemyTypeSix)
         enemyTypes.append(enemyTypeSeven)
         enemyTypes.append(enemyTypeEight)
+        
+        enemyTypes.append(enemyTypeNine)
+        enemyTypes.append(enemyTypeTen)
         
         
         return enemyTypes
@@ -176,12 +210,24 @@ class DefaultGameSettings{
         
         var waveList = [[EnemyInstantiationParameters]]()
         
+        
+        
+        var total = 12
+        var type = [8 , 9]
+        var stagger = [SCNVector3(0,0,0.2), SCNVector3(0,0,0.2)]
+        
+        var newWave = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+        waveList.append(newWave)
+        
+        
+        /*
         var total = 12
         var type = [6 , 7]
         var stagger = [SCNVector3(0.1,0.2,0), SCNVector3(0.1,0.2,0)]
         
         var newWave = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
         waveList.append(newWave)
+        
         
         type = [4 , 5]
         
@@ -196,7 +242,7 @@ class DefaultGameSettings{
         type = [0 , 1]
         var newWave4 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
         waveList.append(newWave4)
-   
+   */
         return waveList
         
         
