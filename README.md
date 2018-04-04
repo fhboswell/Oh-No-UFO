@@ -15,16 +15,16 @@ Win level by level each unlocking the next or some mutation of that
 # Proposal (04/03/2018)
 
 ## Team
-I will be working individually for this project and Satjit Bola will be acting as my code reviewer.
+I will be working individually for this project and Satjit Bola (sidbola) will be acting as my code reviewer.
 
 
 ## Features
 
 ### Game Summary:
 
-An Arkit app where 3D UFOs perform different maneuvers while shooting lasers at the user. The user can Fireback and dodge the enemy lasers. Wave after wave of enemies (Mostly 3D UFOs) come until the Player takes too many hits and the game is over.
+- An Arkit app where 3D UFOs perform different maneuvers while shooting lasers at the user. The user can Fireback and dodge the enemy lasers. Wave after wave of enemies (Mostly 3D UFOs) come until the Player takes too many hits and the game is over.
 
-During gameplay the Player gets points based on several factors; Time spent Playing, number of Enemy UFOs hit by player Lasers, and more.
+- During gameplay the Player gets points based on several factors; Time spent Playing, number of Enemy UFOs hit by player Lasers, and more.
 
 These points can be used to buy different things:
 	- Player Laser animations and styles (a spread of three red lasers for example)
