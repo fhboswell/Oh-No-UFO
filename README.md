@@ -86,7 +86,7 @@ These points can be used to buy different things:
 	- Arcade Mode ---Hours:2
 		- add intermittent boss wave
 	- Level select mode ---Hours:5
-		-Different Pre-Determined wave sequences
+	- Different Pre-Determined wave sequences
 
 - Possible View Controller Breakout
 	- Breakout Different Selection Views (Enemy type Selection, Player Laser Selection)
