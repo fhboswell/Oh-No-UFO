@@ -376,7 +376,30 @@ class DefaultGameSettings{
             
             for _ in 0 ..< enemysPerType{
                 accumeStagger = accumeStagger + (stagger[index])*invert
-                let enemyInstantiationParameters = EnemyInstantiationParameters(type[index], accumeStagger, nil)
+                let enemyInstantiationParameters = EnemyInstantiationParameters(type[index], accumeStagger, nil, nil)
+                paramArray.append(enemyInstantiationParameters)
+            }
+        }
+        return paramArray
+    }
+    private static func makeSingleUFOWaveForParams(total : Int, type: [Int], stagger : [SCNVector3]) -> [EnemyInstantiationParameters]{
+        var paramArray = [EnemyInstantiationParameters]()
+        
+        
+        let enemyTypeCount = type.count
+        let enemysPerType = total / enemyTypeCount
+        
+        for index in 0 ..< enemyTypeCount{
+            
+            var invert = SCNVector3(1, 1, 1)
+            if( index%2 == 0){
+                invert = SCNVector3(-1, 1, 1)
+            }
+            var accumeStagger = SCNVector3(0, -1.0, 0)
+            
+            for _ in 0 ..< enemysPerType{
+                accumeStagger = accumeStagger + (stagger[index])*invert
+                let enemyInstantiationParameters = EnemyInstantiationParameters(type[index], nil, accumeStagger, nil)
                 paramArray.append(enemyInstantiationParameters)
             }
         }
