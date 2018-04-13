@@ -382,6 +382,8 @@ class DefaultGameSettings{
         }
         return paramArray
     }
+    //test
+    
     static var preCuratedWavesList: [[EnemyInstantiationParameters]] = {
         
         var waveList = [[EnemyInstantiationParameters]]()
