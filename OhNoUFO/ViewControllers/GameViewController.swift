@@ -33,6 +33,10 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var playerLazersController: PlayerLazersController? = nil
     var playerReady = false
     
+    var score = 0
+    var scoreNode: SCNNode!
+    var livesNode: SCNNode!
+    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -43,11 +47,14 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         addGestures()
         prepareLazerController()
         prepareEnemyController()
+        
        // setupScene()
         //demoMethod()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
+        updateScoreNode()
+        updateLivesNode()
    
     }
 
@@ -234,6 +241,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
     }
     
     func hitEnemy(bullet: SCNNode, enemy: SCNNode){
+        
         //this does not remove it from the datastore in the respective classes
         //TODO: Propagate Removal of objects
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
@@ -247,11 +255,74 @@ extension GameViewController : SCNPhysicsContactDelegate {
         enemy.removeFromParentNode()
        
         gameController!.hitEnemyWithNode(enemy)
-
+        
+        
+        adjustScore(amount: 100)
+    }
+    
+    //refrence for timer
+    //var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
+    func adjustScore(amount: Int){
+        
+        score = score + amount
+        
+        updateScoreNode()
+        
+    }
+    @objc func updateScoreNode() {
+        
+        
+        
+        
+        if(scoreNode != nil){
+           
+            scoreNode.removeFromParentNode()
+        }
+        
+        let text = SCNText(string: "Score: " + String(score), extrusionDepth: 1)
+        
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.green
+        text.materials = [material]
+        
+        //Create Node object
+        scoreNode = SCNNode()
+        scoreNode.scale = SCNVector3(x:0.004,y:0.004,z:0.004)
+        scoreNode.geometry = text
+        scoreNode.position = SCNVector3(x: -0.1, y:0.5, z: -1.0)
+        
+        self.sceneView.scene.rootNode.addChildNode(scoreNode)
+        
+    }
+    @objc func updateLivesNode() {
+        
+        
+        
+        
+        if(livesNode != nil){
+            
+            livesNode.removeFromParentNode()
+        }
+        
+        let text = SCNText(string: "Lives: " + String(PlayerAttributes.sharedPlayerAttributes.getLives()), extrusionDepth: 1)
+        
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.green
+        text.materials = [material]
+        
+        //Create Node object
+        livesNode = SCNNode()
+        livesNode.scale = SCNVector3(x:0.004,y:0.004,z:0.004)
+        livesNode.geometry = text
+        livesNode.position = SCNVector3(x: -0.1, y:0.45, z: -1.0)
+        
+        self.sceneView.scene.rootNode.addChildNode(livesNode)
+        
     }
     
     func hitPlayer(){
         
+        updateLivesNode()
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
             self.dismiss(animated: true, completion: nil)
         }

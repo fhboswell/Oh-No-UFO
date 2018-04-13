@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OhNoUFO/App/DefaultGameSettings.swift"
-            timestampString = "544509365.471613"
+            timestampString = "545311474.253517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "preCuratedWavesList"
             landmarkType = "24">
          </BreakpointContent>
