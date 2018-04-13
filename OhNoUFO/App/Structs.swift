@@ -21,12 +21,15 @@ struct EnemyInstantiationParameters{
     var enemyTypeIndex : Int
     var controlNodeLocation : SCNVector3?
     var offsetInControlNode : SCNVector3?
+    var rotationalOffset: Int?
     
     init(   _ enemyTypeIndex : Int,
             _ controlNodeLocation : SCNVector3?,
-            _ offsetInControlNode : SCNVector3?){
+            _ offsetInControlNode : SCNVector3?,
+            _ rotationalOffset : Int?){
         self.enemyTypeIndex = enemyTypeIndex
         self.controlNodeLocation = controlNodeLocation
         self.offsetInControlNode = offsetInControlNode
+        self.rotationalOffset = rotationalOffset
     }
 }
