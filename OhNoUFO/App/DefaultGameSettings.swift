@@ -411,16 +411,16 @@ class DefaultGameSettings{
         
 
         
-        var total = 12
-        var type = [16 , 17, 18,19]
-        var stagger = [SCNVector3(0.4,0,0), SCNVector3(0.4,0,0),SCNVector3(0.4,0,0), SCNVector3(0.4,0,0)]
-        
-        var newWave = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
-        waveList.append(newWave)
+//        var total = 12
+//        var type = [16 , 17, 18,19]
+//        var stagger = [SCNVector3(0.4,0,0), SCNVector3(0.4,0,0),SCNVector3(0.4,0,0), SCNVector3(0.4,0,0)]
+//
+//        var newWave = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+//        waveList.append(newWave)
 
-        total = 12
-        type = [10 , 11 ,12 ,13, 14, 15]
-        stagger = [SCNVector3(0,0.2,0), SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0.4,0,0),SCNVector3(0.4,0,0)]
+        var total = 12
+        var type = [10 , 11 ,12 ,13, 14, 15]
+        var stagger = [SCNVector3(0,0.2,0), SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0,0.2,0),SCNVector3(0.4,0,0),SCNVector3(0.4,0,0)]
         
         var newWave2 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
         waveList.append(newWave2)
@@ -435,12 +435,12 @@ class DefaultGameSettings{
         
         
         
-        total = 10
-        type = [8 , 9]
-        stagger = [SCNVector3(0.2,0,0.4), SCNVector3(0.2,0,0.4)]
-        
-        var newWave4 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
-        waveList.append(newWave4)
+//        total = 10
+//        type = [8 , 9]
+//        stagger = [SCNVector3(0.2,0,0.4), SCNVector3(0.2,0,0.4)]
+//
+//        var newWave4 = makeSymetricalWaveForParams(total: total, type: type, stagger: stagger)
+//        waveList.append(newWave4)
         
         
         /*
