@@ -28,13 +28,13 @@ class ArcadeModeTableViewCell: UITableViewCell {
         
         
         if (roundView == nil) {
-            roundView = UIView(frame: CGRect(x: 50, y: 20, width: self.contentView.frame.width - 100, height: 90))
+            roundView = UIView(frame: CGRect(x: 50, y: 20, width: self.contentView.frame.width - 100, height: self.contentView.frame.height - 40))
         }
         self.roundView?.layer.borderWidth = 2
         self.roundView?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
         roundView?.layer.cornerRadius = 8.0
         roundView?.clipsToBounds = true
-        roundView?.backgroundColor = UIColor.blue
+        roundView?.backgroundColor = UIColor.white
         self.contentView.addSubview(roundView!)
         
         if titleLabel == nil {

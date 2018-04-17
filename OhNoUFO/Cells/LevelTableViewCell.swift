@@ -26,6 +26,8 @@ class LevelTableViewCell : UITableViewCell, UICollectionViewDataSource, UICollec
         levelCollectionView.contentInset = UIEdgeInsetsMake(2, 2, 2, 0);
         self.levelCollectionView.delegate = self
         self.levelCollectionView.dataSource = self
+        self.contentView.backgroundColor = UIColor.black
+        self.levelCollectionView.backgroundColor = UIColor.black
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
