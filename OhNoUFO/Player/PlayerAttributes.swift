@@ -13,12 +13,24 @@ class PlayerAttributes{
     
     private var lives = 3;
     private var score = 0;
+    private var currentGameScore = 0;
     
     private var immunity = false
     
     
+    
+    public func addToCurrentGameScore(amount: Int) -> Int{
+        currentGameScore = currentGameScore + amount
+        score = score + amount
+        return currentGameScore
+    }
+    
+    
     public func resetLives(){
         self.lives = 3
+    }
+    public func resetScore(){
+        self.currentGameScore = 0
     }
     public func removeOneLife() -> Bool{
         

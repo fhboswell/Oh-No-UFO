@@ -53,6 +53,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: - Game Setup Logic
     func prepareToPlay(){
         PlayerAttributes.sharedPlayerAttributes.resetLives()
+        PlayerAttributes.sharedPlayerAttributes.resetScore()
+        
     }
     
     func playArcade(){

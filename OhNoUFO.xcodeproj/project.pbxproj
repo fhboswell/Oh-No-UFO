@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94042498208564C800E63A49 /* Cube.dae in Resources */ = {isa = PBXBuildFile; fileRef = 94042497208564C800E63A49 /* Cube.dae */; };
 		9445B8F12058A17200B64F9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F02058A17200B64F9C /* Extensions.swift */; };
 		9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */; };
 		9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F52058EF7D00B64F9C /* UFO.dae */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94042497208564C800E63A49 /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
 		9445B8F02058A17200B64F9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLazersController.swift; sourceTree = "<group>"; };
 		9445B8F52058EF7D00B64F9C /* UFO.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO.dae; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94042496208564B700E63A49 /* Cube */ = {
+			isa = PBXGroup;
+			children = (
+				94042497208564C800E63A49 /* Cube.dae */,
+			);
+			path = Cube;
+			sourceTree = "<group>";
+		};
 		94621AD0205F379F00CCB73B /* UFO1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +276,7 @@
 		94B6E92B20579C50006F9CFC /* 3D Objects */ = {
 			isa = PBXGroup;
 			children = (
+				94042496208564B700E63A49 /* Cube */,
 				94621AD1205F3F7F00CCB73B /* UFO2 */,
 				94621AD0205F379F00CCB73B /* UFO1 */,
 			);
@@ -335,7 +346,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Henry Boswell";
 				TargetAttributes = {
 					94B6E8EA20574F9C006F9CFC = {
@@ -386,6 +397,7 @@
 				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
 				9445B8F92058FB7500B64F9C /* spark.png in Resources */,
 				9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */,
+				94042498208564C800E63A49 /* Cube.dae in Resources */,
 				9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */,
 				94B6E8F820574F9C006F9CFC /* Assets.xcassets in Resources */,
 				94B6E8F620574F9C006F9CFC /* Main.storyboard in Resources */,
@@ -501,6 +513,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -508,6 +521,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -558,6 +572,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -565,6 +580,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

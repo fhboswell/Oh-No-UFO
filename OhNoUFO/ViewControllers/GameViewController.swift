@@ -34,8 +34,9 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var playerReady = false
     
     var score = 0
-    var scoreNode: SCNNode!
-    var livesNode: SCNNode!
+    var scoreLabel: UILabel?
+    
+    
     
     
     //MARK: - Lifecycle
@@ -47,14 +48,10 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         addGestures()
         prepareLazerController()
         prepareEnemyController()
-        
-       // setupScene()
-        //demoMethod()
+        initScoreLabel()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
-        updateScoreNode()
-        updateLivesNode()
    
     }
 
@@ -206,6 +203,59 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         
         
     }
+    
+    
+    //MAKE: - score
+    func initScoreLabel(){
+       
+        if (scoreLabel == nil) {
+            scoreLabel = UILabel(frame: CGRect(x: 10, y: 50, width: 300, height: 30))
+        }
+        
+        scoreLabel?.backgroundColor = .clear
+        scoreLabel?.textAlignment = NSTextAlignment.left
+        scoreLabel?.text = "Score: "
+        scoreLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
+        scoreLabel?.textColor = UIColor.green
+        self.view.addSubview(scoreLabel!)
+        
+        
+        
+    }
+    func adjustScore(amount: Int){
+        DispatchQueue.main.async {
+            self.scoreLabel?.text = "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
+        }
+    }
+    
+    /*
+     @objc func updateScoreNode() {
+     
+     
+     
+     
+     if(scoreNode != nil){
+     
+     scoreNode.removeFromParentNode()
+     }
+     
+     let text = SCNText(string: "Score: " + String(score), extrusionDepth: 1)
+     
+     let material = SCNMaterial()
+     material.diffuse.contents = UIColor.green
+     text.materials = [material]
+     
+     //Create Node object
+     scoreNode = SCNNode()
+     scoreNode.scale = SCNVector3(x:0.004,y:0.004,z:0.004)
+     scoreNode.geometry = text
+     scoreNode.position = SCNVector3(x: -0.1, y:0.5, z: -1.0)
+     
+     self.sceneView.scene.rootNode.addChildNode(scoreNode)
+     
+     }
+     */
+    
 }
 
 //MARK: Scene Physics Contact Delegate
@@ -259,70 +309,10 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         adjustScore(amount: 100)
     }
-    
-    //refrence for timer
-    //var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
-    func adjustScore(amount: Int){
-        
-        score = score + amount
-        
-        updateScoreNode()
-        
-    }
-    @objc func updateScoreNode() {
-        
-        
-        
-        
-        if(scoreNode != nil){
-           
-            scoreNode.removeFromParentNode()
-        }
-        
-        let text = SCNText(string: "Score: " + String(score), extrusionDepth: 1)
-        
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.green
-        text.materials = [material]
-        
-        //Create Node object
-        scoreNode = SCNNode()
-        scoreNode.scale = SCNVector3(x:0.004,y:0.004,z:0.004)
-        scoreNode.geometry = text
-        scoreNode.position = SCNVector3(x: -0.1, y:0.5, z: -1.0)
-        
-        self.sceneView.scene.rootNode.addChildNode(scoreNode)
-        
-    }
-    @objc func updateLivesNode() {
-        
-        
-        
-        
-        if(livesNode != nil){
-            
-            livesNode.removeFromParentNode()
-        }
-        
-        let text = SCNText(string: "Lives: " + String(PlayerAttributes.sharedPlayerAttributes.getLives()), extrusionDepth: 1)
-        
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.green
-        text.materials = [material]
-        
-        //Create Node object
-        livesNode = SCNNode()
-        livesNode.scale = SCNVector3(x:0.004,y:0.004,z:0.004)
-        livesNode.geometry = text
-        livesNode.position = SCNVector3(x: -0.1, y:0.45, z: -1.0)
-        
-        self.sceneView.scene.rootNode.addChildNode(livesNode)
-        
-    }
+   
+   
     
     func hitPlayer(){
-        
-        updateLivesNode()
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
             self.dismiss(animated: true, completion: nil)
         }
@@ -351,7 +341,8 @@ extension GameViewController : ARSCNViewDelegate{
                 print("Camera Tracking State Limited Due to Initalization")
             case .insufficientFeatures:
                 print("Camera Tracking State Limited Due to Insufficient Features")
-                
+            case .relocalizing:
+                 print("Camera Tracking State Relocalizing")
             }
         case .normal:
             print("Camera Tracking State Normal")
