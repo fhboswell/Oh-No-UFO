@@ -19,16 +19,16 @@ struct PhysicsMask {
     static let player = 8
     
 }
-var levelList: [Level] = {
+var levelList: [Laser] = {
     
-    var levelList = [Level]()
-    var new1:Level = Level(level: "1")
+    var levelList = [Laser]()
+    var new1:Laser = Laser(level: "1")
     levelList.append(new1)
-    var new2:Level = Level(level: "2")
+    var new2:Laser = Laser(level: "2")
     levelList.append(new2)
-    var new3:Level = Level(level: "3")
+    var new3:Laser = Laser(level: "3")
     levelList.append(new3)
-    var new4:Level = Level(level: "4")
+    var new4:Laser = Laser(level: "4")
     levelList.append(new4)
     return levelList
    

@@ -32,10 +32,7 @@ class WelcomeScene: SCNScene {
     }
     
     func addScoreNode() {
-    
-    
-    
-    
+
         if(scoreNode != nil){
     
             scoreNode?.removeFromParentNode()

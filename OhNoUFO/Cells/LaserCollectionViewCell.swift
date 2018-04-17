@@ -17,7 +17,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
     
     
     
-    var level: Level?
+    var level: Laser?
     func initalize(){
         makeDetailView()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))

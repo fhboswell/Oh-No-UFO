@@ -13,7 +13,7 @@ import ARKit
 import SceneKit
 import CoreGraphics
 
-class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LevelCellDelegate {
+class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LaserCellDelegate {
    
     //MARK: Instance Varriables
     @IBOutlet var welcomeTableView: UITableView!
@@ -81,7 +81,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.initalize()
             return cell
         }else if(indexPath.row == 2){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LevelSelect", for: indexPath) as! LevelTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
             cell.initalize(levelList: levelList, delegate: self)
             cell.contentView.backgroundColor = UIColor.blue
             return cell

@@ -19,6 +19,6 @@ protocol PlayerLocationAccessDelegate {
     func playerPOV() -> SCNNode
 }
 
-protocol LevelCellDelegate {
+protocol LaserCellDelegate {
     func recieveLevelIndex(index: Int)
 }

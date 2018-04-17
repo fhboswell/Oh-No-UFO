@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 
 
-struct Level:Decodable {
+struct Laser:Decodable {
     var level: String
 }
 

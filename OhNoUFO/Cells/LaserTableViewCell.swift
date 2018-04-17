@@ -10,24 +10,24 @@ import Foundation
 
 import UIKit
 
-class LevelTableViewCell : UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     
     
-    var delegate: LevelCellDelegate?
-    var levelList: [Level]?
-    @IBOutlet var levelCollectionView: UICollectionView!
+    var delegate: LaserCellDelegate?
+    var levelList: [Laser]?
+    @IBOutlet var laserCollectionView: UICollectionView!
     
     
-    func initalize(levelList: [Level], delegate: LevelCellDelegate){
+    func initalize(levelList: [Laser], delegate: LaserCellDelegate){
 
         self.delegate = delegate
         self.levelList = levelList
-        levelCollectionView.contentInset = UIEdgeInsetsMake(2, 2, 2, 0);
-        self.levelCollectionView.delegate = self
-        self.levelCollectionView.dataSource = self
+        laserCollectionView.contentInset = UIEdgeInsetsMake(2, 42, 2, 0);
+        self.laserCollectionView.delegate = self
+        self.laserCollectionView.dataSource = self
         self.contentView.backgroundColor = UIColor.black
-        self.levelCollectionView.backgroundColor = UIColor.black
+        self.laserCollectionView.backgroundColor = UIColor.black
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -36,7 +36,7 @@ class LevelTableViewCell : UITableViewCell, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = levelCollectionView.dequeueReusableCell(withReuseIdentifier: "Level", for: indexPath) as! LevelCollectionViewCell
+        let cell = laserCollectionView.dequeueReusableCell(withReuseIdentifier: "Level", for: indexPath) as! LaserCollectionViewCell
         cell.initalize()
         return cell
     }

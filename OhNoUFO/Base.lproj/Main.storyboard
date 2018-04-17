@@ -42,10 +42,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LevelSelect" rowHeight="156" id="BlV-8K-FAH" userLabel="LevelSelect" customClass="LevelTableViewCell" customModule="OhNoUFO" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LaserSelect" rowHeight="156" id="BlV-8K-FAH" userLabel="LaserSelect" customClass="LaserTableViewCell" customModule="OhNoUFO" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="183" width="375" height="156"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LevelSelect" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BlV-8K-FAH" id="TQe-Mu-yZZ" customClass="LevelTableViewCell" customModule="OhNoUFO" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="LevelSelect" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BlV-8K-FAH" id="TQe-Mu-yZZ" customClass="LaserTableViewCell" customModule="OhNoUFO" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="156"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -60,7 +60,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Level" id="VE9-kw-5BW" customClass="LevelCollectionViewCell" customModule="OhNoUFO" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Level" id="VE9-kw-5BW" customClass="LaserCollectionViewCell" customModule="OhNoUFO" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -73,7 +73,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="levelCollectionView" destination="B5K-rp-EKB" id="dcy-FL-T5R"/>
+                                            <outlet property="laserCollectionView" destination="B5K-rp-EKB" id="4JX-3R-K1N"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
