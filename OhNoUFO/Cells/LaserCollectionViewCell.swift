@@ -9,7 +9,7 @@
 
 import UIKit
 
-class LevelCollectionViewCell : UICollectionViewCell {
+class LaserCollectionViewCell : UICollectionViewCell {
     
     var sentinel: UILabel?
     var roundview: UIView?
@@ -20,7 +20,24 @@ class LevelCollectionViewCell : UICollectionViewCell {
     var level: Level?
     func initalize(){
         makeDetailView()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))
+        self.contentView.addGestureRecognizer(tapGestureRecognizer)
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        self.contentView.addGestureRecognizer(longPressRecognizer)
+        
+      
+        
+    }
+    
+    @objc func tapped(sender: UITapGestureRecognizer)
+    {
+        print("tapped")
+    }
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer)
+    {
+        print("longpressed")
     }
     
     
