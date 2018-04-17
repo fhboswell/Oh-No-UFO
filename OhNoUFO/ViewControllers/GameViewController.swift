@@ -228,33 +228,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         }
     }
     
-    /*
-     @objc func updateScoreNode() {
-     
-     
-     
-     
-     if(scoreNode != nil){
-     
-     scoreNode.removeFromParentNode()
-     }
-     
-     let text = SCNText(string: "Score: " + String(score), extrusionDepth: 1)
-     
-     let material = SCNMaterial()
-     material.diffuse.contents = UIColor.green
-     text.materials = [material]
-     
-     //Create Node object
-     scoreNode = SCNNode()
-     scoreNode.scale = SCNVector3(x:0.004,y:0.004,z:0.004)
-     scoreNode.geometry = text
-     scoreNode.position = SCNVector3(x: -0.1, y:0.5, z: -1.0)
-     
-     self.sceneView.scene.rootNode.addChildNode(scoreNode)
-     
-     }
-     */
+   
     
 }
 

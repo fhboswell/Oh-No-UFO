@@ -25,8 +25,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        scene?.isPaused = false
+        UIApplication.shared.statusBarStyle = .lightContent
     }
-    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scene?.isPaused = true
@@ -74,7 +77,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             return cell
             
         }else if(indexPath.row == 1){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Powerup", for: indexPath) as! PowerupTableViewCell
             cell.initalize()
             return cell
         }else if(indexPath.row == 2){
