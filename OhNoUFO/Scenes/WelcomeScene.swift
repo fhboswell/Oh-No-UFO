@@ -33,14 +33,14 @@ class WelcomeScene: SCNScene {
     
     func addUFO(x: Float = -0.7, y: Float = 0, z: Float = -1.5){
    
-        guard let ufoScene = SCNScene(named: "UFO.dae") else { return }
+        guard let ufoScene = SCNScene(named: "UFO2.dae") else { return }
         
         let ufoSceneChildNodes = ufoScene.rootNode.childNodes
         for childNode in ufoSceneChildNodes {
             ufoNode.addChildNode(childNode)
         }
         ufoNode.position = SCNVector3(x, y, z)
-        ufoNode.scale = SCNVector3(0.03, 0.03, 0.03)
+        ufoNode.scale = SCNVector3(0.3, 0.3, 0.3)
         ufoNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
         let sphereGeometry = SCNSphere(radius: 0.2)

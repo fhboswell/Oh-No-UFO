@@ -68,18 +68,20 @@ class Enemy{
     //maybe put this in EnemyType
     func startFireSequence(){
         
-        let random = arc4random_uniform(200)
-        let interval = Double(random)/100.0 + 6
+        //TODO: - This is commented out so that enemys will not fire this is for testing reasons
         
-        print(interval)
-        let fireAction = SCNAction.run { (node) in
-            self.fireLaser()
-        }
-        
-        let waitAction = SCNAction.wait(duration: interval)
-        
-        let doAction = SCNAction.sequence([waitAction,fireAction])
-        enemyNode.runAction(SCNAction.repeatForever(doAction))
+//        let random = arc4random_uniform(200)
+//        let interval = Double(random)/100.0 + 6
+//
+//        print(interval)
+//        let fireAction = SCNAction.run { (node) in
+//            self.fireLaser()
+//        }
+//
+//        let waitAction = SCNAction.wait(duration: interval)
+//
+//        let doAction = SCNAction.sequence([waitAction,fireAction])
+//        enemyNode.runAction(SCNAction.repeatForever(doAction))
 
     }
     
