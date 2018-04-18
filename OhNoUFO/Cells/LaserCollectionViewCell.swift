@@ -22,6 +22,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
     func initalize(laser: Laser){
         
         imageView?.image = nil
+        imageView = nil
         
         self.laser = laser
         makeDetailView()
@@ -53,7 +54,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
         if (roundview == nil) {
             roundview = UIView(frame: CGRect(x: 5, y: 10, width: 130, height: 130))
         }
-        self.roundview?.layer.borderWidth = 2
+        self.roundview?.layer.borderWidth = 5
         self.roundview?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
         roundview?.layer.cornerRadius = 8.0
         roundview?.clipsToBounds = true
@@ -67,9 +68,19 @@ class LaserCollectionViewCell : UICollectionViewCell {
         if (lineview == nil) {
             lineview = UIView(frame: CGRect(x: 0, y: 30, width: 130, height: 1))
         }
-        self.lineview?.layer.borderWidth = 3
+        self.lineview?.layer.borderWidth = 5
         self.lineview?.layer.borderColor = UIColor.green.cgColor
         roundview?.addSubview(lineview!)
+        
+//        let gradient = CAGradientLayer()
+//
+//        gradient.frame = (roundview?.bounds)!
+//        gradient.colors = [UIColor.white.cgColor, UIColor.gray.cgColor]
+//        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+//        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+//
+//        roundview?.layer.insertSublayer(gradient, at: 0)
+        
         self.contentView.addSubview(roundview!)
         
         

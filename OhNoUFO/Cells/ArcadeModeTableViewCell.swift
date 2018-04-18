@@ -49,7 +49,7 @@ class ArcadeModeTableViewCell: UITableViewCell {
         if (roundView == nil) {
             roundView = UIView(frame: CGRect(x: 550, y: 20, width: self.contentView.frame.width - 100, height: self.contentView.frame.height - 40))
         }
-        self.roundView?.layer.borderWidth = 2
+        self.roundView?.layer.borderWidth = 0
         self.roundView?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
         roundView?.layer.cornerRadius = 8.0
         roundView?.clipsToBounds = true
@@ -57,20 +57,41 @@ class ArcadeModeTableViewCell: UITableViewCell {
         
        
         
+        let gradient = CAGradientLayer()
         
-        roundView?.addInnerShadow(topColor: UIColor.green)
+        gradient.frame = (roundView?.bounds)!
+        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+        
+        roundView?.layer.insertSublayer(gradient, at: 0)
+        
         self.contentView.addSubview(roundView!)
         
         
         
         if titleLabel == nil {
-            titleLabel = UILabel(frame: CGRect(x: 500, y: 30, width: self.contentView.frame.width, height: 20))
+            titleLabel = UILabel(frame: CGRect(x: 500, y: 30, width: self.contentView.frame.width, height: 50))
         }
         
         titleLabel?.backgroundColor = .clear
         titleLabel?.textAlignment = .center
         titleLabel?.textColor = .black
-        titleLabel?.text = "ARCADE"
+        titleLabel?.text = "PLAY"
+        titleLabel?.font = UIFont(name: "Knewave", size: 40)
+        
+        
+        
+        titleLabel?.layer.shadowColor = UIColor.gray.cgColor
+        titleLabel?.layer.shadowRadius = 3.0
+        titleLabel?.layer.shadowOpacity = 1.0
+        titleLabel?.layer.shadowOffset = CGSize(width: 4, height: 4)
+        titleLabel?.layer.masksToBounds = false
+        
+        
+        
+        
+        
         self.contentView.addSubview(titleLabel!)
     }
     func makePretty(){
@@ -78,16 +99,4 @@ class ArcadeModeTableViewCell: UITableViewCell {
        self.contentView.backgroundColor = UIColor.black
     }
 }
-extension UIView {
-    public func addInnerShadow(topColor: UIColor = UIColor.black.withAlphaComponent(0.3)) {
-        let shadowLayer = CAGradientLayer()
-        shadowLayer.cornerRadius = layer.cornerRadius
-        shadowLayer.frame = bounds
-        shadowLayer.frame.size.height = 10.0
-        shadowLayer.colors = [
-            topColor.cgColor,
-            UIColor.white.withAlphaComponent(0).cgColor
-        ]
-        layer.addSublayer(shadowLayer)
-    }
-}
+

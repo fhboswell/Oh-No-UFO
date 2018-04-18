@@ -70,8 +70,16 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         titleLabel?.backgroundColor = .clear
         titleLabel?.textAlignment = .left
         titleLabel?.textColor = .white
-        titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+        titleLabel?.font = UIFont(name: "Knewave", size: 20)
         titleLabel?.text = "Laser Upgrades"
+        
+        
+        titleLabel?.layer.shadowColor = UIColor.gray.cgColor
+        titleLabel?.layer.shadowRadius = 3.0
+        titleLabel?.layer.shadowOpacity = 1.0
+        titleLabel?.layer.shadowOffset = CGSize(width: 4, height: 4)
+        titleLabel?.layer.masksToBounds = false
+        
         self.contentView.addSubview(titleLabel!)
     }
     

@@ -41,7 +41,7 @@ class WelcomeScene: SCNScene {
         let text = SCNText(string: "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: 0)), extrusionDepth: 20)
         
         let material = SCNMaterial()
-        text.font = UIFont(name: "Optima", size: 60)
+        text.font = UIFont(name: "Knewave", size: 60)
         material.lightingModel = SCNMaterial.LightingModel.physicallyBased
         material.roughness.contents  = NSNumber(value: 0.1)
         material.metalness.contents = NSNumber(value: 0.9)
