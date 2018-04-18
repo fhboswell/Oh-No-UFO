@@ -20,7 +20,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     var titleLabel: UILabel?
     
     
-    func initalize(levelList: [Laser], delegate: LaserCellDelegate){
+    func initalize(levelList: [Laser], delegate: LaserCellDelegate, animationStatus: Bool){
 
         self.delegate = delegate
         self.levelList = levelList
@@ -33,13 +33,27 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         
         // Place it on the left of the view with the width = the bounds'width of the view.
         // animate it from the left to the right
-        UIView.animate(withDuration: 1, delay: 1, options: [.curveEaseOut], animations: {
+        if(animationStatus){
+            animateCellIn()
+        }
+    }
+    
+  
+    func animateCellIn(){
+        self.laserCollectionView.center.x += 500
+        UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x -= 500
+            self.laserCollectionView.center.x -= 500
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
-    
-    
+    func animateCellOut(){
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
+            self.titleLabel?.center.x -= 500
+            //self.roundView?.center.x -= 500
+            //self.contentView.layoutIfNeeded()
+        }, completion: nil)
+    }
     
     
     

@@ -20,12 +20,22 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet var welcomeSceneView: SCNView!
     
     var scene: WelcomeScene?
+    var animationStatus:[Bool] = [false, false,false,false,false]
+
+    
     
     //MARK: - Lifecycle
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        setAnimationStatusTrue()
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        scene?.isPaused = false
         UIApplication.shared.statusBarStyle = .lightContent
+        
     }
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
@@ -43,6 +53,23 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
     
+    func setAnimationStatusTrue(){
+        animationStatus[0] = true
+        animationStatus[1] = true
+        animationStatus[2] = true
+        animationStatus[3] = true
+        animationStatus[4] = true
+       
+        
+    }
+    
+    func getAnimationStatus(indexPath: IndexPath) -> Bool{
+        var status = animationStatus[indexPath.row]
+        print(indexPath.row)
+        animationStatus[indexPath.row] = false
+        return status
+    }
+    
     //MARK: - scene
     func setupScene(){
         self.scene = WelcomeScene()
@@ -51,6 +78,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         self.welcomeSceneView.scene = scene
         self.scene?.initializeScene()
     }
+    
+
     
     
     //MARK: - Game Setup Logic
@@ -73,16 +102,17 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
-            cell.initalize()
+            cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
+            
             return cell
             
         }else if(indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "Powerup", for: indexPath) as! PowerupTableViewCell
-            cell.initalize()
+            cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
             return cell
         }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
-            cell.initalize(levelList: levelList, delegate: self)
+            cell.initalize(levelList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.black
             return cell
             

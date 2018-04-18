@@ -16,11 +16,31 @@ class ArcadeModeTableViewCell: UITableViewCell {
     var roundView: UIView?
     
     //MARK: - init
-    func initalize(){
+    func initalize(animationStatus: Bool){
         
         makePretty()
         makeTitleLabel()
         
+        if(animationStatus){
+            animateCellIn()
+        }
+        
+    }
+    
+    func animateCellIn(){
+        roundView?.center.x = 550
+        titleLabel?.center.x = 500 
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            self.titleLabel?.center.x = self.contentView.frame.width / 2
+            self.roundView?.center.x = self.contentView.frame.width / 2
+        }, completion: nil)
+    }
+    func animateCellOut(){
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
+            self.titleLabel?.center.x -= 500
+            self.roundView?.center.x -= 500
+            //self.contentView.layoutIfNeeded()
+        }, completion: nil)
     }
     
     //MARK: - Supporting UI
@@ -28,7 +48,7 @@ class ArcadeModeTableViewCell: UITableViewCell {
         
         
         if (roundView == nil) {
-            roundView = UIView(frame: CGRect(x: 50, y: 20, width: self.contentView.frame.width - 100, height: self.contentView.frame.height - 40))
+            roundView = UIView(frame: CGRect(x: 550, y: 20, width: self.contentView.frame.width - 100, height: self.contentView.frame.height - 40))
         }
         self.roundView?.layer.borderWidth = 2
         self.roundView?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
@@ -38,7 +58,7 @@ class ArcadeModeTableViewCell: UITableViewCell {
         self.contentView.addSubview(roundView!)
         
         if titleLabel == nil {
-            titleLabel = UILabel(frame: CGRect(x: 0, y: 30, width: self.contentView.frame.width, height: 20))
+            titleLabel = UILabel(frame: CGRect(x: 500, y: 30, width: self.contentView.frame.width, height: 20))
         }
         
         titleLabel?.backgroundColor = .clear
