@@ -20,6 +20,9 @@ class LaserCollectionViewCell : UICollectionViewCell {
     
     var laser: Laser?
     func initalize(laser: Laser){
+        
+        imageView?.image = nil
+        
         self.laser = laser
         makeDetailView()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(sender:)))
@@ -62,7 +65,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
         imageView?.frame = CGRect(x: 15, y: 30, width: 100, height: 100)
         roundview?.addSubview(imageView!)
         if (lineview == nil) {
-            lineview = UIView(frame: CGRect(x: 5, y: 30, width: 130, height: 1))
+            lineview = UIView(frame: CGRect(x: 0, y: 30, width: 130, height: 1))
         }
         self.lineview?.layer.borderWidth = 3
         self.lineview?.layer.borderColor = UIColor.green.cgColor

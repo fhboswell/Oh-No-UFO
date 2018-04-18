@@ -54,7 +54,14 @@ class ArcadeModeTableViewCell: UITableViewCell {
         roundView?.layer.cornerRadius = 8.0
         roundView?.clipsToBounds = true
         roundView?.backgroundColor = UIColor.white
+        
+       
+        
+        
+        roundView?.addInnerShadow(topColor: UIColor.green)
         self.contentView.addSubview(roundView!)
+        
+        
         
         if titleLabel == nil {
             titleLabel = UILabel(frame: CGRect(x: 500, y: 30, width: self.contentView.frame.width, height: 20))
@@ -71,4 +78,16 @@ class ArcadeModeTableViewCell: UITableViewCell {
        self.contentView.backgroundColor = UIColor.black
     }
 }
-
+extension UIView {
+    public func addInnerShadow(topColor: UIColor = UIColor.black.withAlphaComponent(0.3)) {
+        let shadowLayer = CAGradientLayer()
+        shadowLayer.cornerRadius = layer.cornerRadius
+        shadowLayer.frame = bounds
+        shadowLayer.frame.size.height = 10.0
+        shadowLayer.colors = [
+            topColor.cgColor,
+            UIColor.white.withAlphaComponent(0).cgColor
+        ]
+        layer.addSublayer(shadowLayer)
+    }
+}

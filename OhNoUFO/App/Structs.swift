@@ -11,7 +11,7 @@ import SceneKit
 
 
 struct Laser {
-    var level: String
+    var cost: String
     var retImage: UIImage
 }
 

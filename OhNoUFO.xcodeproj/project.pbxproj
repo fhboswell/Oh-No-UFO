@@ -13,6 +13,12 @@
 		9413E1F02087CD9600BA203E /* normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1EC2087CD9500BA203E /* normal.png */; };
 		9413E1F12087CD9600BA203E /* roughness.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1ED2087CD9600BA203E /* roughness.png */; };
 		9413E1F62087D49C00BA203E /* ret1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1F52087D49C00BA203E /* ret1.png */; };
+		9413E1FB2087E5E200BA203E /* ret2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1F72087E5E100BA203E /* ret2.png */; };
+		9413E1FC2087E5E200BA203E /* ret4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1F82087E5E200BA203E /* ret4.png */; };
+		9413E1FD2087E5E200BA203E /* ret5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1F92087E5E200BA203E /* ret5.png */; };
+		9413E1FE2087E5E200BA203E /* ret3.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1FA2087E5E200BA203E /* ret3.png */; };
+		9413E2002087E5E900BA203E /* ret6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1FF2087E5E900BA203E /* ret6.png */; };
+		9413E2022087E5F100BA203E /* ret7.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E2012087E5F100BA203E /* ret7.png */; };
 		9445B8F12058A17200B64F9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F02058A17200B64F9C /* Extensions.swift */; };
 		9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */; };
 		9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F52058EF7D00B64F9C /* UFO.dae */; };
@@ -72,6 +78,12 @@
 		9413E1EC2087CD9500BA203E /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
 		9413E1ED2087CD9600BA203E /* roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roughness.png; sourceTree = "<group>"; };
 		9413E1F52087D49C00BA203E /* ret1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ret1.png; path = OhNoUFO/Assets/ret/ret1.png; sourceTree = SOURCE_ROOT; };
+		9413E1F72087E5E100BA203E /* ret2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret2.png; sourceTree = "<group>"; };
+		9413E1F82087E5E200BA203E /* ret4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret4.png; sourceTree = "<group>"; };
+		9413E1F92087E5E200BA203E /* ret5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret5.png; sourceTree = "<group>"; };
+		9413E1FA2087E5E200BA203E /* ret3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret3.png; sourceTree = "<group>"; };
+		9413E1FF2087E5E900BA203E /* ret6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret6.png; sourceTree = "<group>"; };
+		9413E2012087E5F100BA203E /* ret7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret7.png; sourceTree = "<group>"; };
 		9445B8F02058A17200B64F9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLazersController.swift; sourceTree = "<group>"; };
 		9445B8F52058EF7D00B64F9C /* UFO.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO.dae; sourceTree = "<group>"; };
@@ -170,6 +182,12 @@
 			isa = PBXGroup;
 			children = (
 				9413E1F52087D49C00BA203E /* ret1.png */,
+				9413E1F72087E5E100BA203E /* ret2.png */,
+				9413E1FA2087E5E200BA203E /* ret3.png */,
+				9413E1F82087E5E200BA203E /* ret4.png */,
+				9413E1F92087E5E200BA203E /* ret5.png */,
+				9413E1FF2087E5E900BA203E /* ret6.png */,
+				9413E2012087E5F100BA203E /* ret7.png */,
 			);
 			path = ret;
 			sourceTree = "<group>";
@@ -434,15 +452,21 @@
 			files = (
 				94B6E93620579C50006F9CFC /* UFO.mtl in Resources */,
 				94B6E8FB20574F9C006F9CFC /* LaunchScreen.storyboard in Resources */,
+				9413E1FB2087E5E200BA203E /* ret2.png in Resources */,
 				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
 				94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */,
 				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
+				9413E2002087E5E900BA203E /* ret6.png in Resources */,
 				9445B8F92058FB7500B64F9C /* spark.png in Resources */,
 				9413E1F02087CD9600BA203E /* normal.png in Resources */,
+				9413E1FE2087E5E200BA203E /* ret3.png in Resources */,
 				9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */,
 				94042498208564C800E63A49 /* Cube.dae in Resources */,
 				9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */,
+				9413E1FD2087E5E200BA203E /* ret5.png in Resources */,
 				94B6E8F820574F9C006F9CFC /* Assets.xcassets in Resources */,
+				9413E1FC2087E5E200BA203E /* ret4.png in Resources */,
+				9413E2022087E5F100BA203E /* ret7.png in Resources */,
 				94B6E8F620574F9C006F9CFC /* Main.storyboard in Resources */,
 				94621ADD205F440800CCB73B /* UFO2.dae in Resources */,
 				9413E1EF2087CD9600BA203E /* albedo.png in Resources */,
