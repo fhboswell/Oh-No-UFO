@@ -23,7 +23,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
 
         self.delegate = delegate
         self.levelList = levelList
-        laserCollectionView.contentInset = UIEdgeInsetsMake(2, 42, 2, 0);
+        laserCollectionView.contentInset = UIEdgeInsetsMake(0, 45, 0, 0);
         self.laserCollectionView.delegate = self
         self.laserCollectionView.dataSource = self
         self.contentView.backgroundColor = UIColor.black
@@ -48,7 +48,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 200, height: 200)
     }
     
     

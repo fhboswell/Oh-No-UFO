@@ -102,7 +102,18 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.row == 0){
+            return 120
+            
+        }else if(indexPath.row == 1){
+            return 120
+        }else if(indexPath.row == 2){
+            return 200
+            
+            
+        }
         return 120
+        
     }
     
     //MARK: - protocol conform
