@@ -106,7 +106,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             return 120
             
         }else if(indexPath.row == 1){
-            return 120
+            return 150
         }else if(indexPath.row == 2){
             return 200
             
