@@ -105,23 +105,26 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
-            
+            cell.selectionStyle = .none
             return cell
             
         }else if(indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "Powerup", for: indexPath) as! PowerupTableViewCell
             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.selectionStyle = .none
             return cell
         }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
             cell.initalize(levelList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.black
+            cell.selectionStyle = .none
             return cell
             
             
         }
         //just remove the final if else and replace with else
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath)
+        cell.selectionStyle = .none
         return cell
        
     }
