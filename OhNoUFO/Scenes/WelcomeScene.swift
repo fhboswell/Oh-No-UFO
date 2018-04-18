@@ -48,7 +48,7 @@ class WelcomeScene: SCNScene {
         scoreNode = SCNNode()
         scoreNode?.scale = SCNVector3(x:0.05,y:0.05,z:0.05)
         scoreNode?.geometry = text
-        scoreNode?.position = SCNVector3(x: -1, y:0.5, z: -3)
+        scoreNode?.position = SCNVector3(x: 5, y:0.5, z: -3)
         
         self.rootNode.addChildNode(scoreNode!)
         
@@ -66,7 +66,7 @@ class WelcomeScene: SCNScene {
     
     
     
-    func addUFO(x: Float = -0.7, y: Float = 0, z: Float = -1.5){
+    func addUFO(x: Float = -3.7, y: Float = 0, z: Float = -1.5){
    
         guard let ufoScene = SCNScene(named: "UFO2.dae") else { return }
         
@@ -91,6 +91,19 @@ class WelcomeScene: SCNScene {
         self.ufoNode.runAction(runManyTimes)
         
    
+    }
+    
+    func moveIn(){
+         let ufoAction = SCNAction.move(to: SCNVector3(-0.7, 0, -1.5), duration: 1)
+        let scoreAction = SCNAction.move(to: SCNVector3(x: -1, y:0.5, z: -3), duration: 1)
+        self.ufoNode.runAction(ufoAction)
+        self.scoreNode?.runAction(scoreAction)
+    }
+    func moveOut(){
+        let ufoAction = SCNAction.move(to: SCNVector3(-3.7, 0, -1.5), duration: 1)
+        let scoreAction = SCNAction.move(to: SCNVector3(x: 5, y:0.5, z: -3), duration: 1)
+        self.ufoNode.runAction(ufoAction)
+        self.scoreNode?.runAction(scoreAction)
     }
     
 }

@@ -24,22 +24,21 @@ class ArcadeModeTableViewCell: UITableViewCell {
         if(animationStatus){
             animateCellIn()
         }
-        
+         NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
     func animateCellIn(){
         roundView?.center.x = 750
-        titleLabel?.center.x = 700 
+        titleLabel?.center.x = 700
         UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x = self.contentView.frame.width / 2
             self.roundView?.center.x = self.contentView.frame.width / 2
         }, completion: nil)
     }
-    func animateCellOut(){
-        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
-            self.titleLabel?.center.x -= 500
-            self.roundView?.center.x -= 500
-            //self.contentView.layoutIfNeeded()
+    @objc func animateCellOut(){
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            self.roundView?.center.x = 750
+            self.titleLabel?.center.x = 700
         }, completion: nil)
     }
     

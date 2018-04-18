@@ -36,6 +36,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         if(animationStatus){
             animateCellIn()
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
   
@@ -49,10 +50,10 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
-    func animateCellOut(){
-        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
-            self.titleLabel?.center.x -= 500
-            //self.roundView?.center.x -= 500
+    @objc func animateCellOut(){
+        UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
+            self.titleLabel?.center.x = 700
+            self.laserCollectionView.center.x = 700
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }

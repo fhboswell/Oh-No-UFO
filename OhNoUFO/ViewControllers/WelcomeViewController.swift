@@ -35,7 +35,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        scene?.isPaused = false
-        
+        scene?.moveIn()
         UIApplication.shared.statusBarStyle = .lightContent
         
     }
@@ -130,7 +130,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         if (indexPath.row == 0){
             prepareToPlay()
-            playArcade()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "AnimateOut"), object: self)
+            scene?.moveOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.playArcade()
+            }
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

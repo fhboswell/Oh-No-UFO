@@ -24,7 +24,7 @@ class PowerupTableViewCell: UITableViewCell {
         if(animationStatus){
             animateCellIn()
         }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
     func animateCellIn(){
@@ -35,10 +35,10 @@ class PowerupTableViewCell: UITableViewCell {
             self.roundView?.center.x = self.contentView.frame.width / 2
         }, completion: nil)
     }
-    func animateCellOut(){
+    @objc func animateCellOut(){
         UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
-            self.titleLabel?.center.x -= 500
-            self.roundView?.center.x -= 500
+            self.roundView?.center.x = 750
+            self.titleLabel?.center.x = 700
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
