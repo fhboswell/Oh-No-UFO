@@ -30,13 +30,15 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         
         setAnimationStatusTrue()
-        welcomeTableView.reloadData()   
+        welcomeTableView.reloadData()
+        scene?.setScoreNode()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        scene?.isPaused = false
         scene?.moveIn()
         UIApplication.shared.statusBarStyle = .lightContent
+        //makeAndAnimateHeadline()
         
     }
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -63,6 +65,14 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         animationStatus[4] = true
        
         
+    }
+    
+    func makeAndAnimateHeadline(){
+        let imageName = "ohnoufo2.png"
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: 0, y: 20, width: self.welcomeTableView.frame.width, height: 100)
+        view.addSubview(imageView)
     }
     
     func getAnimationStatus(indexPath: IndexPath) -> Bool{
@@ -115,7 +125,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             return cell
         }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
-            cell.initalize(levelList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.initalize(laserList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.black
             cell.selectionStyle = .none
             return cell

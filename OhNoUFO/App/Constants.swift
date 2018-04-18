@@ -22,13 +22,14 @@ struct PhysicsMask {
 var levelList: [Laser] = {
     
     var levelList = [Laser]()
-    var new1:Laser = Laser(level: "1")
+    var retImage = UIImage(named: "ret1.png")
+    var new1:Laser = Laser(level: "1", retImage: retImage!)
     levelList.append(new1)
-    var new2:Laser = Laser(level: "2")
+    var new2:Laser = Laser(level: "1", retImage: retImage!)
     levelList.append(new2)
-    var new3:Laser = Laser(level: "3")
+    var new3:Laser = Laser(level: "1", retImage: retImage!)
     levelList.append(new3)
-    var new4:Laser = Laser(level: "4")
+    var new4:Laser = Laser(level: "1", retImage: retImage!)
     levelList.append(new4)
     return levelList
    

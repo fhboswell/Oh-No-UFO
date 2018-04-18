@@ -61,6 +61,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         sceneView.session.run(configuration)
         
         
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -275,8 +276,14 @@ extension GameViewController : SCNPhysicsContactDelegate {
         
         systemNode.position = convertedPosition
         sceneView.scene.rootNode.addChildNode(systemNode)
-        bullet.removeFromParentNode()
-        enemy.removeFromParentNode()
+        if (bullet != nil){
+            bullet.removeFromParentNode()
+        }
+        if (enemy != nil){
+             enemy.removeFromParentNode()
+        }
+        
+       
        
         gameController!.hitEnemyWithNode(enemy)
         

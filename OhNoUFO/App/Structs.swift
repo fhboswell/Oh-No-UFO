@@ -10,8 +10,9 @@ import Foundation
 import SceneKit
 
 
-struct Laser:Decodable {
+struct Laser {
     var level: String
+    var retImage: UIImage
 }
 
 struct Wave{

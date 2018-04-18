@@ -20,7 +20,7 @@ class WelcomeScene: SCNScene {
     func initializeScene(){
         setupCamera()
         addUFO()
-        addScoreNode()
+        setScoreNode()
     }
     
     func setupCamera(){
@@ -31,23 +31,28 @@ class WelcomeScene: SCNScene {
         
     }
     
-    func addScoreNode() {
+    func setScoreNode() {
 
         if(scoreNode != nil){
     
             scoreNode?.removeFromParentNode()
         }
         
-        let text = SCNText(string: "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: 0)), extrusionDepth: 1)
+        let text = SCNText(string: "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: 0)), extrusionDepth: 20)
         
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.green
+        text.font = UIFont(name: "Optima", size: 60)
+        material.lightingModel = SCNMaterial.LightingModel.physicallyBased
+        material.roughness.contents  = NSNumber(value: 0.1)
+        material.metalness.contents = NSNumber(value: 0.9)
+        
         text.materials = [material]
         
         //Create Node object
         scoreNode = SCNNode()
-        scoreNode?.scale = SCNVector3(x:0.05,y:0.05,z:0.05)
+        scoreNode?.scale = SCNVector3(x:0.01,y:0.01,z:0.01)
         scoreNode?.geometry = text
+        
         scoreNode?.position = SCNVector3(x: 5, y:0.5, z: -3)
         
         self.rootNode.addChildNode(scoreNode!)
