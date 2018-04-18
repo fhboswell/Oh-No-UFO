@@ -17,6 +17,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     var delegate: LaserCellDelegate?
     var levelList: [Laser]?
     @IBOutlet var laserCollectionView: UICollectionView!
+    var titleLabel: UILabel?
     
     
     func initalize(levelList: [Laser], delegate: LaserCellDelegate){
@@ -28,6 +29,33 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         self.laserCollectionView.dataSource = self
         self.contentView.backgroundColor = UIColor.black
         self.laserCollectionView.backgroundColor = UIColor.black
+        makeTitle()
+        
+        // Place it on the left of the view with the width = the bounds'width of the view.
+        // animate it from the left to the right
+        UIView.animate(withDuration: 1, delay: 1, options: [.curveEaseOut], animations: {
+            self.titleLabel?.center.x -= 500
+            //self.contentView.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    func makeTitle(){
+        if titleLabel == nil {
+            titleLabel = UILabel(frame: CGRect(x: 550, y: 10, width: self.contentView.frame.width-20, height: 30))
+        }
+        
+        titleLabel?.backgroundColor = .clear
+        titleLabel?.textAlignment = .left
+        titleLabel?.textColor = .white
+        titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+        titleLabel?.text = "Laser Upgrades"
+        self.contentView.addSubview(titleLabel!)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

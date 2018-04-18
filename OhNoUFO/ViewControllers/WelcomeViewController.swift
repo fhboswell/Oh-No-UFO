@@ -83,7 +83,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
             cell.initalize(levelList: levelList, delegate: self)
-            cell.contentView.backgroundColor = UIColor.blue
+            cell.contentView.backgroundColor = UIColor.black
             return cell
             
             
