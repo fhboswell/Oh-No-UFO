@@ -28,8 +28,8 @@ class PowerupTableViewCell: UITableViewCell {
     }
     
     func animateCellIn(){
-        roundView?.center.x = 550 + (roundView?.frame.minX)!/2
-        titleLabel?.center.x = 500 + (titleLabel?.frame.minX)!/2
+        roundView?.center.x = 750
+        titleLabel?.center.x = 700
         UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x = self.contentView.frame.width / 2
             self.roundView?.center.x = self.contentView.frame.width / 2

@@ -30,10 +30,12 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         
         setAnimationStatusTrue()
+        welcomeTableView.reloadData()   
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        scene?.isPaused = false
+        
         UIApplication.shared.statusBarStyle = .lightContent
         
     }

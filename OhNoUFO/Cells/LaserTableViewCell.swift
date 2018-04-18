@@ -40,10 +40,12 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
   
     func animateCellIn(){
-        self.laserCollectionView.center.x += 500
+        self.laserCollectionView.center.x = 700
+        self.titleLabel?.center.x = 700
+        
         UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
-            self.titleLabel?.center.x -= 500
-            self.laserCollectionView.center.x -= 500
+            self.titleLabel?.center.x = 45 + self.contentView.frame.width / 2
+            self.laserCollectionView.center.x = self.contentView.frame.width / 2
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
