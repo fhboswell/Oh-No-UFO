@@ -88,6 +88,6 @@ class PowerupTableViewCell: UITableViewCell {
     }
     func makePretty(){
         
-        self.contentView.backgroundColor = UIColor.black
+        self.contentView.backgroundColor = UIColor.clear
     }
 }

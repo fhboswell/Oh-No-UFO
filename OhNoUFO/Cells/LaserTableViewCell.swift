@@ -27,8 +27,8 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         laserCollectionView.contentInset = UIEdgeInsetsMake(0, 45, 0, 0);
         self.laserCollectionView.delegate = self
         self.laserCollectionView.dataSource = self
-        self.contentView.backgroundColor = UIColor.black
-        self.laserCollectionView.backgroundColor = UIColor.black
+        self.contentView.backgroundColor = UIColor.clear
+        self.laserCollectionView.backgroundColor = UIColor.clear
         makeTitle()
         
         // Place it on the left of the view with the width = the bounds'width of the view.

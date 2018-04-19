@@ -45,6 +45,8 @@
 		94B6E93620579C50006F9CFC /* UFO.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E92E20579C50006F9CFC /* UFO.mtl */; };
 		94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93020579C50006F9CFC /* UFO_Light_D.tga */; };
 		94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93220579C50006F9CFC /* UFO_N.tga */; };
+		94C51AF020886F1B006474F7 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C51AEF20886F1B006474F7 /* background.png */; };
+		94C51AF220887064006474F7 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C51AF120887063006474F7 /* background2.png */; };
 		94D661F3206093230085A698 /* LaserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F2206093230085A698 /* LaserTableViewCell.swift */; };
 		94D661F5206093900085A698 /* LaserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F4206093900085A698 /* LaserCollectionViewCell.swift */; };
 		94D661F72060941A0085A698 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F62060941A0085A698 /* Structs.swift */; };
@@ -92,7 +94,7 @@
 		9445B8F72058FB7500B64F9C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		9445B8F82058FB7500B64F9C /* Explosion.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = Explosion.scnp; sourceTree = "<group>"; };
 		94621ADC205F440800CCB73B /* UFO2.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO2.dae; sourceTree = "<group>"; };
-		9464352020606964008A472A /* ArcadeModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeModeTableViewCell.swift; sourceTree = "<group>"; };
+		9464352020606964008A472A /* ArcadeModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ArcadeModeTableViewCell.swift; path = OhNoUFO/Cells/ArcadeModeTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		946435232060759D008A472A /* WelcomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScene.swift; sourceTree = "<group>"; };
 		946A48E62057C20E0083899E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		946A48EA2057D0BE0083899E /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		94B6E92E20579C50006F9CFC /* UFO.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UFO.mtl; sourceTree = "<group>"; };
 		94B6E93020579C50006F9CFC /* UFO_Light_D.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_Light_D.tga; sourceTree = "<group>"; };
 		94B6E93220579C50006F9CFC /* UFO_N.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_N.tga; sourceTree = "<group>"; };
+		94C51AEF20886F1B006474F7 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		94C51AF120887063006474F7 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		94D661F2206093230085A698 /* LaserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserTableViewCell.swift; sourceTree = "<group>"; };
 		94D661F4206093900085A698 /* LaserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserCollectionViewCell.swift; sourceTree = "<group>"; };
 		94D661F62060941A0085A698 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		9413E1F22087D46B00BA203E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				94C51AEF20886F1B006474F7 /* background.png */,
+				94C51AF120887063006474F7 /* background2.png */,
 				9413E2032087FF1900BA203E /* fonts */,
 				9413E1F42087D48E00BA203E /* ret */,
 				9413E1F32087D47800BA203E /* Texture */,
@@ -467,11 +473,13 @@
 				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
 				94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */,
 				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
+				94C51AF020886F1B006474F7 /* background.png in Resources */,
 				9413E2002087E5E900BA203E /* ret6.png in Resources */,
 				9445B8F92058FB7500B64F9C /* spark.png in Resources */,
 				9413E2052087FF2C00BA203E /* knewave.ttf in Resources */,
 				9413E1F02087CD9600BA203E /* normal.png in Resources */,
 				9413E1FE2087E5E200BA203E /* ret3.png in Resources */,
+				94C51AF220887064006474F7 /* background2.png in Resources */,
 				9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */,
 				94042498208564C800E63A49 /* Cube.dae in Resources */,
 				9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */,

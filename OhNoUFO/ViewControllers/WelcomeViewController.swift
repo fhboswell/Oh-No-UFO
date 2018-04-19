@@ -40,7 +40,13 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         UIApplication.shared.statusBarStyle = .lightContent
         //makeAndAnimateHeadline()
         
+        
     }
+    
+    
+   
+    
+    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
@@ -54,6 +60,16 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         welcomeTableView.delegate = self
         welcomeTableView.dataSource = self
          setupScene()
+        
+        
+        let backgroundImage = UIImage(named: "background2.png")
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        
+        backgroundImageView.image = backgroundImage
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.alpha = 1
+        
+        self.view.insertSubview(backgroundImageView, at: 0)
 
     }
     
@@ -85,7 +101,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: - scene
     func setupScene(){
         self.scene = WelcomeScene()
-        welcomeSceneView.backgroundColor = UIColor.black
+        welcomeSceneView.backgroundColor = UIColor.clear
         welcomeSceneView.autoenablesDefaultLighting = true
         self.welcomeSceneView.scene = scene
         self.scene?.initializeScene()
@@ -126,7 +142,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
             cell.initalize(laserList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
-            cell.contentView.backgroundColor = UIColor.black
+            cell.contentView.backgroundColor = UIColor.clear
             cell.selectionStyle = .none
             return cell
             
