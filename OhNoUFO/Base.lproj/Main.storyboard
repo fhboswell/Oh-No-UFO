@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dqn-ZU-n5L">
-                                <rect key="frame" x="0.0" y="227" width="375" height="458"/>
+                                <rect key="frame" x="0.0" y="451" width="375" height="234"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -86,7 +86,7 @@
                                 </prototypes>
                             </tableView>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvf-zY-kHs">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="227"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="443"/>
                             </sceneKitView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -94,8 +94,8 @@
                         <constraints>
                             <constraint firstItem="Dqn-ZU-n5L" firstAttribute="leading" secondItem="6t9-zq-7p6" secondAttribute="leading" id="Hj9-BB-C51"/>
                             <constraint firstItem="nvf-zY-kHs" firstAttribute="top" secondItem="LCE-uw-8DK" secondAttribute="top" id="LdI-Ba-XwO"/>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="6t9-zq-7p6" secondAttribute="top" constant="207" id="PZB-0A-rjc"/>
-                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="nvf-zY-kHs" secondAttribute="bottom" id="Ttw-O0-tTC"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="6t9-zq-7p6" secondAttribute="top" constant="431" id="PZB-0A-rjc"/>
+                            <constraint firstItem="Dqn-ZU-n5L" firstAttribute="top" secondItem="nvf-zY-kHs" secondAttribute="bottom" constant="8" id="Ttw-O0-tTC"/>
                             <constraint firstItem="Dqn-ZU-n5L" firstAttribute="trailing" secondItem="6t9-zq-7p6" secondAttribute="trailing" id="Wvg-hI-rgr"/>
                             <constraint firstItem="nvf-zY-kHs" firstAttribute="trailing" secondItem="6t9-zq-7p6" secondAttribute="trailing" id="Z4w-Br-dfb"/>
                             <constraint firstItem="nvf-zY-kHs" firstAttribute="leading" secondItem="6t9-zq-7p6" secondAttribute="leading" id="eed-5u-LnY"/>

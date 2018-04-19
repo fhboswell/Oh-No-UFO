@@ -31,7 +31,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         setAnimationStatusTrue()
         welcomeTableView.reloadData()
-        scene?.setScoreNode()
+        scene?.setTitleNode()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -128,18 +128,19 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+//        if(indexPath.row == 0){
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
+//            cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
+//            cell.selectionStyle = .none
+//            return cell
+//
+//        }else
         if(indexPath.row == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ArcadeMode", for: indexPath) as! ArcadeModeTableViewCell
-            cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
-            cell.selectionStyle = .none
-            return cell
-            
-        }else if(indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "Powerup", for: indexPath) as! PowerupTableViewCell
             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.selectionStyle = .none
             return cell
-        }else if(indexPath.row == 2){
+        }else if(indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
             cell.initalize(laserList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.clear
