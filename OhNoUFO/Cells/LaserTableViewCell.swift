@@ -24,7 +24,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
 
         self.delegate = delegate
         self.laserList = laserList
-        laserCollectionView.contentInset = UIEdgeInsetsMake(0, 45, 0, 0);
+        laserCollectionView.contentInset = UIEdgeInsetsMake(0, 20, 0, 0);
         self.laserCollectionView.delegate = self
         self.laserCollectionView.dataSource = self
         self.contentView.backgroundColor = UIColor.clear
@@ -45,7 +45,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         self.titleLabel?.center.x = 700
         
         UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
-            self.titleLabel?.center.x = 45 + self.contentView.frame.width / 2
+            self.titleLabel?.center.x = 20 + self.contentView.frame.width / 2
             self.laserCollectionView.center.x = self.contentView.frame.width / 2
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
@@ -70,7 +70,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         titleLabel?.backgroundColor = .clear
         titleLabel?.textAlignment = .left
         titleLabel?.textColor = .white
-        titleLabel?.font = UIFont(name: "Knewave", size: 20)
+        titleLabel?.font = UIFont(name: "neuropol", size: 20)
         titleLabel?.text = "Laser Upgrades"
         
         

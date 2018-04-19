@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>knewave.ttf</string>
+		<string>neuropol.ttf</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>

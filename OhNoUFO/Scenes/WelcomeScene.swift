@@ -54,18 +54,35 @@ class WelcomeScene: SCNScene {
         playNode.geometry = text
         playNode.position = SCNVector3(x: -1.7, y:0, z: 0)
         
-        playControlNode.position =  SCNVector3(x: 0, y:-3.5, z: -4)
+        playControlNode.position =  SCNVector3(x: 0, y:3, z: 4)
+        //playControlNode.rotation =  SCNVector4(x: 0, y: 1, z: 0, w: -Float(Double.pi / 6))
         self.playControlNode.addChildNode(playNode)
         
         self.rootNode.addChildNode(playControlNode)
-        runPlayFlairAnimation()
+        //runPlayFlairAnimation()
+        //runPlayFlairAnimation2()
     }
     func runPlayFlairAnimation(){
        
-        let action1 = SCNAction.moveBy(x: 0, y: 0, z: 1, duration: 1)
+        let action = SCNAction.rotateBy(x: 0, y: 0.25, z: 0, duration: 3)
+       
+        let action1 = SCNAction.rotateBy(x: 0, y: -0.5, z: 0, duration: 3)
         action1.timingMode = .easeInEaseOut
-        let action2 = SCNAction.moveBy(x: 0, y: 0, z: -1, duration: 1)
+        let action2 = SCNAction.rotateBy(x: 0, y: 0.5, z: 0, duration: 3)
         action2.timingMode = .easeInEaseOut
+        let actionSeq = SCNAction.sequence([action1,action2])
+        let runManyTimes = SCNAction.repeat(actionSeq, count: 100)
+         let setupAndRun = SCNAction.sequence([action,runManyTimes])
+        self.playControlNode.runAction(setupAndRun)
+    }
+    func runPlayFlairAnimation2(){
+        
+        
+        let action1 = SCNAction.rotateBy(x: -0.25, y: 0, z: 0, duration: 1.5)
+        action1.timingMode = .easeInEaseOut
+        let action2 = SCNAction.rotateBy(x: 0.25, y: 0, z: 0, duration: 1.5)
+        action2.timingMode = .easeInEaseOut
+        
         let actionSeq = SCNAction.sequence([action1,action2])
         let runManyTimes = SCNAction.repeat(actionSeq, count: 100)
         self.playControlNode.runAction(runManyTimes)
@@ -96,9 +113,10 @@ class WelcomeScene: SCNScene {
     
     func runTitleFlairAnimation(){
         
-        let action1 = SCNAction.rotateBy(x: 0, y: -0.25, z: 0, duration: 1)
+        let action1 = SCNAction.rotateBy(x: 0, y: -0.25, z: 0, duration: 3)
         action1.timingMode = .easeInEaseOut
-        let action2 = SCNAction.rotateBy(x: 0, y: 0.25, z: 0, duration: 1)
+        let action2 = SCNAction.rotateBy(x: 0, y: 0.25, z: 0, duration: 3
+        )
         action2.timingMode = .easeInEaseOut
         let actionSeq = SCNAction.sequence([action1,action2])
         let runManyTimes = SCNAction.repeat(actionSeq, count: 100)
@@ -172,14 +190,21 @@ class WelcomeScene: SCNScene {
     func moveIn(){
          let ufoAction = SCNAction.move(to: SCNVector3(-1, 0, -1.5), duration: 1)
         let scoreAction = SCNAction.move(to: SCNVector3(x:-1, y:1.7, z: -3), duration: 1)
+        let playAction = SCNAction.move(to: SCNVector3(x: 0, y:-3.5, z: -4), duration: 1)
+        
+        
+        
         self.ufoNode.runAction(ufoAction)
         self.titleControlNode.runAction(scoreAction)
+        self.playControlNode.runAction(playAction)
     }
     func moveOut(){
         let ufoAction = SCNAction.move(to: SCNVector3(-3.7, 0, -1.5), duration: 1)
         let scoreAction = SCNAction.move(to: SCNVector3(x: -1, y:0.5, z: 4), duration: 1)
+        let playAction = SCNAction.move(to: SCNVector3(x: 0, y:3, z: 4), duration: 1)
         self.ufoNode.runAction(ufoAction)
         self.titleControlNode.runAction(scoreAction)
+        self.playControlNode.runAction(playAction)
     }
     
 }

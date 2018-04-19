@@ -25,7 +25,21 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     //MARK: - Lifecycle
-    
+    func addParallaxToView(vw: UIView) {
+        let amount = 100
+        //addParallaxToView(vw: roundView!)
+        let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+        horizontal.minimumRelativeValue = -amount
+        horizontal.maximumRelativeValue = amount
+        
+        let vertical = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+        vertical.minimumRelativeValue = -amount
+        vertical.maximumRelativeValue = amount
+        
+        let group = UIMotionEffectGroup()
+        group.motionEffects = [horizontal, vertical]
+        vw.addMotionEffect(group)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -62,15 +76,32 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
          setupScene()
         
         
+       addBackground()
+        
+        addTouchView()
+        
+      
+
+    }
+    func addBackground(){
         let backgroundImage = UIImage(named: "background2.png")
-        let backgroundImageView = UIImageView(image: backgroundImage)
+        let backgroundImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
         
         backgroundImageView.image = backgroundImage
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.alpha = 1
         
         self.view.insertSubview(backgroundImageView, at: 0)
-
+    }
+    
+    func addTouchView(){
+        var touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 50, width: self.view.frame.width, height: 100))
+        touchview.backgroundColor = UIColor.clear
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play))
+        touchview.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(touchview)
+        
     }
     
     func setAnimationStatusTrue(){
@@ -83,13 +114,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    func makeAndAnimateHeadline(){
-        let imageName = "ohnoufo2.png"
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image!)
-        imageView.frame = CGRect(x: 0, y: 20, width: self.welcomeTableView.frame.width, height: 100)
-        view.addSubview(imageView)
-    }
+    
     
     func getAnimationStatus(indexPath: IndexPath) -> Bool{
         var status = animationStatus[indexPath.row]
@@ -159,20 +184,24 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if (indexPath.row == 0){
-            prepareToPlay()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "AnimateOut"), object: self)
-            scene?.moveOut()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.playArcade()
-            }
+            play()
+        }
+    }
+    
+    @objc func play(){
+        prepareToPlay()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "AnimateOut"), object: self)
+        scene?.moveOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.playArcade()
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 120
+            return 200
             
         }else if(indexPath.row == 1){
-            return 150
+            return 200
         }else if(indexPath.row == 2){
             return 200
             

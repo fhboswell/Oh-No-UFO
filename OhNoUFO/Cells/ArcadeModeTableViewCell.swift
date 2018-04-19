@@ -24,7 +24,7 @@ class ArcadeModeTableViewCell: UITableViewCell {
         if(animationStatus){
             animateCellIn()
         }
-        addParallaxToView(vw: roundView!)
+        
          NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
@@ -93,23 +93,9 @@ class ArcadeModeTableViewCell: UITableViewCell {
         
         
         
-        self.roundView!.addSubview(titleLabel!)
+        self.contentView.addSubview(titleLabel!)
     }
-    func addParallaxToView(vw: UIView) {
-        let amount = 100
-        
-        let horizontal = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
-        horizontal.minimumRelativeValue = -amount
-        horizontal.maximumRelativeValue = amount
-        
-        let vertical = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
-        vertical.minimumRelativeValue = -amount
-        vertical.maximumRelativeValue = amount
-        
-        let group = UIMotionEffectGroup()
-        group.motionEffects = [horizontal, vertical]
-        vw.addMotionEffect(group)
-    }
+    
     func makePretty(){
         
        self.contentView.backgroundColor = UIColor.clear

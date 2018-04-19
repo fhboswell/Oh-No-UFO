@@ -47,30 +47,36 @@ class LaserCollectionViewCell : UICollectionViewCell {
     }
     
     
+    
+    
     func makeDetailView(){
         print("here")
         
        
         if (roundview == nil) {
             roundview = UIView(frame: CGRect(x: 5, y: 10, width: 130, height: 130))
+            
+            let frameImage = UIImage(named: "Armory_Item_Frame.png")
+            let frameImageView = UIImageView(image: frameImage!)
+            frameImageView.frame = CGRect(x: 0, y: 0, width: 130, height: 130)
+            roundview?.addSubview(frameImageView)
         }
-        self.roundview?.layer.borderWidth = 5
-        self.roundview?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
+        //self.roundview?.layer.borderWidth = 5
+        //self.roundview?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
         roundview?.layer.cornerRadius = 8.0
         roundview?.clipsToBounds = true
-        roundview?.backgroundColor = UIColor.white
+        roundview?.backgroundColor = UIColor.clear
         if (imageView == nil) {
             imageView = UIImageView(image: laser?.retImage)
         }
        
         imageView?.frame = CGRect(x: 15, y: 30, width: 100, height: 100)
         roundview?.addSubview(imageView!)
-        if (lineview == nil) {
-            lineview = UIView(frame: CGRect(x: 0, y: 30, width: 130, height: 1))
-        }
-        self.lineview?.layer.borderWidth = 5
-        self.lineview?.layer.borderColor = UIColor.green.cgColor
-        roundview?.addSubview(lineview!)
+        
+        
+       
+       
+        
         
 //        let gradient = CAGradientLayer()
 //
