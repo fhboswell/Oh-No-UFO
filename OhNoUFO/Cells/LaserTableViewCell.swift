@@ -13,13 +13,14 @@ import UIKit
 class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     
-    
+    //MARK: - instance varriables
     var delegate: LaserCellDelegate?
     var laserList: [Laser]?
     @IBOutlet var laserCollectionView: UICollectionView!
     var titleLabel: UILabel?
     
     
+    //MARK: - Lifecycle
     func initalize(laserList: [Laser], delegate: LaserCellDelegate, animationStatus: Bool){
 
         self.delegate = delegate
@@ -39,7 +40,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
-  
+    //MARK: - Animation
     func animateCellIn(){
         self.laserCollectionView.center.x = 700
         self.titleLabel?.center.x = 700
@@ -61,7 +62,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     
     
-    
+    //MARK: - Text
     func makeTitle(){
         if titleLabel == nil {
             titleLabel = UILabel(frame: CGRect(x: 550, y: 10, width: self.contentView.frame.width-20, height: 30))
@@ -72,8 +73,6 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont(name: "neuropol", size: 20)
         titleLabel?.text = "Laser Upgrades"
-        
-        
         titleLabel?.layer.shadowColor = UIColor.gray.cgColor
         titleLabel?.layer.shadowRadius = 3.0
         titleLabel?.layer.shadowOpacity = 1.0
@@ -83,6 +82,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         self.contentView.addSubview(titleLabel!)
     }
     
+    //MARK: - Collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return laserList!.count
         //return 5
@@ -90,7 +90,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = laserCollectionView.dequeueReusableCell(withReuseIdentifier: "Level", for: indexPath) as! LaserCollectionViewCell
-        cell.initalize(laser: laserList![indexPath.row], delegate: delegate! )
+        cell.initalize(laser: laserList![indexPath.row], delegate: delegate!, unlocked: unlockedLasers[indexPath.row])
         return cell
     }
     

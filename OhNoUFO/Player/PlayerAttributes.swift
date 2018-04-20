@@ -17,7 +17,7 @@ class PlayerAttributes{
         }
         set {
             let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "SavedTasksList")
+            defaults.set(newValue, forKey: "lives")
             defaults.synchronize()
         }
     };
@@ -31,11 +31,11 @@ class PlayerAttributes{
             defaults.synchronize()
         }
     };
-    private var currentGameScore = 0
     
-    private var laser: Laser{
+    
+    private var laser: Int{
         get {
-            return UserDefaults.standard.object(forKey: "laser") as? Laser ?? laserList[0]
+            return UserDefaults.standard.object(forKey: "laser") as? Int ?? 0
         }
         set {
             let defaults = UserDefaults.standard
@@ -43,6 +43,149 @@ class PlayerAttributes{
             defaults.synchronize()
         }
     };
+    
+    
+    private var lastRoundScore:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundScore") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundScore")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastRoundEnemiesDestroyed:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundEnemiesDestroyed") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundEnemiesDestroyed")
+            defaults.synchronize()
+        }
+    };
+    private var lastRoundLasersFired:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundLasersFired") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundLasersFired")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastRoundAccuracy:Double{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundAccuracy") as? Double ?? 0.0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundAccuracy")
+            defaults.synchronize()
+        }
+    };
+    
+    //MARK: - MAX
+    private var lastRoundScoreMax:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundScoreMax") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundScoreMax")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastRoundEnemiesDestroyedMax:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundEnemiesDestroyedMax") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundEnemiesDestroyedMax")
+            defaults.synchronize()
+        }
+    };
+    private var lastRoundLasersFiredMax:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundLasersFiredMax") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundLasersFiredMax")
+            print("value")
+            print(newValue)
+            print("value")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastRoundAccuracyMax:Double{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundAccuracyMax") as? Double ?? 0.0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundAccuracyMax")
+            defaults.synchronize()
+        }
+    };
+    
+    //MARK: - star value
+    private var lastRoundScoreStar:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundScoreStar") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundScoreStar")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastRoundEnemiesDestroyedStar:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundEnemiesDestroyedStar") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundEnemiesDestroyedStar")
+            defaults.synchronize()
+        }
+    };
+    private var lastRoundLasersFiredStar:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundLasersFiredStar") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundLasersFiredStar")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastRoundAccuracyStar:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastRoundAccuracyStar") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastRoundAccuracyStar")
+            defaults.synchronize()
+        }
+    };
+    
+    
+    private var currentGameScore = 0
+   
+    
     private var immunity = false
     
     
@@ -53,11 +196,97 @@ class PlayerAttributes{
         return currentGameScore
     }
     
+    public func updateLaserEnemyCount(lasersCount : Int, enemyCount: Int){
+        
+        lastRoundLasersFired = lasersCount
+        lastRoundEnemiesDestroyed = enemyCount
+        
+        if(lastRoundLasersFired != 0){
+            lastRoundAccuracy = Double(lastRoundEnemiesDestroyed) / Double(lastRoundLasersFired)
+        }
+        else{
+            lastRoundAccuracy = 0
+        }
+        
+        findMax()
+        
+        
+    }
+    public func findMax(){
+        
+        if (lastRoundScore > lastRoundScoreMax){
+            lastRoundScoreMax = lastRoundScore
+            lastRoundScoreStar = 3
+        } else  if (Double(lastRoundScore) > (Double (lastRoundScoreMax)  * 0.8)){
+            lastRoundScoreStar = 2
+        }else  if (Double(lastRoundScore) > (Double (lastRoundScoreMax)  * 0.6)){
+            lastRoundScoreStar = 1
+        }else{
+            lastRoundScoreStar = 0
+        }
+        
+        if (lastRoundEnemiesDestroyed > lastRoundEnemiesDestroyedMax){
+            lastRoundEnemiesDestroyedMax = lastRoundEnemiesDestroyed
+            lastRoundEnemiesDestroyedStar = 3
+        } else  if (Double(lastRoundEnemiesDestroyed) > (Double (lastRoundEnemiesDestroyedMax)  * 0.8)){
+            lastRoundEnemiesDestroyedStar = 2
+        }else  if (Double(lastRoundEnemiesDestroyed) > (Double (lastRoundEnemiesDestroyedMax)  * 0.6)){
+            lastRoundEnemiesDestroyedStar = 1
+        }else{
+            lastRoundEnemiesDestroyedStar = 0
+        }
+        
+        if (lastRoundLasersFired > lastRoundLasersFiredMax){
+            lastRoundLasersFiredMax = lastRoundLasersFired
+            lastRoundLasersFiredStar = 3
+        } else  if (Double(lastRoundLasersFired) > (Double (lastRoundLasersFiredMax)  * 0.8)){
+            lastRoundLasersFiredStar = 2
+        }else  if (Double(lastRoundLasersFired) > (Double (lastRoundLasersFiredMax)  * 0.6)){
+            lastRoundLasersFiredStar = 1
+        }else{
+            lastRoundLasersFiredStar = 0
+        }
+        
+        if (lastRoundAccuracy > lastRoundAccuracyMax){
+            lastRoundAccuracyMax = lastRoundAccuracy
+            lastRoundAccuracyStar = 3
+        } else  if (Double(lastRoundAccuracy) > (Double (lastRoundAccuracyMax)  * 0.8)){
+            lastRoundLasersFiredStar = 2
+        }else  if (Double(lastRoundAccuracy) > (Double (lastRoundAccuracyMax)   * 0.6)){
+            lastRoundAccuracyStar = 1
+        }else{
+            lastRoundAccuracyStar = 0
+            
+        }
+        print(lastRoundAccuracyStar)
+        print(lastRoundLasersFiredStar)
+        print(lastRoundEnemiesDestroyedStar)
+        print(lastRoundScoreStar)
+    }
+    
+    
+    
+    public func getLastRoundLasersFired() -> Int{
+        return lastRoundLasersFired
+    }
+    
+    public func getLastRoundEnemiesDestroyed() -> Int{
+        return lastRoundEnemiesDestroyed
+    }
+    public func getLastRoundAccuracy() -> Double{
+        return lastRoundAccuracy
+    }
+
+    
+    public func getLastRoundScore() -> Int{
+        return lastRoundScore
+    }
     
     public func getLaser() -> Laser{
-        return self.laser
+        return laserList[self.laser]
     }
-    public func setLaser(laser: Laser){
+    //needs to be an int to get set to defaults
+    public func setLaser(laser: Int){
         self.laser = laser
     }
     
@@ -66,6 +295,9 @@ class PlayerAttributes{
     }
     public func resetScore(){
         self.currentGameScore = 0
+    }
+    public func getScore() -> Int{
+        return score
     }
     public func removeOneLife() -> Bool{
         
@@ -80,6 +312,8 @@ class PlayerAttributes{
             }
             if(self.lives == 0){
                 score = score + currentGameScore
+                lastRoundScore = currentGameScore
+                
                 
                 return false
             }else{

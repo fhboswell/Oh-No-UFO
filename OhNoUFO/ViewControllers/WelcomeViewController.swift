@@ -22,7 +22,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     var scene: WelcomeScene?
     var animationStatus:[Bool] = [false, false,false,false,false]
 
-    
+    var totalScoreLabel: UILabel?
+    var pointsView: UIView?
     
     //MARK: - Lifecycle
     func addParallaxToView(vw: UIView) {
@@ -53,7 +54,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
        scene?.isPaused = false
         scene?.moveIn()
         UIApplication.shared.statusBarStyle = .lightContent
-        //makeAndAnimateHeadline()
+        animateScoreIn()
         
         
     }
@@ -80,10 +81,28 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
        addBackground()
         
         addTouchView()
+        addPointsView()
         
       
 
     }
+    
+    //MARK:- animation
+    func animateScoreIn(){
+        pointsView?.center.x = -750
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
+            
+            self.pointsView?.center.x = self.view.frame.width / 2
+        }, completion: nil)
+    }
+    @objc func animateScoreOut(){
+        UIView.animate(withDuration: 1.5, delay: 0, options: [.curveEaseOut], animations: {
+            self.pointsView?.center.x = -750
+        }, completion: nil)
+    }
+    
+    
+    //MARK: - UIelemenst
     func addBackground(){
         let backgroundImage = UIImage(named: "bg.png")
         let backgroundImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
@@ -96,13 +115,44 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addTouchView(){
-        var touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 50, width: self.view.frame.width, height: 100))
+        var touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100))
         touchview.backgroundColor = UIColor.clear
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play))
         touchview.addGestureRecognizer(tapGestureRecognizer)
         self.view.addSubview(touchview)
         
+    }
+    
+    func addPointsView(){
+        if( pointsView == nil){
+            pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 20, width: self.view.frame.width, height: 100))
+        }
+        pointsView?.backgroundColor = UIColor.clear
+        
+        let pointsFrameImage = UIImage(named: "main_field_1.png")
+        let pointsFrameImageView = UIImageView(image: pointsFrameImage)
+        pointsFrameImageView.frame = CGRect(x: 15, y: 0, width: self.view.frame.width - 50 , height: 100)
+        
+        
+        if( totalScoreLabel == nil){
+            totalScoreLabel = UILabel(frame: CGRect(x: 20, y: 0, width: self.view.frame.width, height: 100))
+        }
+        
+        totalScoreLabel?.textAlignment = .center
+        totalScoreLabel?.textColor = .white
+        
+       setTotalScoreWithZeros()
+        totalScoreLabel?.font = UIFont(name: "neuropol", size: 20)
+        
+        pointsView?.addSubview(totalScoreLabel!)
+        pointsView?.addSubview(pointsFrameImageView)
+        self.view.addSubview(pointsView!)
+        
+    }
+    
+    func setTotalScoreWithZeros(){
+         totalScoreLabel?.text = String(format: "%011d", PlayerAttributes.sharedPlayerAttributes.getScore())
     }
     
     func setAnimationStatusTrue(){
@@ -191,6 +241,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @objc func play(){
         prepareToPlay()
+        animateScoreOut()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "AnimateOut"), object: self)
         scene?.moveOut()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -199,7 +250,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 200
+            return 300
             
         }else if(indexPath.row == 1){
             return 200
@@ -215,7 +266,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: - protocol conform
     func recieveLevelIndex(index: Int){
         print(index)
-        PlayerAttributes.sharedPlayerAttributes.setLaser(laser: laserList[index])
+        PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
         
     }
     

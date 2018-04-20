@@ -54,3 +54,14 @@ var laserList: [Laser] = {
     
 }()
 
+var unlockedLasers: [Bool]{
+    get {
+        return UserDefaults.standard.object(forKey: "unlockedLasers") as? [Bool] ?? [true,false,false,false,false,false,false]
+    }
+    set {
+        let defaults = UserDefaults.standard
+        defaults.set(newValue, forKey: "unlockedLasers")
+        defaults.synchronize()
+    }
+};
+

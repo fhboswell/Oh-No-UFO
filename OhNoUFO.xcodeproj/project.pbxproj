@@ -31,6 +31,9 @@
 		94315342208964F500B8517B /* ret5.png in Resources */ = {isa = PBXBuildFile; fileRef = 9431533F208964F500B8517B /* ret5.png */; };
 		94315343208964F500B8517B /* ret7.png in Resources */ = {isa = PBXBuildFile; fileRef = 94315340208964F500B8517B /* ret7.png */; };
 		94315344208964F500B8517B /* ret6.png in Resources */ = {isa = PBXBuildFile; fileRef = 94315341208964F500B8517B /* ret6.png */; };
+		943153482089A19400B8517B /* main_field_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 943153452089A19400B8517B /* main_field_2.png */; };
+		943153492089A19400B8517B /* main_field_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 943153462089A19400B8517B /* main_field_3.png */; };
+		9431534A2089A19400B8517B /* main_field_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 943153472089A19400B8517B /* main_field_1.png */; };
 		9445B8F12058A17200B64F9C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F02058A17200B64F9C /* Extensions.swift */; };
 		9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */; };
 		9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */ = {isa = PBXBuildFile; fileRef = 9445B8F52058EF7D00B64F9C /* UFO.dae */; };
@@ -111,6 +114,9 @@
 		9431533F208964F500B8517B /* ret5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret5.png; sourceTree = "<group>"; };
 		94315340208964F500B8517B /* ret7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret7.png; sourceTree = "<group>"; };
 		94315341208964F500B8517B /* ret6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret6.png; sourceTree = "<group>"; };
+		943153452089A19400B8517B /* main_field_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_field_2.png; sourceTree = "<group>"; };
+		943153462089A19400B8517B /* main_field_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_field_3.png; sourceTree = "<group>"; };
+		943153472089A19400B8517B /* main_field_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_field_1.png; sourceTree = "<group>"; };
 		9445B8F02058A17200B64F9C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9445B8F22058AE2200B64F9C /* PlayerLazersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLazersController.swift; sourceTree = "<group>"; };
 		9445B8F52058EF7D00B64F9C /* UFO.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = UFO.dae; sourceTree = "<group>"; };
@@ -263,6 +269,9 @@
 			isa = PBXGroup;
 			children = (
 				943153322089317700B8517B /* Armory_Item_Frame.png */,
+				943153472089A19400B8517B /* main_field_1.png */,
+				943153452089A19400B8517B /* main_field_2.png */,
+				943153462089A19400B8517B /* main_field_3.png */,
 				943153342089350F00B8517B /* window_top.png */,
 				94315336208935DE00B8517B /* window_bottom.png */,
 			);
@@ -537,6 +546,7 @@
 				9413E2002087E5E900BA203E /* ret66.png in Resources */,
 				943153292089251D00B8517B /* neuropol.ttf in Resources */,
 				94315342208964F500B8517B /* ret5.png in Resources */,
+				9431534A2089A19400B8517B /* main_field_1.png in Resources */,
 				94315344208964F500B8517B /* ret6.png in Resources */,
 				9445B8F92058FB7500B64F9C /* spark.png in Resources */,
 				9413E2052087FF2C00BA203E /* knewave.ttf in Resources */,
@@ -560,8 +570,10 @@
 				9431533D208963F300B8517B /* ret2.png in Resources */,
 				94621ADD205F440800CCB73B /* UFO2.dae in Resources */,
 				9413E1EF2087CD9600BA203E /* albedo.png in Resources */,
+				943153492089A19400B8517B /* main_field_3.png in Resources */,
 				9413E1F12087CD9600BA203E /* roughness.png in Resources */,
 				9413E1F62087D49C00BA203E /* ret11.png in Resources */,
+				943153482089A19400B8517B /* main_field_2.png in Resources */,
 				9413E1EE2087CD9600BA203E /* metal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
