@@ -45,6 +45,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         setAnimationStatusTrue()
         welcomeTableView.reloadData()
+        welcomeTableView.setContentOffset(CGPoint.zero, animated: true)
         scene?.setTitleNode()
     }
     override func viewDidAppear(_ animated: Bool) {

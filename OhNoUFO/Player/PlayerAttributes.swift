@@ -11,13 +11,38 @@ import Foundation
 class PlayerAttributes{
     static var sharedPlayerAttributes:PlayerAttributes = PlayerAttributes()
     
-    private var lives = 3;
-    private var score = 0;
-    private var currentGameScore = 0;
+    private var lives:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lives") as? Int ?? 3
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "SavedTasksList")
+            defaults.synchronize()
+        }
+    };
+    private var score:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "score") as? Int ?? 0
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "score")
+            defaults.synchronize()
+        }
+    };
+    private var currentGameScore = 0
     
-    
-    private var laser: Laser = laserList[0]
-    
+    private var laser: Laser{
+        get {
+            return UserDefaults.standard.object(forKey: "laser") as? Laser ?? laserList[0]
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "laser")
+            defaults.synchronize()
+        }
+    };
     private var immunity = false
     
     
@@ -54,6 +79,8 @@ class PlayerAttributes{
                 }
             }
             if(self.lives == 0){
+                score = score + currentGameScore
+                
                 return false
             }else{
                 return true
