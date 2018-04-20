@@ -35,6 +35,9 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     var score = 0
     var scoreLabel: UILabel?
+    var retView: UIImageView?
+    
+    var laser: Laser?
     
     
     
@@ -42,13 +45,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureLighting()
-      
-        initPlayer()
-        addGestures()
-        prepareLazerController()
-        prepareEnemyController()
-        initScoreLabel()
+        
+        
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
@@ -59,6 +57,15 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         super.viewWillAppear(animated)
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
+        
+        configureLighting()
+        
+        initPlayer()
+        addGestures()
+        prepareLazerController()
+        prepareEnemyController()
+        initScoreLabel()
+        initLaserReticle()
         
         
         
@@ -221,6 +228,34 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         self.view.addSubview(scoreLabel!)
         
         
+        
+    }
+    
+    func initLaserReticle(){
+        
+        self.laser = PlayerAttributes.sharedPlayerAttributes.getLaser()
+        if (self.retView != nil){
+            self.retView?.removeFromSuperview()
+            self.retView?.image = nil
+            self.retView = nil
+        }
+        
+        
+        let reticle = self.laser?.retImage
+        let retView = UIImageView(frame: CGRect(x: self.view.frame.maxX/2 - 75, y: self.view.frame.maxY/2 - 75, width: 150, height: 150))
+        
+        retView.image = reticle
+        retView.contentMode = .scaleAspectFill
+        retView.alpha = 0.3
+        
+        self.view.insertSubview(retView, at: 1)
+        
+        
+        
+    }
+    
+    
+    func addBackground(){
         
     }
     func adjustScore(amount: Int){

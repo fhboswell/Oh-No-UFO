@@ -84,7 +84,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
     func addBackground(){
-        let backgroundImage = UIImage(named: "background2.png")
+        let backgroundImage = UIImage(named: "bg.png")
         let backgroundImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.maxX, height: self.view.frame.maxY))
         
         backgroundImageView.image = backgroundImage
@@ -167,7 +167,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             return cell
         }else if(indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
-            cell.initalize(laserList: levelList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.initalize(laserList: laserList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.clear
             cell.selectionStyle = .none
             return cell
@@ -214,6 +214,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: - protocol conform
     func recieveLevelIndex(index: Int){
         print(index)
+        PlayerAttributes.sharedPlayerAttributes.setLaser(laser: laserList[index])
+        
     }
     
 }

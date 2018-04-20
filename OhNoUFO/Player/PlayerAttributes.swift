@@ -15,6 +15,9 @@ class PlayerAttributes{
     private var score = 0;
     private var currentGameScore = 0;
     
+    
+    private var laser: Laser = laserList[0]
+    
     private var immunity = false
     
     
@@ -25,6 +28,13 @@ class PlayerAttributes{
         return currentGameScore
     }
     
+    
+    public func getLaser() -> Laser{
+        return self.laser
+    }
+    public func setLaser(laser: Laser){
+        self.laser = laser
+    }
     
     public func resetLives(){
         self.lives = 3

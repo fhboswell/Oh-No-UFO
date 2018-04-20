@@ -90,7 +90,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = laserCollectionView.dequeueReusableCell(withReuseIdentifier: "Level", for: indexPath) as! LaserCollectionViewCell
-        cell.initalize(laser: laserList![indexPath.row])
+        cell.initalize(laser: laserList![indexPath.row], delegate: delegate! )
         return cell
     }
     

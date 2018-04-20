@@ -19,7 +19,13 @@ class LaserCollectionViewCell : UICollectionViewCell {
     
     
     var laser: Laser?
-    func initalize(laser: Laser){
+    
+    var delegate: LaserCellDelegate?
+    
+    
+    func initalize(laser: Laser, delegate: LaserCellDelegate){
+        
+        self.delegate = delegate
         
         imageView?.image = nil
         imageView = nil
@@ -39,6 +45,9 @@ class LaserCollectionViewCell : UICollectionViewCell {
     @objc func tapped(sender: UITapGestureRecognizer)
     {
         print("tapped")
+        let indexPath :IndexPath = (self.superview as! UICollectionView).indexPath(for: self)!
+        delegate?.recieveLevelIndex(index: indexPath.row)
+        print(indexPath.row)
     }
     
     @objc func longPressed(sender: UILongPressGestureRecognizer)
@@ -70,7 +79,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
             imageView = UIImageView(image: laser?.retImage)
         }
        
-        imageView?.frame = CGRect(x: 15, y: 30, width: 100, height: 100)
+        imageView?.frame = CGRect(x: 15, y: 0, width: 100, height: 100)
         roundview?.addSubview(imageView!)
         
         

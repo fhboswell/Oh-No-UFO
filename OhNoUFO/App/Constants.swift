@@ -19,7 +19,7 @@ struct PhysicsMask {
     static let player = 8
     
 }
-var levelList: [Laser] = {
+var laserList: [Laser] = {
     
     var levelList = [Laser]()
     var retImage = UIImage(named: "ret1.png")
