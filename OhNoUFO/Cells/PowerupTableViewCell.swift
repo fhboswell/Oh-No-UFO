@@ -18,6 +18,14 @@ class PowerupTableViewCell: UITableViewCell {
     var lazersLabel: UILabel?
     var acuracyLabel: UILabel?
     
+    var bonusLabel: UILabel?
+    var pepTalkLabel: UILabel?
+    
+    var scoreStarImageView: UIImageView?
+    var enemyStarImageView: UIImageView?
+    var lasersStarImageView: UIImageView?
+    var accuracyStarImageView: UIImageView?
+    
     
     var roundView: UIView?
     
@@ -30,6 +38,14 @@ class PowerupTableViewCell: UITableViewCell {
         makeEnemysLabel()
         makeLasersLabel()
         makeAcuracyLabel()
+        makeBonusLabel()
+        makePepTalkLabel()
+        
+        makeScoreStarImageView()
+        makeEnemyStarImageView()
+        makeLasersStarImageView()
+        makeAccuracyStarImageView()
+        
         if(animationStatus){
             animateCellIn()
         }
@@ -102,7 +118,7 @@ class PowerupTableViewCell: UITableViewCell {
         scoreLabel?.backgroundColor = .clear
         scoreLabel?.textAlignment = .left
         scoreLabel?.textColor = .white
-        scoreLabel?.text = "Score: \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundScore())
+        scoreLabel?.text = "Score \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundScore())
         scoreLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
@@ -115,7 +131,7 @@ class PowerupTableViewCell: UITableViewCell {
         enemyLabel?.backgroundColor = .clear
         enemyLabel?.textAlignment = .left
         enemyLabel?.textColor = .white
-        enemyLabel?.text = "UFOs: \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundEnemiesDestroyed())
+        enemyLabel?.text = "UFOs \t\t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundEnemiesDestroyed())
         enemyLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
@@ -147,6 +163,89 @@ class PowerupTableViewCell: UITableViewCell {
         acuracyLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
-
+    
+    func makeBonusLabel(){
+        if bonusLabel == nil {
+            bonusLabel = UILabel(frame: CGRect(x: 40, y: 160, width: self.contentView.frame.width, height: 50))
+            roundView?.addSubview(bonusLabel!)
+        }
+        
+        bonusLabel?.backgroundColor = .clear
+        bonusLabel?.textAlignment = .left
+        bonusLabel?.textColor = .white
+        
+        var stars = PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()
+        stars += PlayerAttributes.sharedPlayerAttributes.getLaserStars()
+        stars += PlayerAttributes.sharedPlayerAttributes.getScoreStars()
+        stars += PlayerAttributes.sharedPlayerAttributes.getEnemyStars()
+        bonusLabel?.text = "Stars \t\t" + String(stars)
+        bonusLabel?.font = UIFont(name: "neuropol", size: 20)
+        
+    }
+    
+    func makePepTalkLabel(){
+        if pepTalkLabel == nil {
+            pepTalkLabel = UILabel(frame: CGRect(x: 0, y: 220, width: self.contentView.frame.width , height: 50))
+            roundView?.addSubview(pepTalkLabel!)
+        }
+        
+        pepTalkLabel?.backgroundColor = .clear
+        pepTalkLabel?.textAlignment = .center
+        pepTalkLabel?.textColor = .white
+        
+        var stars = PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()
+        stars += PlayerAttributes.sharedPlayerAttributes.getLaserStars()
+        stars += PlayerAttributes.sharedPlayerAttributes.getScoreStars()
+        stars += PlayerAttributes.sharedPlayerAttributes.getEnemyStars()
+        pepTalkLabel?.text = pepTalk[stars]
+        pepTalkLabel?.font = UIFont(name: "neuropol", size: 50)
+        
+    }
+    
+    func makeScoreStarImageView(){
+        if scoreStarImageView == nil {
+            scoreStarImageView = UIImageView()
+            roundView?.addSubview(scoreStarImageView!)
+        }
+        scoreStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 50, width: self.contentView.frame.width/4 , height: 30)
+        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getScoreStars()) + ".png"
+        var image = UIImage(named: imageString)
+        scoreStarImageView?.image = image
+       
+    }
+    func makeEnemyStarImageView(){
+        if enemyStarImageView == nil {
+            enemyStarImageView = UIImageView()
+            roundView?.addSubview(enemyStarImageView!)
+        }
+        enemyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 80, width: self.contentView.frame.width/4 , height: 30)
+        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getEnemyStars()) + ".png"
+        var image = UIImage(named: imageString)
+        enemyStarImageView?.image = image
+        
+    }
+    func makeLasersStarImageView(){
+        if lasersStarImageView == nil {
+            lasersStarImageView = UIImageView()
+            roundView?.addSubview(lasersStarImageView!)
+        }
+        lasersStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 110, width: self.contentView.frame.width/4 , height: 30)
+        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getLaserStars()) + ".png"
+        var image = UIImage(named: imageString)
+        lasersStarImageView?.image = image
+        
+    }
+    
+    func makeAccuracyStarImageView(){
+        if accuracyStarImageView == nil {
+            accuracyStarImageView = UIImageView()
+            roundView?.addSubview(accuracyStarImageView!)
+        }
+        accuracyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 140, width: self.contentView.frame.width/4 , height: 30)
+        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()) + ".png"
+        var image = UIImage(named: imageString)
+        accuracyStarImageView?.image = image
+        
+    }
 
 }

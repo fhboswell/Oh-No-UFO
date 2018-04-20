@@ -46,8 +46,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         setAnimationStatusTrue()
         welcomeTableView.reloadData()
-        welcomeTableView.setContentOffset(CGPoint.zero, animated: true)
+        
         scene?.setTitleNode()
+        
+        var firstCellPath = IndexPath(row: 0, section: 0)
+        welcomeTableView.scrollToRow(at: firstCellPath, at: .top, animated: false)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -55,6 +58,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         scene?.moveIn()
         UIApplication.shared.statusBarStyle = .lightContent
         animateScoreIn()
+        
         
         
     }
@@ -69,6 +73,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         scene?.isPaused = true
+        
     }
     
     override func viewDidLoad() {
@@ -152,7 +157,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func setTotalScoreWithZeros(){
-         totalScoreLabel?.text = String(format: "%011d", PlayerAttributes.sharedPlayerAttributes.getScore())
+         totalScoreLabel?.text = String(format: "%010d", PlayerAttributes.sharedPlayerAttributes.getScore())
     }
     
     func setAnimationStatusTrue(){
@@ -250,7 +255,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 300
+            return 350
             
         }else if(indexPath.row == 1){
             return 200

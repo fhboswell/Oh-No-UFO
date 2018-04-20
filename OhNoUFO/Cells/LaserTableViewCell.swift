@@ -23,8 +23,10 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     //MARK: - Lifecycle
     func initalize(laserList: [Laser], delegate: LaserCellDelegate, animationStatus: Bool){
 
+        
         self.delegate = delegate
         self.laserList = laserList
+        self.laserCollectionView.reloadData()
         laserCollectionView.contentInset = UIEdgeInsetsMake(0, 20, 0, 0);
         self.laserCollectionView.delegate = self
         self.laserCollectionView.dataSource = self
@@ -90,7 +92,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = laserCollectionView.dequeueReusableCell(withReuseIdentifier: "Level", for: indexPath) as! LaserCollectionViewCell
-        cell.initalize(laser: laserList![indexPath.row], delegate: delegate!, unlocked: unlockedLasers[indexPath.row])
+        cell.initalize(laser: laserList![indexPath.row], delegate: delegate!, purchased: purchasedLasers[indexPath.row], unlocked: unlockedLasers[indexPath.row])
         return cell
     }
     

@@ -21,21 +21,29 @@ class LaserCollectionViewCell : UICollectionViewCell {
     var delegate: LaserCellDelegate?
     
     var priceLabel: UILabel?
+    var purchased: Bool?
     var unlocked: Bool?
     
 
     //MARK: - lifecycle
-    func initalize(laser: Laser, delegate: LaserCellDelegate, unlocked: Bool){
+    func initalize(laser: Laser, delegate: LaserCellDelegate, purchased: Bool, unlocked: Bool){
         self.delegate = delegate
         imageView?.image = nil
         imageView = nil
         priceLabel?.text = ""
+        
+        self.purchased = purchased
         self.unlocked = unlocked
         
         self.laser = laser
         makeDetailView()
-        makePriceLabel()
-        makeRetImageView()
+        
+        if(unlocked){
+            makePriceLabel()
+            makeRetImageView()
+        }else{
+            makeLockedView()
+        }
         
         addGestureRecognizer()
     }
@@ -50,7 +58,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
         priceLabel?.backgroundColor = .clear
         priceLabel?.textAlignment = .center
         priceLabel?.textColor = .white
-        if(!unlocked!){
+        if(!purchased!){
             priceLabel?.text = String(laser!.cost)
         }else{
             priceLabel?.text = ""
@@ -104,8 +112,9 @@ class LaserCollectionViewCell : UICollectionViewCell {
     func makeRetImageView(){
         if (imageView == nil) {
             imageView = UIImageView(image: laser?.retImage)
+             roundview?.addSubview(imageView!)
         }
-        if(unlocked)!{
+        if(purchased)!{
             imageView?.frame = CGRect(x: 5, y: 5, width: 120, height: 120)
             imageView?.alpha = 1
         }else{
@@ -113,7 +122,19 @@ class LaserCollectionViewCell : UICollectionViewCell {
             imageView?.alpha = 0.3
         }
         
-        roundview?.addSubview(imageView!)
+       
+    }
+    func makeLockedView(){
+        if (imageView == nil) {
+            imageView = UIImageView(image: UIImage(named: "locked.png"))
+            roundview?.addSubview(imageView!)
+        }
+        
+        imageView?.frame = CGRect(x: 0, y: 0, width: 140, height: 120)
+        imageView?.alpha = 1
+        
+        
+        
     }
     
 }

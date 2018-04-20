@@ -182,6 +182,19 @@ class PlayerAttributes{
         }
     };
     
+    //MARK:
+    private var sumTotalEnemiesDestroyed:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "sumTotalEnemiesDestroyed") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "sumTotalEnemiesDestroyed")
+            defaults.synchronize()
+        }
+    };
+    
     
     private var currentGameScore = 0
    
@@ -207,12 +220,32 @@ class PlayerAttributes{
         else{
             lastRoundAccuracy = 0
         }
+        sumTotalEnemiesDestroyed += lastRoundEnemiesDestroyed
         
         findMax()
+        unlockLasers()
+        print(sumTotalEnemiesDestroyed)
         
         
     }
-    public func findMax(){
+    private func unlockLasers(){
+        if (sumTotalEnemiesDestroyed > 30){
+            unlockedLasers[3] = true
+        }
+        if (sumTotalEnemiesDestroyed > 60){
+            unlockedLasers[4] = true
+        }
+        if (sumTotalEnemiesDestroyed > 300){
+            unlockedLasers[5] = true
+        }
+        if (sumTotalEnemiesDestroyed > 400){
+            unlockedLasers[6] = true
+        }
+       
+        
+    }
+        
+    private func findMax(){
         
         if (lastRoundScore > lastRoundScoreMax){
             lastRoundScoreMax = lastRoundScore
@@ -275,6 +308,19 @@ class PlayerAttributes{
     }
     public func getLastRoundAccuracy() -> Double{
         return lastRoundAccuracy
+    }
+    
+    public func getScoreStars() -> Int{
+        return lastRoundScoreStar
+    }
+    public func getEnemyStars() -> Int{
+        return lastRoundEnemiesDestroyedStar
+    }
+    public func getLaserStars() -> Int{
+        return lastRoundLasersFiredStar
+    }
+    public func getAccuracyStars() -> Int{
+        return lastRoundAccuracyStar
     }
 
     

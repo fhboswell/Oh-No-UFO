@@ -119,6 +119,7 @@ class WelcomeScene: SCNScene {
         let interval = Double(random)/10.0
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 10)
         let runManyTimes = SCNAction.repeat(action, count: 20)
+        self.ufoNode.removeAllActions()
         self.ufoNode.runAction(runManyTimes)
         
    
