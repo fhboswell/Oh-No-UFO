@@ -15,9 +15,8 @@ Win level by level each unlocking the next or some mutation of that
 # Proposal (04/03/2018)
 
 ## Team
-I will be working individually ( NOTE* ) for this project and Satjit Bola (sidbola) will be acting as my code reviewer.
+I will be programming with my brother for this project and Satjit Bola (sidbola) will be acting as my code reviewer.
 
-NOTE* with some assistance from my brother who goes to University of Toronto in Canada. He is at my skill level in iOS programming, is aware that this project is for a class, and will abide by the code review / pull request rules.
 
 ## Features
 

@@ -19,7 +19,7 @@ struct PhysicsMask {
     static let player = 8
     
 }
-var levelList: [Laser] = {
+var laserList: [Laser] = {
     
     var levelList = [Laser]()
     var retImage = UIImage(named: "ret1.png")
@@ -53,4 +53,31 @@ var levelList: [Laser] = {
    
     
 }()
+
+var purchasedLasers: [Bool]{
+    get {
+        return UserDefaults.standard.object(forKey: "purchasedLasers") as? [Bool] ?? [true,false,false,false,false,false,false]
+    }
+    set {
+        let defaults = UserDefaults.standard
+        defaults.set(newValue, forKey: "purchasedLasers")
+        defaults.synchronize()
+    }
+};
+
+var unlockedLasers: [Bool]{
+    get {
+        return UserDefaults.standard.object(forKey: "unlockedLasers") as? [Bool] ?? [true,true,true,false,false,false,false]
+    }
+    set {
+        let defaults = UserDefaults.standard
+        defaults.set(newValue, forKey: "unlockedLasers")
+        defaults.synchronize()
+    }
+};
+var unlockRequirement: [String] = ["X","X","X","Blast 30 UFOs", "Blast 60 UFOs", "Blast 300 UFOs", "Blast 400 UFOs", "Blast 500 UFOs", "Blast 600 UFOs", "Blast 700 UFOs", "Blast 800 UFOs", "Blast 900 UFOs"]
+
+var pepTalk: [String] = ["Try again", "Try again", "Try again", "Great!", "Terrific!", "Terrific!", "Terrific!", "Excellent!", "Excellent", "Excellent", "Perfect", "Perfect" , "Perfect" ]
+
+
 

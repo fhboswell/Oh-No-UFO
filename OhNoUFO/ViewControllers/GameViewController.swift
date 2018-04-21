@@ -18,6 +18,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     
     //MARK: - Instance Varriables
+    
     @IBOutlet weak var sceneView: ARSCNView!{
         willSet{
             PotentiallyUnsafeGlobals.sceneView = newValue
@@ -27,28 +28,21 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var sphereNode: SCNNode!
     var cubeNode: SCNNode!
     var shootTime:TimeInterval = 0
-   
-    
     var gameController: GameController? = nil
     var playerLazersController: PlayerLazersController? = nil
     var playerReady = false
     
     var score = 0
+    var enemiesDestroyed = 0
+    var lasersFired = 0
+    
     var scoreLabel: UILabel?
-    
-    
-    
+    var retView: UIImageView?
+    var laser: Laser?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureLighting()
-      
-        initPlayer()
-        addGestures()
-        prepareLazerController()
-        prepareEnemyController()
-        initScoreLabel()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
         //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
@@ -60,7 +54,13 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         let configuration = ARWorldTrackingConfiguration()
         sceneView.session.run(configuration)
         
-        
+        configureLighting()
+        initPlayer()
+        addGestures()
+        prepareLazerController()
+        prepareEnemyController()
+        initScoreLabel()
+        initLaserReticle()
         
     }
     
@@ -93,33 +93,26 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     func fireLazer(){
         let userLocationTuple = getUserVector()
         playerLazersController?.fireLaser(dir: userLocationTuple.0, pos: userLocationTuple.1)
+        lasersFired += 1
     }
     
     
     
     func initPlayer(){
         let node = SCNNode()
-        
         // this puts the node in front & slightly below the camera
         let orientation = SCNVector3(x: 0, y: 0, z: 0)
-        
         node.position = orientation
         let physicsBody = SCNPhysicsBody(
             type: .kinematic,
             shape: SCNPhysicsShape(geometry: SCNSphere(radius: 0.1))
         )
         node.physicsBody = physicsBody
-        
         node.physicsBody?.categoryBitMask = PhysicsMask.player
         node.physicsBody?.contactTestBitMask = PhysicsMask.enemyLazer
-
         sceneView.pointOfView?.addChildNode(node)
-        
         Timer.scheduledTimer(withTimeInterval: TimeInterval(5), repeats: false) {_ in
-            
             self.playerReady = true
-            
-            
         }
     }
     
@@ -133,8 +126,17 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     //MARK: - Root Scene reqs
     func configureLighting() {
-        sceneView.autoenablesDefaultLighting = true
-        sceneView.automaticallyUpdatesLighting = true
+      //  sceneView.autoenablesDefaultLighting = true
+      //  sceneView.automaticallyUpdatesLighting = true
+        
+        
+        let ambientLightNode = SCNNode();
+        ambientLightNode.light = SCNLight()
+        ambientLightNode.light?.type = SCNLight.LightType.omni
+        sceneView.scene.rootNode.addChildNode(ambientLightNode)
+        
+        
+        
     }
     
     //MARK: - Gesture / Touch
@@ -149,16 +151,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
  
     
     @objc func sceneTapped(recognizer: UITapGestureRecognizer) {
-        
-        let location = recognizer.location(in: sceneView)
+        _ = recognizer.location(in: sceneView)
         self.fireLazer()
-        //self.enemyController?.fireAllLazers()
-        
-        
-        //this code moves the basic objects initalized in "demoMothod"
-        //let action = SCNAction.rotateBy(x: 0, y: 10, z: 0, duration: 5)
-        //cubeNode.runAction(action)
-  
     }
 
     //MARK: - delegate methods
@@ -170,67 +164,40 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         return sceneView.pointOfView!
     }
     
-    //MARK: - Demo
-    //of basic AR object (node) instantiation
-    
-    /*
-     - This method adds some functionality to demonstrate basic use of scenekit and physics.
-     - When you tap the screen a green orb will take a few orbits of SCNVector3(0, 0, 0) of the scene's root node
-     - This is where the phone was located exactly when the AR session was initalized
-     - This code only initalizes the objects, the actual code to move the objects is located in the "sceneTapped" method
-     
-     NOTE:
-     -also uncomment code in scene tapped
-     */
-    
-    func demoMethod(){
-        // Show statistics such as fps and timing information
-        //sceneView.showsStatistics = true
-        
-        // SceneKit/AR coordinates are in meters
-        cubeNode = SCNNode()
-        cubeNode.position = SCNVector3(0, 0, 0)
-        sceneView.scene.rootNode.addChildNode(cubeNode)
-        
-        let sphereGeometry = SCNSphere(radius: 0.03)
-        let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIColor.green
-        sphereGeometry.materials = [sphereMaterial]
-        sphereNode = SCNNode(geometry: sphereGeometry)
-        
-        sphereNode.position = SCNVector3(4, 0, 0)
-        cubeNode.addChildNode(sphereNode)
-        
-        
-        
-    }
-    
-    
     //MAKE: - score
     func initScoreLabel(){
        
         if (scoreLabel == nil) {
             scoreLabel = UILabel(frame: CGRect(x: 10, y: 50, width: 300, height: 30))
         }
-        
         scoreLabel?.backgroundColor = .clear
         scoreLabel?.textAlignment = NSTextAlignment.left
         scoreLabel?.text = "Score: "
         scoreLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
         scoreLabel?.textColor = UIColor.green
         self.view.addSubview(scoreLabel!)
+    }
+    
+    func initLaserReticle(){
         
-        
-        
+        self.laser = PlayerAttributes.sharedPlayerAttributes.getLaser()
+        if (self.retView != nil){
+            self.retView?.removeFromSuperview()
+            self.retView?.image = nil
+            self.retView = nil
+        }
+        let reticle = self.laser?.retImage
+        let retView = UIImageView(frame: CGRect(x: self.view.frame.maxX/2 - 75, y: self.view.frame.maxY/2 - 75, width: 150, height: 150))
+        retView.image = reticle
+        retView.contentMode = .scaleAspectFill
+        retView.alpha = 0.3
+        self.view.insertSubview(retView, at: 1)
     }
     func adjustScore(amount: Int){
         DispatchQueue.main.async {
             self.scoreLabel?.text = "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
         }
     }
-    
-   
-    
 }
 
 //MARK: Scene Physics Contact Delegate
@@ -250,8 +217,6 @@ extension GameViewController : SCNPhysicsContactDelegate {
         default:
             break
         }
-        
-        
         switch(maskA, maskB){
         case (PhysicsMask.player, PhysicsMask.enemyLazer):
         
@@ -265,36 +230,36 @@ extension GameViewController : SCNPhysicsContactDelegate {
  
     }
     
-    func hitEnemy(bullet: SCNNode, enemy: SCNNode){
+    func hitEnemy(bullet: SCNNode?, enemy: SCNNode?){
         
         //this does not remove it from the datastore in the respective classes
         //TODO: Propagate Removal of objects
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
         let systemNode = SCNNode()
         systemNode.addParticleSystem(particleSystem!)
-        let convertedPosition = bullet.convertPosition(bullet.position, to: nil)
-        
-        systemNode.position = convertedPosition
+        let convertedPosition = bullet?.convertPosition((bullet?.position)!, to: nil)
+        systemNode.position = convertedPosition!
         sceneView.scene.rootNode.addChildNode(systemNode)
         if (bullet != nil){
-            bullet.removeFromParentNode()
+            bullet?.removeFromParentNode()
         }
         if (enemy != nil){
-             enemy.removeFromParentNode()
+            enemy?.removeFromParentNode()
         }
-        
-       
-       
-        gameController!.hitEnemyWithNode(enemy)
-        
-        
+        gameController!.hitEnemyWithNode(enemy!)
         adjustScore(amount: 100)
+        enemiesDestroyed += 1
     }
    
    
     
     func hitPlayer(){
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
+            
+            PlayerAttributes.sharedPlayerAttributes.updateLaserEnemyCount(lasersCount: lasersFired, enemyCount: enemiesDestroyed)
+            lasersFired = 0
+            enemiesDestroyed = 0
+            
             self.dismiss(animated: true, completion: nil)
         }
        

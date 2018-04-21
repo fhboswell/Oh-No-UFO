@@ -28,6 +28,7 @@ class ArcadeModeTableViewCell: UITableViewCell {
          NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
+    //MARK: animations
     func animateCellIn(){
         roundView?.center.x = 750
         titleLabel?.center.x = 700
@@ -88,11 +89,6 @@ class ArcadeModeTableViewCell: UITableViewCell {
         titleLabel?.layer.shadowOpacity = 1.0
         titleLabel?.layer.shadowOffset = CGSize(width: 4, height: 4)
         titleLabel?.layer.masksToBounds = false
-        
-        
-        
-        
-        
         self.contentView.addSubview(titleLabel!)
     }
     
