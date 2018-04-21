@@ -268,10 +268,35 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    func buyLaser(index: Int){
+        purchasedLasers[index] = true
+    }
+    
     //MARK: - protocol conform
     func recieveLevelIndex(index: Int){
         print(index)
-        PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
+        
+        if(!unlockedLasers[index]){
+            print("notunlocked")
+        }else if(!purchasedLasers[index]){
+            if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(laserList[index].cost)!){
+                buyLaser(index: index)
+                print("purchase sucessful")
+            }else{
+                print("not enout points")
+            }
+            
+        }else if(PlayerAttributes.sharedPlayerAttributes.getLaserIndex() == index){
+            print("laser already equipped")
+            
+        }else if(purchasedLasers[index]){
+            PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
+        }
+        var reloadIndexPathTable = IndexPath(row: 1, section: 0)
+        var cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as! LaserTableViewCell
+        var reloadIndexPathCollection = IndexPath(row: index, section: 0)
+        cell.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
+        
         
     }
     

@@ -331,6 +331,9 @@ class PlayerAttributes{
     public func getLaser() -> Laser{
         return laserList[self.laser]
     }
+    public func getLaserIndex() -> Int{
+        return self.laser
+    }
     //needs to be an int to get set to defaults
     public func setLaser(laser: Int){
         self.laser = laser
