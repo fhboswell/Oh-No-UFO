@@ -35,7 +35,7 @@ class PlayerLazersController{
         
         
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIColor.green
+        sphereMaterial.diffuse.contents = UIColor.clear
         sphereGeometry.materials = [sphereMaterial]
         let laserNode = SCNNode(geometry: sphereGeometry)
         
@@ -48,15 +48,38 @@ class PlayerLazersController{
         laserNode.physicsBody?.isAffectedByGravity = false
         
         laserNode.position = pos
+        laserNode.opacity = 1
+        
+//        laserNode.light = SCNLight()
+//        laserNode.scale = SCNVector3(1,1,1)
+//        laserNode.light?.intensity = 5000
+//        laserNode.light?.type = SCNLight.LightType.spot
+//        laserNode.light?.color = UIColor.red
+        
+        
+        let particleSystem = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
+        particleSystem?.particleColor = UIColor.red
        
-        laserNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
+        laserNode.addParticleSystem(particleSystem!)
+        
+//        let convertedPosition = bullet.convertPosition(bullet.position, to: nil)
+//        systemNode.position = convertedPosition
+  //      laserNode.addChildNode(systemNode)
+      
         
         self.delegate?.addToRootNode(nodeToAdd: laserNode)
         
-        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.2)
+        
+        let remove = SCNAction.run { (laser) in
+            laser.removeFromParentNode()
+        }
+        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.1)
         let pulseThreeTimes = SCNAction.repeat(action, count: 3)
-        laserNode.runAction(pulseThreeTimes)
+        let sequence = SCNAction.sequence([pulseThreeTimes, remove])
+        laserNode.runAction(sequence)
         lazerNodes.append(laserNode)
+        
+    
     }
     
     

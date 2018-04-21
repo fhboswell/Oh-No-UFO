@@ -15,7 +15,7 @@ Win level by level each unlocking the next or some mutation of that
 # Proposal (04/03/2018)
 
 ## Team
-I will be working individually for this project and Satjit Bola (sidbola) will be acting as my code reviewer.
+I will be programming with my brother for this project and Satjit Bola (sidbola) will be acting as my code reviewer.
 
 
 ## Features
