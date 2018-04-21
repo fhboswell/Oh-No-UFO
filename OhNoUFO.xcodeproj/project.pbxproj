@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		94042498208564C800E63A49 /* Cube.dae in Resources */ = {isa = PBXBuildFile; fileRef = 94042497208564C800E63A49 /* Cube.dae */; };
+		94120B90208B00B30068B657 /* smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 94120B8E208B00B30068B657 /* smoke.png */; };
+		94120B91208B00B30068B657 /* smoke.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 94120B8F208B00B30068B657 /* smoke.scnp */; };
+		94120B93208B01860068B657 /* smoke2.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 94120B92208B01860068B657 /* smoke2.scnp */; };
 		9413E1EE2087CD9600BA203E /* metal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1EA2087CD9500BA203E /* metal.png */; };
 		9413E1EF2087CD9600BA203E /* albedo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1EB2087CD9500BA203E /* albedo.png */; };
 		9413E1F02087CD9600BA203E /* normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1EC2087CD9500BA203E /* normal.png */; };
@@ -66,6 +69,7 @@
 		94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */ = {isa = PBXBuildFile; fileRef = 94B6E93220579C50006F9CFC /* UFO_N.tga */; };
 		94C51AF020886F1B006474F7 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C51AEF20886F1B006474F7 /* background.png */; };
 		94C51AF220887064006474F7 /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = 94C51AF120887063006474F7 /* background3.png */; };
+		94D029D3208B0937007540C5 /* smok3.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 94D029D2208B0937007540C5 /* smok3.scnp */; };
 		94D661F3206093230085A698 /* LaserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F2206093230085A698 /* LaserTableViewCell.swift */; };
 		94D661F5206093900085A698 /* LaserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F4206093900085A698 /* LaserCollectionViewCell.swift */; };
 		94D661F72060941A0085A698 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F62060941A0085A698 /* Structs.swift */; };
@@ -95,6 +99,9 @@
 
 /* Begin PBXFileReference section */
 		94042497208564C800E63A49 /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
+		94120B8E208B00B30068B657 /* smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smoke.png; sourceTree = "<group>"; };
+		94120B8F208B00B30068B657 /* smoke.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = smoke.scnp; sourceTree = "<group>"; };
+		94120B92208B01860068B657 /* smoke2.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = smoke2.scnp; sourceTree = "<group>"; };
 		9413E1EA2087CD9500BA203E /* metal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal.png; sourceTree = "<group>"; };
 		9413E1EB2087CD9500BA203E /* albedo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = albedo.png; sourceTree = "<group>"; };
 		9413E1EC2087CD9500BA203E /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
@@ -160,6 +167,7 @@
 		94B6E93220579C50006F9CFC /* UFO_N.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = UFO_N.tga; sourceTree = "<group>"; };
 		94C51AEF20886F1B006474F7 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		94C51AF120887063006474F7 /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
+		94D029D2208B0937007540C5 /* smok3.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = smok3.scnp; sourceTree = "<group>"; };
 		94D661F2206093230085A698 /* LaserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserTableViewCell.swift; sourceTree = "<group>"; };
 		94D661F4206093900085A698 /* LaserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserCollectionViewCell.swift; sourceTree = "<group>"; };
 		94D661F62060941A0085A698 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
@@ -424,6 +432,10 @@
 				9413E1F22087D46B00BA203E /* Assets */,
 				94B6E8F420574F9C006F9CFC /* Main.storyboard */,
 				94B6E8F920574F9C006F9CFC /* LaunchScreen.storyboard */,
+				94120B8F208B00B30068B657 /* smoke.scnp */,
+				94120B92208B01860068B657 /* smoke2.scnp */,
+				94D029D2208B0937007540C5 /* smok3.scnp */,
+				94120B8E208B00B30068B657 /* smoke.png */,
 				9445B8F72058FB7500B64F9C /* spark.png */,
 				9445B8F82058FB7500B64F9C /* Explosion.scnp */,
 				94B6E8FC20574F9C006F9CFC /* Info.plist */,
@@ -574,6 +586,7 @@
 				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
 				94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */,
 				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
+				94120B91208B00B30068B657 /* smoke.scnp in Resources */,
 				94C51AF020886F1B006474F7 /* background.png in Resources */,
 				9413E2002087E5E900BA203E /* ret66.png in Resources */,
 				943153292089251D00B8517B /* neuropol.ttf in Resources */,
@@ -593,9 +606,11 @@
 				94315337208935DE00B8517B /* window_bottom.png in Resources */,
 				9445B8FA2058FB7500B64F9C /* Explosion.scnp in Resources */,
 				94315343208964F500B8517B /* ret7.png in Resources */,
+				94120B90208B00B30068B657 /* smoke.png in Resources */,
 				943153512089E19E00B8517B /* 0.png in Resources */,
 				94042498208564C800E63A49 /* Cube.dae in Resources */,
 				9445B8F62058EF7D00B64F9C /* UFO.dae in Resources */,
+				94D029D3208B0937007540C5 /* smok3.scnp in Resources */,
 				9413E1FD2087E5E200BA203E /* ret55.png in Resources */,
 				94B6E8F820574F9C006F9CFC /* Assets.xcassets in Resources */,
 				9413E1FC2087E5E200BA203E /* ret44.png in Resources */,
@@ -610,6 +625,7 @@
 				9413E1F12087CD9600BA203E /* roughness.png in Resources */,
 				9413E1F62087D49C00BA203E /* ret11.png in Resources */,
 				943153482089A19400B8517B /* main_field_2.png in Resources */,
+				94120B93208B01860068B657 /* smoke2.scnp in Resources */,
 				9413E1EE2087CD9600BA203E /* metal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

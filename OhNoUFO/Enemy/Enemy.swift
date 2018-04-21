@@ -70,18 +70,18 @@ class Enemy{
         
         //TODO: - This is commented out so that enemys will not fire this is for testing reasons
         
-        let random = arc4random_uniform(200)
-        let interval = Double(random)/100.0 + 6
-
-        print(interval)
-        let fireAction = SCNAction.run { (node) in
-            self.fireLaser()
-        }
-
-        let waitAction = SCNAction.wait(duration: interval)
-
-        let doAction = SCNAction.sequence([waitAction,fireAction])
-        enemyNode.runAction(SCNAction.repeatForever(doAction))
+//        let random = arc4random_uniform(200)
+//        let interval = Double(random)/100.0 + 6
+//
+//        print(interval)
+//        let fireAction = SCNAction.run { (node) in
+//            self.fireLaser()
+//        }
+//
+//        let waitAction = SCNAction.wait(duration: interval)
+//
+//        let doAction = SCNAction.sequence([waitAction,fireAction])
+//        enemyNode.runAction(SCNAction.repeatForever(doAction))
 
     }
     
@@ -99,7 +99,7 @@ class Enemy{
         
         let sphereGeometry = SCNSphere(radius: 0.01)
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIColor.green
+        sphereMaterial.diffuse.contents = UIColor.red
         sphereGeometry.materials = [sphereMaterial]
         let laserNode = SCNNode(geometry: sphereGeometry)
         
