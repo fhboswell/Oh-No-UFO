@@ -31,7 +31,7 @@ class WelcomeScene: SCNScene {
     }
     
     func setupCamera(){
-        var cameraNode = SCNNode()
+        let cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         cameraNode.position = SCNVector3(x: 0, y: 0.5, z: 3)
         self.rootNode.addChildNode(cameraNode)

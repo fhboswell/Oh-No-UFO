@@ -126,8 +126,17 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     //MARK: - Root Scene reqs
     func configureLighting() {
-        sceneView.autoenablesDefaultLighting = true
-        sceneView.automaticallyUpdatesLighting = true
+      //  sceneView.autoenablesDefaultLighting = true
+      //  sceneView.automaticallyUpdatesLighting = true
+        
+        
+        var ambientLightNode = SCNNode();
+        ambientLightNode.light = SCNLight()
+        ambientLightNode.light?.type = SCNLight.LightType.omni
+        sceneView.scene.rootNode.addChildNode(ambientLightNode)
+        
+        
+        
     }
     
     //MARK: - Gesture / Touch

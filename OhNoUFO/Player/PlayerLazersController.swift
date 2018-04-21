@@ -35,7 +35,7 @@ class PlayerLazersController{
         
         
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIColor.red
+        sphereMaterial.diffuse.contents = UIColor.clear
         sphereGeometry.materials = [sphereMaterial]
         let laserNode = SCNNode(geometry: sphereGeometry)
         
@@ -48,9 +48,17 @@ class PlayerLazersController{
         laserNode.physicsBody?.isAffectedByGravity = false
         
         laserNode.position = pos
-        laserNode.opacity = 0.2
+        laserNode.opacity = 1
+        
+        laserNode.light = SCNLight()
+        laserNode.scale = SCNVector3(1,1,1)
+        laserNode.light?.intensity = 5000
+        laserNode.light?.type = SCNLight.LightType.spot
+        laserNode.light?.color = UIColor.red
+        
         
          let particleSystem = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
+        particleSystem?.particleColor = UIColor.red
         let systemNode = SCNNode()
         laserNode.addParticleSystem(particleSystem!)
         
@@ -61,7 +69,7 @@ class PlayerLazersController{
         
         self.delegate?.addToRootNode(nodeToAdd: laserNode)
         
-        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.2)
+        let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.1)
         let pulseThreeTimes = SCNAction.repeat(action, count: 3)
         laserNode.runAction(pulseThreeTimes)
         lazerNodes.append(laserNode)
