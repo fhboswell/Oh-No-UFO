@@ -70,18 +70,18 @@ class Enemy{
         
         //TODO: - This is commented out so that enemys will not fire this is for testing reasons
         
-//        let random = arc4random_uniform(200)
-//        let interval = Double(random)/100.0 + 6
-//
-//        print(interval)
-//        let fireAction = SCNAction.run { (node) in
-//            self.fireLaser()
-//        }
-//
-//        let waitAction = SCNAction.wait(duration: interval)
-//
-//        let doAction = SCNAction.sequence([waitAction,fireAction])
-//        enemyNode.runAction(SCNAction.repeatForever(doAction))
+        let random = arc4random_uniform(200)
+        let interval = Double(random)/100.0 + 6
+
+        print(interval)
+        let fireAction = SCNAction.run { (node) in
+            self.fireLaser()
+        }
+
+        let waitAction = SCNAction.wait(duration: interval)
+
+        let doAction = SCNAction.sequence([waitAction,fireAction])
+        enemyNode.runAction(SCNAction.repeatForever(doAction))
 
     }
     
@@ -99,7 +99,7 @@ class Enemy{
         
         let sphereGeometry = SCNSphere(radius: 0.01)
         let sphereMaterial = SCNMaterial()
-        sphereMaterial.diffuse.contents = UIColor.red
+        sphereMaterial.diffuse.contents = UIColor.clear
         sphereGeometry.materials = [sphereMaterial]
         let laserNode = SCNNode(geometry: sphereGeometry)
         
@@ -111,16 +111,28 @@ class Enemy{
         laserNode.physicsBody?.contactTestBitMask = PhysicsMask.player
         laserNode.physicsBody?.isAffectedByGravity = false
         
+        let particleSystem = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
+        particleSystem?.particleColor = UIColor.green
+        
+        laserNode.addParticleSystem(particleSystem!)
+        
         laserNode.position = pos
         
         laserNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
         
         controlNode.parent?.addChildNode(laserNode)
+        
+        let remove = SCNAction.run { (laser) in
+            laser.removeFromParentNode()
+        }
         let action = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 1)
-        let pulseThreeTimes = SCNAction.repeat(action, count: 10)
-        laserNode.runAction(pulseThreeTimes)
+        let pulseThreeTimes = SCNAction.repeat(action, count: 6)
+        let sequence = SCNAction.sequence([pulseThreeTimes, remove])
+        laserNode.runAction(sequence)
         lazerNodes.append(laserNode)
+
+        
     }
     
 }
