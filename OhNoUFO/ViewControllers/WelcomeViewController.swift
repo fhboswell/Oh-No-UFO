@@ -25,6 +25,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     var totalScoreLabel: UILabel?
     var pointsView: UIView?
     
+    var dataView: UIView?
+    
     //MARK: - Lifecycle
     func addParallaxToView(vw: UIView) {
         let amount = 100
@@ -59,7 +61,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         UIApplication.shared.statusBarStyle = .lightContent
         animateScoreIn()
         
-        
+        animateInOutDataView()
         
     }
     
@@ -88,6 +90,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         addTouchView()
         addPointsView()
         
+        addDataView()
+        
       
 
     }
@@ -103,7 +107,25 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     @objc func animateScoreOut(){
         UIView.animate(withDuration: 1.5, delay: 0, options: [.curveEaseOut], animations: {
             self.pointsView?.center.x = -750
+        }, completion: {
+            <#code#>
+        })
+    }
+    
+    //MARK: - Data view animation control{
+    func animateInOutDataView(){
+        dataView?.center.x = 550
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            
+            self.dataView?.center.x = self.view.frame.width / 2
         }, completion: nil)
+        UIView.animate(withDuration: 1, delay: 5, options: [.curveEaseOut], animations: {
+            
+            self.dataView?.center.x  = 550
+        }, completion: nil)
+        
+        
+        
     }
     
     
@@ -127,6 +149,23 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         touchview.addGestureRecognizer(tapGestureRecognizer)
         self.view.addSubview(touchview)
         
+    }
+    
+    func addDataView(){
+        if (dataView == nil){
+            dataView = UIView(frame: CGRect(x: 500, y: 150, width: self.view.frame.width, height: 80))
+            dataView?.backgroundColor = UIColor.clear
+            self.view.addSubview(dataView!)
+            //dataView = UIView(frame: CGRect(x: 550, y: 0, width: self.view.frame.width - 10, height: self.view.frame.height))
+            let frameTopImage = UIImage(named: "window_top.png")
+            let frameTopeImageView = UIImageView(image: frameTopImage!)
+            frameTopeImageView.frame = CGRect(x: 25, y: -20, width: self.view.frame.width - 45, height: 80)
+            dataView?.addSubview(frameTopeImageView)
+            let frameBottomImage = UIImage(named: "window_bottom.png")
+            let frameBottomImageView = UIImageView(image: frameBottomImage!)
+            frameBottomImageView.frame = CGRect(x: 0, y: (self.dataView?.frame.height)!, width: self.view.frame.width - 25, height: 40)
+            dataView?.addSubview(frameBottomImageView)
+        }
     }
     
     func addPointsView(){
