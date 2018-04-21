@@ -27,6 +27,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var dataView: UIView?
     
+    var canAnimateDataView = true
+    
     //MARK: - Lifecycle
     func addParallaxToView(vw: UIView) {
         let amount = 100
@@ -61,7 +63,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         UIApplication.shared.statusBarStyle = .lightContent
         animateScoreIn()
         
-        animateInOutDataView()
         
     }
     
@@ -104,25 +105,33 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             self.pointsView?.center.x = self.view.frame.width / 2
         }, completion: nil)
     }
+    
     @objc func animateScoreOut(){
-        UIView.animate(withDuration: 1.5, delay: 0, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 1.5, delay: 0, options: [.curveEaseIn], animations: {
             self.pointsView?.center.x = -750
-        }, completion: {
-            <#code#>
-        })
+        }, completion:  nil)
     }
     
     //MARK: - Data view animation control{
     func animateInOutDataView(){
-        dataView?.center.x = 550
-        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
-            
-            self.dataView?.center.x = self.view.frame.width / 2
-        }, completion: nil)
-        UIView.animate(withDuration: 1, delay: 5, options: [.curveEaseOut], animations: {
-            
-            self.dataView?.center.x  = 550
-        }, completion: nil)
+        if(canAnimateDataView){
+            canAnimateDataView = false
+            dataView?.center.x = 550
+            UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+                
+                self.dataView?.center.x = self.view.frame.width / 2
+            }, completion:  { (finished: Bool) in
+                UIView.animate(withDuration: 1, delay: 1, options: [.curveEaseInOut], animations: {
+                    // we need to go a level deeper
+                    self.dataView?.center.x  = 550
+                }, completion: { (finished: Bool) in
+                    //we have arrived
+                    self.canAnimateDataView = true
+                    
+                })
+            })
+        }
+       
         
         
         
@@ -317,6 +326,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if(!unlockedLasers[index]){
             print("notunlocked")
+            animateInOutDataView()
         }else if(!purchasedLasers[index]){
             if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(laserList[index].cost)!){
                 buyLaser(index: index)
