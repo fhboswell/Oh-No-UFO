@@ -208,8 +208,8 @@ class PowerupTableViewCell: UITableViewCell {
             roundView?.addSubview(scoreStarImageView!)
         }
         scoreStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 50, width: self.contentView.frame.width/4 , height: 30)
-        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getScoreStars()) + ".png"
-        var image = UIImage(named: imageString)
+        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getScoreStars()) + ".png"
+        let image = UIImage(named: imageString)
         scoreStarImageView?.image = image
        
     }
@@ -219,8 +219,8 @@ class PowerupTableViewCell: UITableViewCell {
             roundView?.addSubview(enemyStarImageView!)
         }
         enemyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 80, width: self.contentView.frame.width/4 , height: 30)
-        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getEnemyStars()) + ".png"
-        var image = UIImage(named: imageString)
+        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getEnemyStars()) + ".png"
+        let image = UIImage(named: imageString)
         enemyStarImageView?.image = image
         
     }
@@ -230,8 +230,8 @@ class PowerupTableViewCell: UITableViewCell {
             roundView?.addSubview(lasersStarImageView!)
         }
         lasersStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 110, width: self.contentView.frame.width/4 , height: 30)
-        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getLaserStars()) + ".png"
-        var image = UIImage(named: imageString)
+        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getLaserStars()) + ".png"
+        let image = UIImage(named: imageString)
         lasersStarImageView?.image = image
         
     }
@@ -242,8 +242,8 @@ class PowerupTableViewCell: UITableViewCell {
             roundView?.addSubview(accuracyStarImageView!)
         }
         accuracyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 140, width: self.contentView.frame.width/4 , height: 30)
-        var imageString = String(PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()) + ".png"
-        var image = UIImage(named: imageString)
+        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()) + ".png"
+        let image = UIImage(named: imageString)
         accuracyStarImageView?.image = image
         
     }

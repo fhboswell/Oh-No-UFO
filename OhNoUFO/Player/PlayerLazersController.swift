@@ -59,7 +59,7 @@ class PlayerLazersController{
         
          let particleSystem = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
         particleSystem?.particleColor = UIColor.red
-        let systemNode = SCNNode()
+       
         laserNode.addParticleSystem(particleSystem!)
         
 //        let convertedPosition = bullet.convertPosition(bullet.position, to: nil)

@@ -130,7 +130,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
       //  sceneView.automaticallyUpdatesLighting = true
         
         
-        var ambientLightNode = SCNNode();
+        let ambientLightNode = SCNNode();
         ambientLightNode.light = SCNLight()
         ambientLightNode.light?.type = SCNLight.LightType.omni
         sceneView.scene.rootNode.addChildNode(ambientLightNode)
@@ -151,7 +151,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
  
     
     @objc func sceneTapped(recognizer: UITapGestureRecognizer) {
-        let location = recognizer.location(in: sceneView)
+        _ = recognizer.location(in: sceneView)
         self.fireLazer()
     }
 
@@ -230,23 +230,23 @@ extension GameViewController : SCNPhysicsContactDelegate {
  
     }
     
-    func hitEnemy(bullet: SCNNode, enemy: SCNNode){
+    func hitEnemy(bullet: SCNNode?, enemy: SCNNode?){
         
         //this does not remove it from the datastore in the respective classes
         //TODO: Propagate Removal of objects
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
         let systemNode = SCNNode()
         systemNode.addParticleSystem(particleSystem!)
-        let convertedPosition = bullet.convertPosition(bullet.position, to: nil)
-        systemNode.position = convertedPosition
+        let convertedPosition = bullet?.convertPosition((bullet?.position)!, to: nil)
+        systemNode.position = convertedPosition!
         sceneView.scene.rootNode.addChildNode(systemNode)
         if (bullet != nil){
-            bullet.removeFromParentNode()
+            bullet?.removeFromParentNode()
         }
         if (enemy != nil){
-             enemy.removeFromParentNode()
+            enemy?.removeFromParentNode()
         }
-        gameController!.hitEnemyWithNode(enemy)
+        gameController!.hitEnemyWithNode(enemy!)
         adjustScore(amount: 100)
         enemiesDestroyed += 1
     }

@@ -111,12 +111,12 @@ class WelcomeScene: SCNScene {
         
         let sphereGeometry = SCNSphere(radius: 0.2)
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
-        let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
+        _ = SCNPhysicsBody(type: .kinematic, shape: shape)
         
         self.rootNode.addChildNode(ufoNode)
         
         let random = arc4random_uniform(5)
-        let interval = Double(random)/10.0
+        _ = Double(random)/10.0
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(random + 10), z: 0, duration: 10)
         let runManyTimes = SCNAction.repeat(action, count: 20)
         self.ufoNode.removeAllActions()

@@ -53,7 +53,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         scene?.setTitleNode()
         
-        var firstCellPath = IndexPath(row: 0, section: 0)
+        let firstCellPath = IndexPath(row: 0, section: 0)
         welcomeTableView.scrollToRow(at: firstCellPath, at: .top, animated: false)
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -151,7 +151,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addTouchView(){
-        var touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100))
+        let touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100))
         touchview.backgroundColor = UIColor.clear
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play))
@@ -221,7 +221,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     
     func getAnimationStatus(indexPath: IndexPath) -> Bool{
-        var status = animationStatus[indexPath.row]
+        let status = animationStatus[indexPath.row]
         print(indexPath.row)
         animationStatus[indexPath.row] = false
         return status
@@ -341,9 +341,9 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if(purchasedLasers[index]){
             PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
         }
-        var reloadIndexPathTable = IndexPath(row: 1, section: 0)
-        var cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as! LaserTableViewCell
-        var reloadIndexPathCollection = IndexPath(row: index, section: 0)
+        let reloadIndexPathTable = IndexPath(row: 1, section: 0)
+        let cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as! LaserTableViewCell
+        let reloadIndexPathCollection = IndexPath(row: index, section: 0)
         cell.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
         
         
