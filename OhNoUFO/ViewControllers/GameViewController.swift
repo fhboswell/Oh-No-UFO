@@ -42,6 +42,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var lasersFired = 0
     
     var scoreLabel: UILabel?
+    var waveLabel: UILabel?
+    
     var retView: UIImageView?
     var laser: Laser?
     
@@ -71,6 +73,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     override func viewDidAppear(_ animated: Bool) {
         addDataView()
         initScoreLabel()
+        initWaveLabel()
         animateDataViewIn()
         addHealthView()
         animateHealthViewIn()
@@ -90,13 +93,6 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
             dataView = UIView(frame: CGRect(x: 0, y: -200, width: self.view.frame.width, height: 80))
             dataView?.backgroundColor = UIColor.clear
             self.view.addSubview(dataView!)
-            //dataView = UIView(frame: CGRect(x: 550, y: 0, width: self.view.frame.width - 10, height: self.view.frame.height))
-//            let frameTopImage = UIImage(named: "window_top.png")
-//            //frameTopImage?.withHorizontallyFlippedOrientation()
-//            let frameTopeImageView = UIImageView(image: frameTopImage!)
-//            frameTopeImageView.transform = CGAffineTransform(translationX: CGFloat(-1), y: CGFloat(1))
-//            frameTopeImageView.frame = CGRect(x: 25, y: -20, width: self.view.frame.width - 45, height: 80)
-//            dataView?.addSubview(frameTopeImageView)
             let frameBottomImage = UIImage(named: "window_top_upside_down.png")
             let frameBottomImageView = UIImageView(image: frameBottomImage!)
             frameBottomImageView.frame = CGRect(x: 0, y: (self.dataView?.frame.height)!, width: self.view.frame.width, height: 80)
@@ -112,12 +108,6 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
             healthViewColor = UIView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 40))
             healthViewColor?.backgroundColor = UIColor.green
             healthView?.addSubview(healthViewColor!)
-            //            let frameTopImage = UIImage(named: "window_top.png")
-            //            //frameTopImage?.withHorizontallyFlippedOrientation()
-            //            let frameTopeImageView = UIImageView(image: frameTopImage!)
-            //            frameTopeImageView.transform = CGAffineTransform(translationX: CGFloat(-1), y: CGFloat(1))
-            //            frameTopeImageView.frame = CGRect(x: 25, y: -20, width: self.view.frame.width - 45, height: 80)
-            //            dataView?.addSubview(frameTopeImageView)
             let frameBottomImage = UIImage(named: "health.png")
             let frameBottomImageView = UIImageView(image: frameBottomImage!)
             frameBottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
@@ -247,6 +237,19 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         scoreLabel?.textColor = UIColor.green
         dataView?.addSubview(scoreLabel!)
     }
+    func initWaveLabel(){
+        
+        if (waveLabel == nil) {
+            waveLabel = UILabel(frame: CGRect(x: dataView!.frame.width - 70, y: 40, width: 70, height: 30))
+        }
+        waveLabel?.backgroundColor = .clear
+        waveLabel?.textAlignment = NSTextAlignment.center
+        waveLabel?.text = String(describing: gameController!.currentWave)
+        waveLabel?.font = UIFont(name: "neuropol", size: 30)
+        waveLabel?.textColor = UIColor.green
+        dataView?.addSubview(waveLabel!)
+    }
+    
     
     func initLaserReticle(){
         
@@ -262,6 +265,11 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         retView.contentMode = .scaleAspectFill
         retView.alpha = 0.3
         self.view.insertSubview(retView, at: 1)
+    }
+    func updateWaveLabel(){
+        DispatchQueue.main.async {
+            self.waveLabel?.text = String(describing: self.gameController!.currentWave)
+        }
     }
     func adjustScore(amount: Int){
         DispatchQueue.main.async {
@@ -319,6 +327,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         gameController!.hitEnemyWithNode(enemy!)
         adjustScore(amount: 100)
         enemiesDestroyed += 1
+        updateWaveLabel()
     }
    
    
