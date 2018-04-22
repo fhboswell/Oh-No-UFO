@@ -33,6 +33,9 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var playerReady = false
     
     var dataView: UIView?
+    var healthView: UIView?
+    var healthViewColor: UIView?
+    
     
     var score = 0
     var enemiesDestroyed = 0
@@ -69,6 +72,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         addDataView()
         initScoreLabel()
         animateDataViewIn()
+        addHealthView()
+        animateHealthViewIn()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,6 +83,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     
     //MARK: UIElements
+    
+    
     func addDataView(){
         if (dataView == nil){
             dataView = UIView(frame: CGRect(x: 0, y: -200, width: self.view.frame.width, height: 80))
@@ -96,11 +103,40 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
             dataView?.addSubview(frameBottomImageView)
         }
     }
+    
+    func addHealthView(){
+        if (healthView == nil){
+            healthView = UIView(frame: CGRect(x: 0, y:self.view.frame.height + 200, width: self.view.frame.width, height: 80))
+            healthView?.backgroundColor = UIColor.clear
+            self.view.addSubview(healthView!)
+            healthViewColor = UIView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 40))
+            healthViewColor?.backgroundColor = UIColor.green
+            healthView?.addSubview(healthViewColor!)
+            //            let frameTopImage = UIImage(named: "window_top.png")
+            //            //frameTopImage?.withHorizontallyFlippedOrientation()
+            //            let frameTopeImageView = UIImageView(image: frameTopImage!)
+            //            frameTopeImageView.transform = CGAffineTransform(translationX: CGFloat(-1), y: CGFloat(1))
+            //            frameTopeImageView.frame = CGRect(x: 25, y: -20, width: self.view.frame.width - 45, height: 80)
+            //            dataView?.addSubview(frameTopeImageView)
+            let frameBottomImage = UIImage(named: "health.png")
+            let frameBottomImageView = UIImageView(image: frameBottomImage!)
+            frameBottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+            healthView?.addSubview(frameBottomImageView)
+        }
+    }
     func animateDataViewIn(){
         
         UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
             
             self.dataView?.center.y = 40
+        }, completion: nil)
+    }
+    func animateHealthViewIn(){
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            
+            self.healthView!.center.y  -= 280
+        
         }, completion: nil)
     }
     
@@ -296,6 +332,17 @@ extension GameViewController : SCNPhysicsContactDelegate {
             
             self.dismiss(animated: true, completion: nil)
         }
+        
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                //DispatchQueue.main.async {
+                self.healthViewColor!.frame = CGRect(x: 0, y: 40, width: (self.view.frame.width / 3 )*CGFloat(PlayerAttributes.sharedPlayerAttributes.getLives()), height: 40)
+               // }
+                
+            }, completion: nil)
+        }
+        //updateLivesView(PlayerAttributes.sharedPlayerAttributes.getLives())
        
     }
 }

@@ -24,6 +24,7 @@
 		9413E2002087E5E900BA203E /* ret66.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E1FF2087E5E900BA203E /* ret66.png */; };
 		9413E2022087E5F100BA203E /* ret77.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E2012087E5F100BA203E /* ret77.png */; };
 		9413E2052087FF2C00BA203E /* knewave.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9413E2042087FF2C00BA203E /* knewave.ttf */; };
+		94171C0A208C6AA800C81710 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 94171C09208C6AA800C81710 /* health.png */; };
 		943153292089251D00B8517B /* neuropol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 943153282089251D00B8517B /* neuropol.ttf */; };
 		9431532C20892D3500B8517B /* ret1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9431532B20892D3500B8517B /* ret1.png */; };
 		943153332089317700B8517B /* Armory_Item_Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 943153322089317700B8517B /* Armory_Item_Frame.png */; };
@@ -116,6 +117,7 @@
 		9413E1FF2087E5E900BA203E /* ret66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret66.png; sourceTree = "<group>"; };
 		9413E2012087E5F100BA203E /* ret77.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret77.png; sourceTree = "<group>"; };
 		9413E2042087FF2C00BA203E /* knewave.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = knewave.ttf; sourceTree = "<group>"; };
+		94171C09208C6AA800C81710 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
 		943153282089251D00B8517B /* neuropol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neuropol.ttf; sourceTree = "<group>"; };
 		9431532B20892D3500B8517B /* ret1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret1.png; sourceTree = "<group>"; };
 		94315330208930CC00B8517B /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		943153382089629600B8517B /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				94171C09208C6AA800C81710 /* health.png */,
 				943153322089317700B8517B /* Armory_Item_Frame.png */,
 				943153472089A19400B8517B /* main_field_1.png */,
 				943153452089A19400B8517B /* main_field_2.png */,
@@ -588,6 +591,7 @@
 				9413E1FB2087E5E200BA203E /* ret22.png in Resources */,
 				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
 				94B6E93820579C50006F9CFC /* UFO_Light_D.tga in Resources */,
+				94171C0A208C6AA800C81710 /* health.png in Resources */,
 				94B6E93A20579C50006F9CFC /* UFO_N.tga in Resources */,
 				94120B91208B00B30068B657 /* smoke.scnp in Resources */,
 				94C51AF020886F1B006474F7 /* background.png in Resources */,
