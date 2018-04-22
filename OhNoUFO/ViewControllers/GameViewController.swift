@@ -196,14 +196,14 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     //MARK: - Root Scene reqs
     func configureLighting() {
-      //  sceneView.autoenablesDefaultLighting = true
-      //  sceneView.automaticallyUpdatesLighting = true
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
         
         
-        let ambientLightNode = SCNNode();
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light?.type = SCNLight.LightType.omni
-        sceneView.scene.rootNode.addChildNode(ambientLightNode)
+//        let ambientLightNode = SCNNode();
+//        ambientLightNode.light = SCNLight()
+//        ambientLightNode.light?.type = SCNLight.LightType.omni
+//        sceneView.scene.rootNode.addChildNode(ambientLightNode)
         
         
         
@@ -330,7 +330,25 @@ extension GameViewController : SCNPhysicsContactDelegate {
             lasersFired = 0
             enemiesDestroyed = 0
             
-            self.dismiss(animated: true, completion: nil)
+            self.sceneView.scene.isPaused = true
+            
+            DispatchQueue.main.async(){
+                var gameoverLabel = UILabel(frame: CGRect(x: 1, y: self.view.frame.height/3, width: self.dataView!.frame.width, height: 50))
+                
+                gameoverLabel.backgroundColor = .clear
+                gameoverLabel.textAlignment = NSTextAlignment.center
+                gameoverLabel.text = "Game Over"
+                gameoverLabel.font = UIFont(name: "neuropol", size: 40)
+                gameoverLabel.textColor = UIColor.white
+                self.view?.addSubview(gameoverLabel)
+            }
+           
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            
         }
         
         

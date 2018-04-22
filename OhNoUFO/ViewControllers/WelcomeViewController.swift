@@ -265,7 +265,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
 //
 //        }else
         if(indexPath.row == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Powerup", for: indexPath) as! PowerupTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Report", for: indexPath) as! ReportTableViewCell
             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.selectionStyle = .none
             return cell

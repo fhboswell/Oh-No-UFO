@@ -1,5 +1,5 @@
 //
-//  PowerupTableViewCell.swift
+//  ReportTableViewCell.swift
 //  OhNoUFO
 //
 //  Created by Henry Boswell on 4/17/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PowerupTableViewCell: UITableViewCell {
+class ReportTableViewCell: UITableViewCell {
     
     //MARK: - Instance Varriables
     var titleLabel: UILabel?
