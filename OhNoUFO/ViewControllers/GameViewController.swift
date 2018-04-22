@@ -32,6 +32,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var playerLazersController: PlayerLazersController? = nil
     var playerReady = false
     
+    var dataView: UIView?
+    
     var score = 0
     var enemiesDestroyed = 0
     var lasersFired = 0
@@ -59,9 +61,14 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         addGestures()
         prepareLazerController()
         prepareEnemyController()
-        initScoreLabel()
+       
         initLaserReticle()
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        addDataView()
+        initScoreLabel()
+        animateDataViewIn()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,6 +76,33 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         sceneView.session.pause()
     }
     
+    
+    //MARK: UIElements
+    func addDataView(){
+        if (dataView == nil){
+            dataView = UIView(frame: CGRect(x: 0, y: -200, width: self.view.frame.width, height: 80))
+            dataView?.backgroundColor = UIColor.clear
+            self.view.addSubview(dataView!)
+            //dataView = UIView(frame: CGRect(x: 550, y: 0, width: self.view.frame.width - 10, height: self.view.frame.height))
+//            let frameTopImage = UIImage(named: "window_top.png")
+//            //frameTopImage?.withHorizontallyFlippedOrientation()
+//            let frameTopeImageView = UIImageView(image: frameTopImage!)
+//            frameTopeImageView.transform = CGAffineTransform(translationX: CGFloat(-1), y: CGFloat(1))
+//            frameTopeImageView.frame = CGRect(x: 25, y: -20, width: self.view.frame.width - 45, height: 80)
+//            dataView?.addSubview(frameTopeImageView)
+            let frameBottomImage = UIImage(named: "window_top_upside_down.png")
+            let frameBottomImageView = UIImageView(image: frameBottomImage!)
+            frameBottomImageView.frame = CGRect(x: 0, y: (self.dataView?.frame.height)!, width: self.view.frame.width, height: 80)
+            dataView?.addSubview(frameBottomImageView)
+        }
+    }
+    func animateDataViewIn(){
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            
+            self.dataView?.center.y = 40
+        }, completion: nil)
+    }
     
     
     //MARK: - Player Fire Control
@@ -168,14 +202,14 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     func initScoreLabel(){
        
         if (scoreLabel == nil) {
-            scoreLabel = UILabel(frame: CGRect(x: 10, y: 50, width: 300, height: 30))
+            scoreLabel = UILabel(frame: CGRect(x: 7, y: 100, width: dataView!.frame.width, height: 30))
         }
         scoreLabel?.backgroundColor = .clear
-        scoreLabel?.textAlignment = NSTextAlignment.left
-        scoreLabel?.text = "Score: "
-        scoreLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
+        scoreLabel?.textAlignment = NSTextAlignment.center
+        scoreLabel?.text = String(format: "%011d", 0)
+        scoreLabel?.font = UIFont(name: "neuropol", size: 22)
         scoreLabel?.textColor = UIColor.green
-        self.view.addSubview(scoreLabel!)
+        dataView?.addSubview(scoreLabel!)
     }
     
     func initLaserReticle(){
@@ -195,7 +229,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     }
     func adjustScore(amount: Int){
         DispatchQueue.main.async {
-            self.scoreLabel?.text = "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
+            self.scoreLabel?.text = String(format: "%011d", PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
         }
     }
 }

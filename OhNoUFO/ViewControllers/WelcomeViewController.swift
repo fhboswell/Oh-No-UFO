@@ -52,7 +52,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         welcomeTableView.reloadData()
         
         scene?.setTitleNode()
-        
+        setTotalScoreWithZeros()
         let firstCellPath = IndexPath(row: 0, section: 0)
         welcomeTableView.scrollToRow(at: firstCellPath, at: .top, animated: false)
     }
