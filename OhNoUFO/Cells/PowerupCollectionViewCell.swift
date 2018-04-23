@@ -119,8 +119,8 @@ class PowerupCollectionViewCell: UICollectionViewCell {
             imageView?.frame = CGRect(x: 5, y: 5, width: 120, height: 120)
             imageView?.alpha = 1
         }else{
-            imageView?.frame = CGRect(x: 15, y: 20, width: 100, height: 100)
-            imageView?.alpha = 0.3
+            imageView?.frame = CGRect(x: 20, y: 30, width: 80, height: 80)
+            imageView?.alpha = 1
         }
         
         

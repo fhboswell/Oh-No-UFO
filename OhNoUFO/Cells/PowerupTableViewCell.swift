@@ -76,7 +76,7 @@ class PowerupTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         titleLabel?.textAlignment = .left
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont(name: "neuropol", size: 20)
-        titleLabel?.text = "Laser Upgrades"
+        titleLabel?.text = "Powerups"
         titleLabel?.layer.shadowColor = UIColor.gray.cgColor
         titleLabel?.layer.shadowRadius = 3.0
         titleLabel?.layer.shadowOpacity = 1.0

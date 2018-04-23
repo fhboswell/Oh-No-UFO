@@ -66,6 +66,10 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         scene?.moveIn()
         UIApplication.shared.statusBarStyle = .lightContent
         animateScoreIn()
+        print("x")
+        print(x_style)
+        print("678")
+        print(phone678_style)
         
         
     }
@@ -155,7 +159,12 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addTouchView(){
-        let touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100))
+         var touchview = UIView()
+        if(x_style){
+            touchview.frame = CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100)
+        }else{
+             touchview.frame =  CGRect(x: 0, y: self.view.frame.height/2 - 75, width: self.view.frame.width, height: 100)
+        }
         touchview.backgroundColor = UIColor.clear
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play))
@@ -166,6 +175,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func addDataView(){
         if (dataView == nil){
+            
             dataView = UIView(frame: CGRect(x: 500, y: 150, width: self.view.frame.width, height: 80))
             dataView?.backgroundColor = UIColor.clear
             self.view.addSubview(dataView!)
@@ -183,7 +193,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func addPointsView(){
         if( pointsView == nil){
-            pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 20, width: self.view.frame.width, height: 100))
+            if(x_style){
+                pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 20, width: self.view.frame.width, height: 100))
+            }else{
+                pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 + 30, width: self.view.frame.width, height: 100))
+            }
         }
         pointsView?.backgroundColor = UIColor.clear
         
@@ -323,7 +337,13 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 350
+            if(x_style){
+                return 350
+            }
+            if(phone678_style){
+                return 250
+            }
+            
             
         }else if(indexPath.row == 1){
             return 200

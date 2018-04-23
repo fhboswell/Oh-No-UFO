@@ -39,7 +39,10 @@ class ReportTableViewCell: UITableViewCell {
         makeLasersLabel()
         makeAcuracyLabel()
         makeBonusLabel()
-        makePepTalkLabel()
+        if(x_style){
+            makePepTalkLabel()
+        }
+       
         
         makeScoreStarImageView()
         makeEnemyStarImageView()
@@ -166,14 +169,20 @@ class ReportTableViewCell: UITableViewCell {
     
     func makeBonusLabel(){
         if bonusLabel == nil {
-            bonusLabel = UILabel(frame: CGRect(x: 40, y: 170, width: self.contentView.frame.width - 80, height: 50))
+            if(phone678_style){
+                bonusLabel = UILabel(frame: CGRect(x: 40, y: 160, width: self.contentView.frame.width - 80, height: 50))
+            }
+            else{
+                bonusLabel = UILabel(frame: CGRect(x: 40, y: 170, width: self.contentView.frame.width - 80, height: 50))
+            }
+            
             roundView?.addSubview(bonusLabel!)
         }
         
         bonusLabel?.backgroundColor = .clear
         bonusLabel?.textAlignment = .center
         bonusLabel?.textColor = .white
-        if(PlayerAttributes.sharedPlayerAttributes.getLastWave() >= PlayerAttributes.sharedPlayerAttributes.getMaxWave()){
+        if(PlayerAttributes.sharedPlayerAttributes.getLastWave() > PlayerAttributes.sharedPlayerAttributes.getMaxWave()){
             bonusLabel?.textColor = .red
         }
        

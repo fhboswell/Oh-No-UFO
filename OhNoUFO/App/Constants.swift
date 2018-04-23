@@ -19,6 +19,35 @@ struct PhysicsMask {
     static let player = 8
     
 }
+
+var x_style: Bool {
+    get {
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                return true
+            default:
+                return false
+            }
+        }
+        return false
+    }
+}
+
+var phone678_style: Bool {
+    get {
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1334:
+                return true
+            default:
+                return false
+            }
+        }
+        return false
+    }
+}
+
 var laserList: [Laser] = {
     
     var levelList = [Laser]()
@@ -86,14 +115,14 @@ var pepTalk: [String] = ["Try again", "Try again", "Try again", "Great!", "Terri
 var powerupList: [Powerup] = {
     
     var powerupList = [Powerup]()
-    var retImage = UIImage(named: "ret1.png")
+    var retImage = UIImage(named: "gear.png")
     var new1:Powerup = Powerup(cost: "100", retImage: retImage!)
     powerupList.append(new1)
     
-    retImage = UIImage(named: "ret2.png")
+    retImage = UIImage(named: "mag.png")
     var new2:Powerup = Powerup(cost: "100", retImage: retImage!)
     powerupList.append(new2)
-    retImage = UIImage(named: "ret3.png")
+    retImage = UIImage(named: "shield.png")
     
     var new3:Powerup = Powerup(cost: "100", retImage: retImage!)
     powerupList.append(new3)
@@ -122,11 +151,11 @@ var powerupList: [Powerup] = {
 
 var purchasedPowerups: [Bool]{
     get {
-        return UserDefaults.standard.object(forKey: "purchasedLasers") as? [Bool] ?? [true,false,false,false,false,false,false]
+        return UserDefaults.standard.object(forKey: "purchasedLasers1") as? [Bool] ?? [false,false,false,false,false,false,false]
     }
     set {
         let defaults = UserDefaults.standard
-        defaults.set(newValue, forKey: "purchasedLasers")
+        defaults.set(newValue, forKey: "purchasedLasers1")
         defaults.synchronize()
     }
 };

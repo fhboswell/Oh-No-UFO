@@ -78,6 +78,9 @@
 		94D661F72060941A0085A698 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F62060941A0085A698 /* Structs.swift */; };
 		94F4989A208DD91900498539 /* PowerupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F49899208DD91900498539 /* PowerupTableViewCell.swift */; };
 		94F4989C208DD99700498539 /* PowerupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4989B208DD99700498539 /* PowerupCollectionViewCell.swift */; };
+		94F498A0208E6B3500498539 /* mag.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F4989D208E6B3500498539 /* mag.png */; };
+		94F498A1208E6B3500498539 /* shield.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F4989E208E6B3500498539 /* shield.png */; };
+		94F498A2208E6B3500498539 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F4989F208E6B3500498539 /* gear.png */; };
 		BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F6205F496100A9E9AD /* Enemy.swift */; };
 		BD0A48F9205F49EF00A9E9AD /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */; };
 		BDB70A0620633114006575C3 /* WaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A0520633114006575C3 /* WaveController.swift */; };
@@ -181,6 +184,9 @@
 		94D661F62060941A0085A698 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		94F49899208DD91900498539 /* PowerupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupTableViewCell.swift; sourceTree = "<group>"; };
 		94F4989B208DD99700498539 /* PowerupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupCollectionViewCell.swift; sourceTree = "<group>"; };
+		94F4989D208E6B3500498539 /* mag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mag.png; sourceTree = "<group>"; };
+		94F4989E208E6B3500498539 /* shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shield.png; sourceTree = "<group>"; };
+		94F4989F208E6B3500498539 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		BD0A48F6205F496100A9E9AD /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
 		BDB70A0520633114006575C3 /* WaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveController.swift; sourceTree = "<group>"; };
@@ -325,6 +331,9 @@
 			isa = PBXGroup;
 			children = (
 				94315355208A7F7F00B8517B /* locked.png */,
+				94F4989F208E6B3500498539 /* gear.png */,
+				94F4989D208E6B3500498539 /* mag.png */,
+				94F4989E208E6B3500498539 /* shield.png */,
 			);
 			path = powerup;
 			sourceTree = "<group>";
@@ -595,7 +604,9 @@
 			files = (
 				94B6E93620579C50006F9CFC /* UFO.mtl in Resources */,
 				9431533E208963F300B8517B /* ret3.png in Resources */,
+				94F498A2208E6B3500498539 /* gear.png in Resources */,
 				94B6E8FB20574F9C006F9CFC /* LaunchScreen.storyboard in Resources */,
+				94F498A0208E6B3500498539 /* mag.png in Resources */,
 				94315356208A7F7F00B8517B /* locked.png in Resources */,
 				9413E1FB2087E5E200BA203E /* ret22.png in Resources */,
 				94B6E93520579C50006F9CFC /* UFO_D.tga in Resources */,
@@ -610,6 +621,7 @@
 				9431534A2089A19400B8517B /* main_field_1.png in Resources */,
 				94315344208964F500B8517B /* ret6.png in Resources */,
 				9431534D2089E19800B8517B /* 3.png in Resources */,
+				94F498A1208E6B3500498539 /* shield.png in Resources */,
 				9445B8F92058FB7500B64F9C /* spark.png in Resources */,
 				9413E2052087FF2C00BA203E /* knewave.ttf in Resources */,
 				9413E1F02087CD9600BA203E /* normal.png in Resources */,

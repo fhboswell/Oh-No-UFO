@@ -21,6 +21,16 @@ class PlayerAttributes{
             defaults.synchronize()
         }
     };
+    private var powerups:[Int]{
+        get {
+            return UserDefaults.standard.object(forKey: "powerups") as? [Int] ?? []
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "powerups")
+            defaults.synchronize()
+        }
+    };
     private var score:Int{
         get {
             return UserDefaults.standard.object(forKey: "score") as? Int ?? 0
