@@ -47,14 +47,14 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         self.laserCollectionView.center.x = 700
         self.titleLabel?.center.x = 700
         
-        UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x = 20 + self.contentView.frame.width / 2
             self.laserCollectionView.center.x = self.contentView.frame.width / 2
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
     @objc func animateCellOut(){
-        UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x = 700
             self.laserCollectionView.center.x = 700
             //self.contentView.layoutIfNeeded()

@@ -166,19 +166,18 @@ class ReportTableViewCell: UITableViewCell {
     
     func makeBonusLabel(){
         if bonusLabel == nil {
-            bonusLabel = UILabel(frame: CGRect(x: 40, y: 160, width: self.contentView.frame.width, height: 50))
+            bonusLabel = UILabel(frame: CGRect(x: 40, y: 170, width: self.contentView.frame.width - 80, height: 50))
             roundView?.addSubview(bonusLabel!)
         }
         
         bonusLabel?.backgroundColor = .clear
-        bonusLabel?.textAlignment = .left
+        bonusLabel?.textAlignment = .center
         bonusLabel?.textColor = .white
-        
-        var stars = PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getLaserStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getScoreStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getEnemyStars()
-        bonusLabel?.text = "Stars \t\t" + String(stars)
+        if(PlayerAttributes.sharedPlayerAttributes.getLastWave() >= PlayerAttributes.sharedPlayerAttributes.getMaxWave()){
+            bonusLabel?.textColor = .red
+        }
+       
+        bonusLabel?.text = "Wave \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastWave()) + "\t |\t  Max \t " + String(PlayerAttributes.sharedPlayerAttributes.getMaxWave())
         bonusLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }

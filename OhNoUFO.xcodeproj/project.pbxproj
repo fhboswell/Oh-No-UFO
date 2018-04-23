@@ -25,6 +25,7 @@
 		9413E2022087E5F100BA203E /* ret77.png in Resources */ = {isa = PBXBuildFile; fileRef = 9413E2012087E5F100BA203E /* ret77.png */; };
 		9413E2052087FF2C00BA203E /* knewave.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9413E2042087FF2C00BA203E /* knewave.ttf */; };
 		94171C0A208C6AA800C81710 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 94171C09208C6AA800C81710 /* health.png */; };
+		94171C0E208D5A0400C81710 /* EquippedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94171C0D208D5A0400C81710 /* EquippedTableViewCell.swift */; };
 		943153292089251D00B8517B /* neuropol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 943153282089251D00B8517B /* neuropol.ttf */; };
 		9431532C20892D3500B8517B /* ret1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9431532B20892D3500B8517B /* ret1.png */; };
 		943153332089317700B8517B /* Armory_Item_Frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 943153322089317700B8517B /* Armory_Item_Frame.png */; };
@@ -118,6 +119,7 @@
 		9413E2012087E5F100BA203E /* ret77.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret77.png; sourceTree = "<group>"; };
 		9413E2042087FF2C00BA203E /* knewave.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = knewave.ttf; sourceTree = "<group>"; };
 		94171C09208C6AA800C81710 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = health.png; sourceTree = "<group>"; };
+		94171C0D208D5A0400C81710 /* EquippedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquippedTableViewCell.swift; sourceTree = "<group>"; };
 		943153282089251D00B8517B /* neuropol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = neuropol.ttf; sourceTree = "<group>"; };
 		9431532B20892D3500B8517B /* ret1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret1.png; sourceTree = "<group>"; };
 		94315330208930CC00B8517B /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 			children = (
 				9464352020606964008A472A /* ArcadeModeTableViewCell.swift */,
 				94ABDB6A2086991C00B8BFA4 /* ReportTableViewCell.swift */,
+				94171C0D208D5A0400C81710 /* EquippedTableViewCell.swift */,
 				94D661F2206093230085A698 /* LaserTableViewCell.swift */,
 				94D661F4206093900085A698 /* LaserCollectionViewCell.swift */,
 			);
@@ -670,6 +673,7 @@
 				94D661F5206093900085A698 /* LaserCollectionViewCell.swift in Sources */,
 				9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */,
 				946435242060759D008A472A /* WelcomeScene.swift in Sources */,
+				94171C0E208D5A0400C81710 /* EquippedTableViewCell.swift in Sources */,
 				9445B8F12058A17200B64F9C /* Extensions.swift in Sources */,
 				94D661F72060941A0085A698 /* Structs.swift in Sources */,
 				BDB70A0620633114006575C3 /* WaveController.swift in Sources */,

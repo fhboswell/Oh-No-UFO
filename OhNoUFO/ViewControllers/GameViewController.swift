@@ -335,14 +335,14 @@ extension GameViewController : SCNPhysicsContactDelegate {
     func hitPlayer(){
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
             
-            PlayerAttributes.sharedPlayerAttributes.updateLaserEnemyCount(lasersCount: lasersFired, enemyCount: enemiesDestroyed)
+            PlayerAttributes.sharedPlayerAttributes.updateLaserEnemyCount(lasersCount: lasersFired, enemyCount: enemiesDestroyed, wave: self.gameController!.currentWave)
             lasersFired = 0
             enemiesDestroyed = 0
             
             self.sceneView.scene.isPaused = true
             
             DispatchQueue.main.async(){
-                var gameoverLabel = UILabel(frame: CGRect(x: 1, y: self.view.frame.height/3, width: self.dataView!.frame.width, height: 50))
+                let gameoverLabel = UILabel(frame: CGRect(x: 1, y: self.view.frame.height/3, width: self.dataView!.frame.width, height: 50))
                 
                 gameoverLabel.backgroundColor = .clear
                 gameoverLabel.textAlignment = NSTextAlignment.center

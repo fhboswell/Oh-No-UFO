@@ -270,6 +270,14 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.selectionStyle = .none
             return cell
         }else if(indexPath.row == 1){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Equipped", for: indexPath) as! EquippedTableViewCell
+             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.selectionStyle = .none
+            return cell
+            
+            
+        }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
             cell.initalize(laserList: laserList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.clear
@@ -341,11 +349,14 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if(purchasedLasers[index]){
             PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
         }
-        let reloadIndexPathTable = IndexPath(row: 1, section: 0)
+        let reloadIndexPathTable = IndexPath(row: 2, section: 0)
         let cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as! LaserTableViewCell
         let reloadIndexPathCollection = IndexPath(row: index, section: 0)
         cell.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
         
+        let reloadEquippedIndexPath = IndexPath(row: 1, section: 0)
+        let cell2 = welcomeTableView.cellForRow(at: reloadEquippedIndexPath) as! EquippedTableViewCell
+        cell2.initalize(animationStatus: false)
         
     }
     

@@ -182,7 +182,7 @@ class PlayerAttributes{
         }
     };
     
-    //MARK:
+    //MARK: - Sum total
     private var sumTotalEnemiesDestroyed:Int{
         get {
             return UserDefaults.standard.object(forKey: "sumTotalEnemiesDestroyed") as? Int ?? 0
@@ -191,6 +191,41 @@ class PlayerAttributes{
         set {
             let defaults = UserDefaults.standard
             defaults.set(newValue, forKey: "sumTotalEnemiesDestroyed")
+            defaults.synchronize()
+        }
+    };
+    
+    private var sumTotalStars:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "sumTotalStars") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "sumTotalStars")
+            defaults.synchronize()
+        }
+    };
+    
+    private var lastWave:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "lastWave") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "lastWave")
+            defaults.synchronize()
+        }
+    };
+    private var maxWave:Int{
+        get {
+            return UserDefaults.standard.object(forKey: "maxWave") as? Int ?? 0
+            
+        }
+        set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "maxWave")
             defaults.synchronize()
         }
     };
@@ -209,7 +244,7 @@ class PlayerAttributes{
         return currentGameScore
     }
     
-    public func updateLaserEnemyCount(lasersCount : Int, enemyCount: Int){
+    public func updateLaserEnemyCount(lasersCount : Int, enemyCount: Int, wave: Int){
         
         lastRoundLasersFired = lasersCount
         lastRoundEnemiesDestroyed = enemyCount
@@ -221,11 +256,20 @@ class PlayerAttributes{
             lastRoundAccuracy = 0
         }
         sumTotalEnemiesDestroyed += lastRoundEnemiesDestroyed
+        lastWave = wave
         
         findMax()
         unlockLasers()
         print(sumTotalEnemiesDestroyed)
         
+        
+    }
+    func getLastWave() -> Int{
+        return lastWave
+        
+    }
+    func getMaxWave() -> Int{
+        return maxWave
         
     }
     private func unlockLasers(){
@@ -290,6 +334,9 @@ class PlayerAttributes{
         }else{
             lastRoundAccuracyStar = 0
             
+        }
+        if(lastWave > maxWave){
+            maxWave = lastWave
         }
         print(lastRoundAccuracyStar)
         print(lastRoundLasersFiredStar)
