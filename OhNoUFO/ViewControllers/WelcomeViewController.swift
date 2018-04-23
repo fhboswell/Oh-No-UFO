@@ -252,7 +252,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -279,6 +279,14 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             
         }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
+            cell.initalize(laserList: laserList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.selectionStyle = .none
+            return cell
+            
+            
+        }else if(indexPath.row == 3){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PowerupSelect", for: indexPath) as! PowerupTableViewCell
             cell.initalize(laserList: laserList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.clear
             cell.selectionStyle = .none
@@ -316,6 +324,10 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if(indexPath.row == 1){
             return 200
         }else if(indexPath.row == 2){
+            return 200
+            
+            
+        }else if(indexPath.row == 3){
             return 200
             
             

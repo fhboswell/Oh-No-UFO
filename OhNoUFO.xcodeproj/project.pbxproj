@@ -76,6 +76,8 @@
 		94D661F3206093230085A698 /* LaserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F2206093230085A698 /* LaserTableViewCell.swift */; };
 		94D661F5206093900085A698 /* LaserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F4206093900085A698 /* LaserCollectionViewCell.swift */; };
 		94D661F72060941A0085A698 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D661F62060941A0085A698 /* Structs.swift */; };
+		94F4989A208DD91900498539 /* PowerupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F49899208DD91900498539 /* PowerupTableViewCell.swift */; };
+		94F4989C208DD99700498539 /* PowerupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F4989B208DD99700498539 /* PowerupCollectionViewCell.swift */; };
 		BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F6205F496100A9E9AD /* Enemy.swift */; };
 		BD0A48F9205F49EF00A9E9AD /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */; };
 		BDB70A0620633114006575C3 /* WaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A0520633114006575C3 /* WaveController.swift */; };
@@ -177,6 +179,8 @@
 		94D661F2206093230085A698 /* LaserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserTableViewCell.swift; sourceTree = "<group>"; };
 		94D661F4206093900085A698 /* LaserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaserCollectionViewCell.swift; sourceTree = "<group>"; };
 		94D661F62060941A0085A698 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		94F49899208DD91900498539 /* PowerupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupTableViewCell.swift; sourceTree = "<group>"; };
+		94F4989B208DD99700498539 /* PowerupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD0A48F6205F496100A9E9AD /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		BD0A48F8205F49EF00A9E9AD /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
 		BDB70A0520633114006575C3 /* WaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveController.swift; sourceTree = "<group>"; };
@@ -353,6 +357,8 @@
 				94171C0D208D5A0400C81710 /* EquippedTableViewCell.swift */,
 				94D661F2206093230085A698 /* LaserTableViewCell.swift */,
 				94D661F4206093900085A698 /* LaserCollectionViewCell.swift */,
+				94F49899208DD91900498539 /* PowerupTableViewCell.swift */,
+				94F4989B208DD99700498539 /* PowerupCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -663,6 +669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				948E4E67205C9F0200DC6FF9 /* WelcomeViewController.swift in Sources */,
+				94F4989C208DD99700498539 /* PowerupCollectionViewCell.swift in Sources */,
 				BDB70A0820633312006575C3 /* PotentiallyUnsafeGlobals.swift in Sources */,
 				946A48ED2057D57D0083899E /* Constants.swift in Sources */,
 				BDB70A0A206339BC006575C3 /* DefaultGameSettings.swift in Sources */,
@@ -670,6 +677,7 @@
 				9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */,
 				BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */,
 				948E4E6C205CDACC00DC6FF9 /* PlayerAttributes.swift in Sources */,
+				94F4989A208DD91900498539 /* PowerupTableViewCell.swift in Sources */,
 				94D661F5206093900085A698 /* LaserCollectionViewCell.swift in Sources */,
 				9445B8F32058AE2200B64F9C /* PlayerLazersController.swift in Sources */,
 				946435242060759D008A472A /* WelcomeScene.swift in Sources */,
