@@ -83,7 +83,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
     {
         print("tapped")
         let indexPath :IndexPath = (self.superview as! UICollectionView).indexPath(for: self)!
-        delegate?.recieveLevelIndex(index: indexPath.row)
+        delegate?.recieveLaserIndex(index: indexPath.row)
         print(indexPath.row)
     }
     

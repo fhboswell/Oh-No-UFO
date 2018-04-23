@@ -16,14 +16,14 @@ class PowerupTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     
     
     //MARK: - instance varriables
-    var delegate: LaserCellDelegate?
+    var delegate: PowerupCellDelegate?
     var laserList: [Laser]?
     @IBOutlet var powerupCollectionView: UICollectionView!
     var titleLabel: UILabel?
     
     
     //MARK: - Lifecycle
-    func initalize(laserList: [Laser], delegate: LaserCellDelegate, animationStatus: Bool){
+    func initalize(laserList: [Laser], delegate: PowerupCellDelegate, animationStatus: Bool){
         
         
         self.delegate = delegate
@@ -88,20 +88,20 @@ class PowerupTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     
     //MARK: - Collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return laserList!.count
+        return powerupList.count
         //return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = powerupCollectionView.dequeueReusableCell(withReuseIdentifier: "Powerup", for: indexPath) as! PowerupCollectionViewCell
-        cell.initalize(laser: laserList![indexPath.row], delegate: delegate!, purchased: purchasedLasers[indexPath.row], unlocked: unlockedLasers[indexPath.row])
+        cell.initalize(powerup: powerupList[indexPath.row], delegate: delegate!, purchased: purchasedPowerups[indexPath.row], unlocked: unlockedPowerups[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let delegate = self.delegate {
             
-            delegate.recieveLevelIndex(index: indexPath.row)
+            delegate.recievePowerupIndex(index: indexPath.row)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

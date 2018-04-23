@@ -54,6 +54,8 @@ var laserList: [Laser] = {
     
 }()
 
+
+
 var purchasedLasers: [Bool]{
     get {
         return UserDefaults.standard.object(forKey: "purchasedLasers") as? [Bool] ?? [true,false,false,false,false,false,false]
@@ -78,6 +80,69 @@ var unlockedLasers: [Bool]{
 var unlockRequirement: [String] = ["X","X","X","Blast 30 UFOs", "Blast 60 UFOs", "Blast 300 UFOs", "Blast 400 UFOs", "Blast 500 UFOs", "Blast 600 UFOs", "Blast 700 UFOs", "Blast 800 UFOs", "Blast 900 UFOs"]
 
 var pepTalk: [String] = ["Try again", "Try again", "Try again", "Great!", "Terrific!", "Terrific!", "Terrific!", "Excellent!", "Excellent", "Excellent", "Perfect", "Perfect" , "Perfect" ]
+
+
+
+var powerupList: [Powerup] = {
+    
+    var powerupList = [Powerup]()
+    var retImage = UIImage(named: "ret1.png")
+    var new1:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new1)
+    
+    retImage = UIImage(named: "ret2.png")
+    var new2:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new2)
+    retImage = UIImage(named: "ret3.png")
+    
+    var new3:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new3)
+    
+    retImage = UIImage(named: "ret4.png")
+    var new4:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new4)
+    
+    retImage = UIImage(named: "ret5.png")
+    var new5:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new5)
+    
+    retImage = UIImage(named: "ret6.png")
+    var new6:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new6)
+    
+    retImage = UIImage(named: "ret7.png")
+    var new7:Powerup = Powerup(cost: "100", retImage: retImage!)
+    powerupList.append(new7)
+    return powerupList
+    
+    
+}()
+
+
+
+var purchasedPowerups: [Bool]{
+    get {
+        return UserDefaults.standard.object(forKey: "purchasedLasers") as? [Bool] ?? [true,false,false,false,false,false,false]
+    }
+    set {
+        let defaults = UserDefaults.standard
+        defaults.set(newValue, forKey: "purchasedLasers")
+        defaults.synchronize()
+    }
+};
+
+var unlockedPowerups: [Bool]{
+    get {
+        return UserDefaults.standard.object(forKey: "unlockedLasers") as? [Bool] ?? [true,true,true,false,false,false,false]
+    }
+    set {
+        let defaults = UserDefaults.standard
+        defaults.set(newValue, forKey: "unlockedLasers")
+        defaults.synchronize()
+    }
+};
+var unlockRequirementPowerups: [String] = ["X","X","X","Blast 30 UFOs", "Blast 60 UFOs", "Blast 300 UFOs", "Blast 400 UFOs", "Blast 500 UFOs", "Blast 600 UFOs", "Blast 700 UFOs", "Blast 800 UFOs", "Blast 900 UFOs"]
+
 
 
 

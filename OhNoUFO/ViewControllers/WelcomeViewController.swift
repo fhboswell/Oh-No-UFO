@@ -13,7 +13,11 @@ import ARKit
 import SceneKit
 import CoreGraphics
 
-class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LaserCellDelegate {
+class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LaserCellDelegate, PowerupCellDelegate {
+ 
+    
+    
+    
    
     //MARK: Instance Varriables
     @IBOutlet var welcomeTableView: UITableView!
@@ -341,7 +345,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     //MARK: - protocol conform
-    func recieveLevelIndex(index: Int){
+    func recieveLaserIndex(index: Int){
         print(index)
         
         if(!unlockedLasers[index]){
@@ -362,14 +366,17 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
         }
         let reloadIndexPathTable = IndexPath(row: 2, section: 0)
-        let cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as! LaserTableViewCell
+        let cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as? LaserTableViewCell
         let reloadIndexPathCollection = IndexPath(row: index, section: 0)
-        cell.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
+        cell?.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
         
         let reloadEquippedIndexPath = IndexPath(row: 1, section: 0)
-        let cell2 = welcomeTableView.cellForRow(at: reloadEquippedIndexPath) as! EquippedTableViewCell
-        cell2.initalize(animationStatus: false)
+        let cell2 = welcomeTableView.cellForRow(at: reloadEquippedIndexPath) as? EquippedTableViewCell
+        cell2?.initalize(animationStatus: false)
         
+    }
+    func recievePowerupIndex(index: Int) {
+        print(index)
     }
     
 }

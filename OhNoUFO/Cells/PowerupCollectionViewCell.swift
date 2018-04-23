@@ -18,8 +18,8 @@ class PowerupCollectionViewCell: UICollectionViewCell {
     var roundview: UIView?
     var lineview: UIView?
     var imageView: UIImageView?
-    var laser: Laser?
-    var delegate: LaserCellDelegate?
+    var powerup: Powerup?
+    var delegate: PowerupCellDelegate?
     
     var priceLabel: UILabel?
     var purchased: Bool?
@@ -27,7 +27,7 @@ class PowerupCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - lifecycle
-    func initalize(laser: Laser, delegate: LaserCellDelegate, purchased: Bool, unlocked: Bool){
+    func initalize(powerup: Powerup, delegate: PowerupCellDelegate, purchased: Bool, unlocked: Bool){
         self.delegate = delegate
         imageView?.image = nil
         imageView = nil
@@ -36,7 +36,7 @@ class PowerupCollectionViewCell: UICollectionViewCell {
         self.purchased = purchased
         self.unlocked = unlocked
         
-        self.laser = laser
+        self.powerup = powerup
         makeDetailView()
         
         if(unlocked){
@@ -60,7 +60,7 @@ class PowerupCollectionViewCell: UICollectionViewCell {
         priceLabel?.textAlignment = .center
         priceLabel?.textColor = .white
         if(!purchased!){
-            priceLabel?.text = String(laser!.cost)
+            priceLabel?.text = String(powerup!.cost)
         }else{
             priceLabel?.text = ""
         }
@@ -84,7 +84,7 @@ class PowerupCollectionViewCell: UICollectionViewCell {
     {
         print("tapped")
         let indexPath :IndexPath = (self.superview as! UICollectionView).indexPath(for: self)!
-        delegate?.recieveLevelIndex(index: indexPath.row)
+        delegate?.recievePowerupIndex(index: indexPath.row)
         print(indexPath.row)
     }
     
@@ -112,7 +112,7 @@ class PowerupCollectionViewCell: UICollectionViewCell {
     }
     func makeRetImageView(){
         if (imageView == nil) {
-            imageView = UIImageView(image: laser?.retImage)
+            imageView = UIImageView(image: powerup?.retImage)
             roundview?.addSubview(imageView!)
         }
         if(purchased)!{

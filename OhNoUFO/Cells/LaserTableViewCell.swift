@@ -99,7 +99,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let delegate = self.delegate {
             
-            delegate.recieveLevelIndex(index: indexPath.row)
+            delegate.recieveLaserIndex(index: indexPath.row)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
