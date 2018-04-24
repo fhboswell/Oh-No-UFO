@@ -32,11 +32,18 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var playerLazersController: PlayerLazersController? = nil
     var playerReady = false
     
+    var dataView: UIView?
+    var healthView: UIView?
+    var healthViewColor: UIView?
+    
+    
     var score = 0
     var enemiesDestroyed = 0
     var lasersFired = 0
     
     var scoreLabel: UILabel?
+    var waveLabel: UILabel?
+    
     var retView: UIImageView?
     var laser: Laser?
     
@@ -59,9 +66,17 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         addGestures()
         prepareLazerController()
         prepareEnemyController()
-        initScoreLabel()
+       
         initLaserReticle()
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        addDataView()
+        initScoreLabel()
+        initWaveLabel()
+        animateDataViewIn()
+        addHealthView()
+        animateHealthViewIn()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,6 +84,51 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         sceneView.session.pause()
     }
     
+    
+    //MARK: UIElements
+    
+    
+    func addDataView(){
+        if (dataView == nil){
+            dataView = UIView(frame: CGRect(x: 0, y: -200, width: self.view.frame.width, height: 80))
+            dataView?.backgroundColor = UIColor.clear
+            self.view.addSubview(dataView!)
+            let frameBottomImage = UIImage(named: "window_top_upside_down.png")
+            let frameBottomImageView = UIImageView(image: frameBottomImage!)
+            frameBottomImageView.frame = CGRect(x: 0, y: (self.dataView?.frame.height)!, width: self.view.frame.width, height: 80)
+            dataView?.addSubview(frameBottomImageView)
+        }
+    }
+    
+    func addHealthView(){
+        if (healthView == nil){
+            healthView = UIView(frame: CGRect(x: 0, y:self.view.frame.height + 200, width: self.view.frame.width, height: 80))
+            healthView?.backgroundColor = UIColor.clear
+            self.view.addSubview(healthView!)
+            healthViewColor = UIView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 40))
+            healthViewColor?.backgroundColor = UIColor.green
+            healthView?.addSubview(healthViewColor!)
+            let frameBottomImage = UIImage(named: "health.png")
+            let frameBottomImageView = UIImageView(image: frameBottomImage!)
+            frameBottomImageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
+            healthView?.addSubview(frameBottomImageView)
+        }
+    }
+    func animateDataViewIn(){
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            
+            self.dataView?.center.y = 40
+        }, completion: nil)
+    }
+    func animateHealthViewIn(){
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            
+            self.healthView!.center.y  -= 280
+        
+        }, completion: nil)
+    }
     
     
     //MARK: - Player Fire Control
@@ -126,14 +186,14 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     
     //MARK: - Root Scene reqs
     func configureLighting() {
-      //  sceneView.autoenablesDefaultLighting = true
-      //  sceneView.automaticallyUpdatesLighting = true
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
         
         
-        let ambientLightNode = SCNNode();
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light?.type = SCNLight.LightType.omni
-        sceneView.scene.rootNode.addChildNode(ambientLightNode)
+//        let ambientLightNode = SCNNode();
+//        ambientLightNode.light = SCNLight()
+//        ambientLightNode.light?.type = SCNLight.LightType.omni
+//        sceneView.scene.rootNode.addChildNode(ambientLightNode)
         
         
         
@@ -168,15 +228,28 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     func initScoreLabel(){
        
         if (scoreLabel == nil) {
-            scoreLabel = UILabel(frame: CGRect(x: 10, y: 50, width: 300, height: 30))
+            scoreLabel = UILabel(frame: CGRect(x: 7, y: 100, width: dataView!.frame.width, height: 30))
         }
         scoreLabel?.backgroundColor = .clear
-        scoreLabel?.textAlignment = NSTextAlignment.left
-        scoreLabel?.text = "Score: "
-        scoreLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 14)
+        scoreLabel?.textAlignment = NSTextAlignment.center
+        scoreLabel?.text = String(format: "%011d", 0)
+        scoreLabel?.font = UIFont(name: "neuropol", size: 22)
         scoreLabel?.textColor = UIColor.green
-        self.view.addSubview(scoreLabel!)
+        dataView?.addSubview(scoreLabel!)
     }
+    func initWaveLabel(){
+        
+        if (waveLabel == nil) {
+            waveLabel = UILabel(frame: CGRect(x: dataView!.frame.width - 70, y: 40, width: 70, height: 30))
+        }
+        waveLabel?.backgroundColor = .clear
+        waveLabel?.textAlignment = NSTextAlignment.center
+        waveLabel?.text = String(describing: gameController!.currentWave)
+        waveLabel?.font = UIFont(name: "neuropol", size: 30)
+        waveLabel?.textColor = UIColor.green
+        dataView?.addSubview(waveLabel!)
+    }
+    
     
     func initLaserReticle(){
         
@@ -193,9 +266,14 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         retView.alpha = 0.3
         self.view.insertSubview(retView, at: 1)
     }
+    func updateWaveLabel(){
+        DispatchQueue.main.async {
+            self.waveLabel?.text = String(describing: self.gameController!.currentWave)
+        }
+    }
     func adjustScore(amount: Int){
         DispatchQueue.main.async {
-            self.scoreLabel?.text = "Score: " +  String(PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
+            self.scoreLabel?.text = String(format: "%011d", PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
         }
     }
 }
@@ -249,6 +327,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         gameController!.hitEnemyWithNode(enemy!)
         adjustScore(amount: 100)
         enemiesDestroyed += 1
+        updateWaveLabel()
     }
    
    
@@ -256,12 +335,41 @@ extension GameViewController : SCNPhysicsContactDelegate {
     func hitPlayer(){
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
             
-            PlayerAttributes.sharedPlayerAttributes.updateLaserEnemyCount(lasersCount: lasersFired, enemyCount: enemiesDestroyed)
+            PlayerAttributes.sharedPlayerAttributes.updateLaserEnemyCount(lasersCount: lasersFired, enemyCount: enemiesDestroyed, wave: self.gameController!.currentWave)
             lasersFired = 0
             enemiesDestroyed = 0
             
-            self.dismiss(animated: true, completion: nil)
+            self.sceneView.scene.isPaused = true
+            
+            DispatchQueue.main.async(){
+                let gameoverLabel = UILabel(frame: CGRect(x: 1, y: self.view.frame.height/3, width: self.dataView!.frame.width, height: 50))
+                
+                gameoverLabel.backgroundColor = .clear
+                gameoverLabel.textAlignment = NSTextAlignment.center
+                gameoverLabel.text = "Game Over"
+                gameoverLabel.font = UIFont(name: "neuropol", size: 40)
+                gameoverLabel.textColor = UIColor.white
+                self.view?.addSubview(gameoverLabel)
+            }
+           
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            
         }
+        
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
+                //DispatchQueue.main.async {
+                self.healthViewColor!.frame = CGRect(x: 0, y: 40, width: (self.view.frame.width / 3 )*CGFloat(PlayerAttributes.sharedPlayerAttributes.getLives()), height: 40)
+               // }
+                
+            }, completion: nil)
+        }
+        //updateLivesView(PlayerAttributes.sharedPlayerAttributes.getLives())
        
     }
 }

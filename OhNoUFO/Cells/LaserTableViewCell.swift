@@ -47,14 +47,14 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
         self.laserCollectionView.center.x = 700
         self.titleLabel?.center.x = 700
         
-        UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x = 20 + self.contentView.frame.width / 2
             self.laserCollectionView.center.x = self.contentView.frame.width / 2
             //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
     @objc func animateCellOut(){
-        UIView.animate(withDuration: 1, delay: 0.4, options: [.curveEaseOut], animations: {
+        UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
             self.titleLabel?.center.x = 700
             self.laserCollectionView.center.x = 700
             //self.contentView.layoutIfNeeded()
@@ -99,7 +99,7 @@ class LaserTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let delegate = self.delegate {
             
-            delegate.recieveLevelIndex(index: indexPath.row)
+            delegate.recieveLaserIndex(index: indexPath.row)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

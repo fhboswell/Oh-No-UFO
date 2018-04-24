@@ -2,250 +2,111 @@
 //  PowerupTableViewCell.swift
 //  OhNoUFO
 //
-//  Created by Henry Boswell on 4/17/18.
+//  Created by Henry Boswell on 4/23/18.
 //  Copyright © 2018 Henry Boswell. All rights reserved.
 //
 
+
+
 import Foundation
+
 import UIKit
 
-class PowerupTableViewCell: UITableViewCell {
+class PowerupTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
-    //MARK: - Instance Varriables
+    
+    //MARK: - instance varriables
+    var delegate: PowerupCellDelegate?
+    var laserList: [Laser]?
+    @IBOutlet var powerupCollectionView: UICollectionView!
     var titleLabel: UILabel?
-    var scoreLabel: UILabel?
-    var enemyLabel: UILabel?
-    var lazersLabel: UILabel?
-    var acuracyLabel: UILabel?
-    
-    var bonusLabel: UILabel?
-    var pepTalkLabel: UILabel?
-    
-    var scoreStarImageView: UIImageView?
-    var enemyStarImageView: UIImageView?
-    var lasersStarImageView: UIImageView?
-    var accuracyStarImageView: UIImageView?
     
     
-    var roundView: UIView?
-    
-    //MARK: - init
-    func initalize(animationStatus: Bool){
+    //MARK: - Lifecycle
+    func initalize(laserList: [Laser], delegate: PowerupCellDelegate, animationStatus: Bool){
         
-        makeRoundView()
+        
+        self.delegate = delegate
+        self.laserList = laserList
+        self.powerupCollectionView.reloadData()
+        powerupCollectionView.contentInset = UIEdgeInsetsMake(0, 20, 0, 0);
+        self.powerupCollectionView.delegate = self
+        self.powerupCollectionView.dataSource = self
+        self.contentView.backgroundColor = UIColor.clear
+        self.powerupCollectionView.backgroundColor = UIColor.clear
         makeTitle()
-        makeScoreLabel()
-        makeEnemysLabel()
-        makeLasersLabel()
-        makeAcuracyLabel()
-        makeBonusLabel()
-        makePepTalkLabel()
         
-        makeScoreStarImageView()
-        makeEnemyStarImageView()
-        makeLasersStarImageView()
-        makeAccuracyStarImageView()
-        
+        // Place it on the left of the view with the width = the bounds'width of the view.
+        // animate it from the left to the right
         if(animationStatus){
             animateCellIn()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(self.animateCellOut), name: NSNotification.Name(rawValue: "AnimateOut"), object: nil)
     }
     
-    //MARK:- animation
+    //MARK: - Animation
     func animateCellIn(){
-        roundView?.center.x = 750
+        self.powerupCollectionView.center.x = 700
+        self.titleLabel?.center.x = 700
+        
         UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
-           
-            self.roundView?.center.x = self.contentView.frame.width / 2
+            self.titleLabel?.center.x = 20 + self.contentView.frame.width / 2
+            self.powerupCollectionView.center.x = self.contentView.frame.width / 2
+            //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
     @objc func animateCellOut(){
         UIView.animate(withDuration: 1, delay: 0.2, options: [.curveEaseOut], animations: {
-            self.roundView?.center.x = 750
+            self.titleLabel?.center.x = 700
+            self.powerupCollectionView.center.x = 700
+            //self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
     
-    //MARK: - Supporting UI
-    func makeRoundView(){
-
-        if (roundView == nil) {
-            makeWindowImage()
-           
-        }
-        self.roundView?.layer.borderWidth = 0
-        self.roundView?.layer.borderColor = UIColor(hex: 0xe6e6e6).cgColor
-        roundView?.layer.cornerRadius = 8.0
-        roundView?.clipsToBounds = true
-
-        self.contentView.addSubview(roundView!)
-      
-    }
     
-    func makeWindowImage(){
-        roundView = UIView(frame: CGRect(x: 550, y: 0, width: self.contentView.frame.width - 10, height: self.contentView.frame.height))
-        let frameTopImage = UIImage(named: "window_top.png")
-        let frameTopeImageView = UIImageView(image: frameTopImage!)
-        frameTopeImageView.frame = CGRect(x: 25, y: -20, width: self.contentView.frame.width - 45, height: 80)
-        roundView?.addSubview(frameTopeImageView)
-        let frameBottomImage = UIImage(named: "window_bottom.png")
-        let frameBottomImageView = UIImageView(image: frameBottomImage!)
-        frameBottomImageView.frame = CGRect(x: 0, y: self.contentView.frame.height - 80, width: self.contentView.frame.width - 25, height: 40)
-        roundView?.addSubview(frameBottomImageView)
-    }
     
-    //MARK: test UI
+    
+    //MARK: - Text
     func makeTitle(){
         if titleLabel == nil {
-            titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.contentView.frame.width, height: 50))
-            roundView?.addSubview(titleLabel!)
+            titleLabel = UILabel(frame: CGRect(x: 550, y: 10, width: self.contentView.frame.width-20, height: 30))
         }
         
         titleLabel?.backgroundColor = .clear
-        titleLabel?.textAlignment = .center
+        titleLabel?.textAlignment = .left
         titleLabel?.textColor = .white
-        titleLabel?.text = "Report"
         titleLabel?.font = UIFont(name: "neuropol", size: 20)
+        titleLabel?.text = "Powerups"
+        titleLabel?.layer.shadowColor = UIColor.gray.cgColor
+        titleLabel?.layer.shadowRadius = 3.0
+        titleLabel?.layer.shadowOpacity = 1.0
+        titleLabel?.layer.shadowOffset = CGSize(width: 4, height: 4)
+        titleLabel?.layer.masksToBounds = false
         
+        self.contentView.addSubview(titleLabel!)
     }
     
-    func makeScoreLabel(){
-        if scoreLabel == nil {
-            scoreLabel = UILabel(frame: CGRect(x: 40, y: 40, width: self.contentView.frame.width, height: 50))
-            roundView?.addSubview(scoreLabel!)
-        }
-        
-        scoreLabel?.backgroundColor = .clear
-        scoreLabel?.textAlignment = .left
-        scoreLabel?.textColor = .white
-        scoreLabel?.text = "Score \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundScore())
-        scoreLabel?.font = UIFont(name: "neuropol", size: 20)
-        
-    }
-    func makeEnemysLabel(){
-        if enemyLabel == nil {
-            enemyLabel = UILabel(frame: CGRect(x: 40, y: 70, width: self.contentView.frame.width, height: 50))
-            roundView?.addSubview(enemyLabel!)
-        }
-        
-        enemyLabel?.backgroundColor = .clear
-        enemyLabel?.textAlignment = .left
-        enemyLabel?.textColor = .white
-        enemyLabel?.text = "UFOs \t\t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundEnemiesDestroyed())
-        enemyLabel?.font = UIFont(name: "neuropol", size: 20)
-        
-    }
-    func makeLasersLabel(){
-        if lazersLabel == nil {
-            lazersLabel = UILabel(frame: CGRect(x: 40, y: 100, width: self.contentView.frame.width, height: 50))
-            roundView?.addSubview(lazersLabel!)
-        }
-        
-        lazersLabel?.backgroundColor = .clear
-        lazersLabel?.textAlignment = .left
-        lazersLabel?.textColor = .white
-        lazersLabel?.text = "Lasers \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundLasersFired())
-        lazersLabel?.font = UIFont(name: "neuropol", size: 20)
-        
+    //MARK: - Collection view
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return powerupList.count
+        //return 5
     }
     
-    func makeAcuracyLabel(){
-        if acuracyLabel == nil {
-            acuracyLabel = UILabel(frame: CGRect(x: 40, y: 130, width: self.contentView.frame.width, height: 50))
-            roundView?.addSubview(acuracyLabel!)
-        }
-        
-        acuracyLabel?.backgroundColor = .clear
-        acuracyLabel?.textAlignment = .left
-        acuracyLabel?.textColor = .white
-        
-        acuracyLabel?.text = "Accu \t\t" + String(format: "%.2f", PlayerAttributes.sharedPlayerAttributes.getLastRoundAccuracy())
-        acuracyLabel?.font = UIFont(name: "neuropol", size: 20)
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = powerupCollectionView.dequeueReusableCell(withReuseIdentifier: "Powerup", for: indexPath) as! PowerupCollectionViewCell
+        cell.initalize(powerup: powerupList[indexPath.row], delegate: delegate!, purchased: purchasedPowerups[indexPath.row], unlocked: unlockedPowerups[indexPath.row])
+        return cell
     }
     
-    func makeBonusLabel(){
-        if bonusLabel == nil {
-            bonusLabel = UILabel(frame: CGRect(x: 40, y: 160, width: self.contentView.frame.width, height: 50))
-            roundView?.addSubview(bonusLabel!)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let delegate = self.delegate {
+            
+            delegate.recievePowerupIndex(index: indexPath.row)
         }
-        
-        bonusLabel?.backgroundColor = .clear
-        bonusLabel?.textAlignment = .left
-        bonusLabel?.textColor = .white
-        
-        var stars = PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getLaserStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getScoreStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getEnemyStars()
-        bonusLabel?.text = "Stars \t\t" + String(stars)
-        bonusLabel?.font = UIFont(name: "neuropol", size: 20)
-        
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 150, height: 150)
     }
     
-    func makePepTalkLabel(){
-        if pepTalkLabel == nil {
-            pepTalkLabel = UILabel(frame: CGRect(x: 0, y: 220, width: self.contentView.frame.width , height: 50))
-            roundView?.addSubview(pepTalkLabel!)
-        }
-        
-        pepTalkLabel?.backgroundColor = .clear
-        pepTalkLabel?.textAlignment = .center
-        pepTalkLabel?.textColor = .white
-        
-        var stars = PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getLaserStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getScoreStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getEnemyStars()
-        pepTalkLabel?.text = pepTalk[stars]
-        pepTalkLabel?.font = UIFont(name: "neuropol", size: 50)
-        
-    }
     
-    func makeScoreStarImageView(){
-        if scoreStarImageView == nil {
-            scoreStarImageView = UIImageView()
-            roundView?.addSubview(scoreStarImageView!)
-        }
-        scoreStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 50, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getScoreStars()) + ".png"
-        let image = UIImage(named: imageString)
-        scoreStarImageView?.image = image
-       
-    }
-    func makeEnemyStarImageView(){
-        if enemyStarImageView == nil {
-            enemyStarImageView = UIImageView()
-            roundView?.addSubview(enemyStarImageView!)
-        }
-        enemyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 80, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getEnemyStars()) + ".png"
-        let image = UIImage(named: imageString)
-        enemyStarImageView?.image = image
-        
-    }
-    func makeLasersStarImageView(){
-        if lasersStarImageView == nil {
-            lasersStarImageView = UIImageView()
-            roundView?.addSubview(lasersStarImageView!)
-        }
-        lasersStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 110, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getLaserStars()) + ".png"
-        let image = UIImage(named: imageString)
-        lasersStarImageView?.image = image
-        
-    }
-    
-    func makeAccuracyStarImageView(){
-        if accuracyStarImageView == nil {
-            accuracyStarImageView = UIImageView()
-            roundView?.addSubview(accuracyStarImageView!)
-        }
-        accuracyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 140, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()) + ".png"
-        let image = UIImage(named: imageString)
-        accuracyStarImageView?.image = image
-        
-    }
-
 }

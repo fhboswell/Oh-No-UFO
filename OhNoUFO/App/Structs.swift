@@ -14,6 +14,10 @@ struct Laser {
     var cost: String
     var retImage: UIImage
 }
+struct Powerup {
+    var cost: String
+    var retImage: UIImage
+}
 
 struct Wave{
     public var enemyParameters : [EnemyInstantiationParameters]

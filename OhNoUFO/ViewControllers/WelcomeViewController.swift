@@ -13,7 +13,11 @@ import ARKit
 import SceneKit
 import CoreGraphics
 
-class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LaserCellDelegate {
+class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LaserCellDelegate, PowerupCellDelegate {
+ 
+    
+    
+    
    
     //MARK: Instance Varriables
     @IBOutlet var welcomeTableView: UITableView!
@@ -52,7 +56,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         welcomeTableView.reloadData()
         
         scene?.setTitleNode()
-        
+        setTotalScoreWithZeros()
         let firstCellPath = IndexPath(row: 0, section: 0)
         welcomeTableView.scrollToRow(at: firstCellPath, at: .top, animated: false)
     }
@@ -62,6 +66,10 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         scene?.moveIn()
         UIApplication.shared.statusBarStyle = .lightContent
         animateScoreIn()
+        print("x")
+        print(x_style)
+        print("678")
+        print(phone678_style)
         
         
     }
@@ -151,7 +159,12 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addTouchView(){
-        let touchview = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100))
+         var touchview = UIView()
+        if(x_style){
+            touchview.frame = CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100)
+        }else{
+             touchview.frame =  CGRect(x: 0, y: self.view.frame.height/2 - 75, width: self.view.frame.width, height: 100)
+        }
         touchview.backgroundColor = UIColor.clear
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play))
@@ -162,6 +175,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func addDataView(){
         if (dataView == nil){
+            
             dataView = UIView(frame: CGRect(x: 500, y: 150, width: self.view.frame.width, height: 80))
             dataView?.backgroundColor = UIColor.clear
             self.view.addSubview(dataView!)
@@ -179,7 +193,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func addPointsView(){
         if( pointsView == nil){
-            pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 20, width: self.view.frame.width, height: 100))
+            if(x_style){
+                pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 - 20, width: self.view.frame.width, height: 100))
+            }else{
+                pointsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height/2 + 30, width: self.view.frame.width, height: 100))
+            }
         }
         pointsView?.backgroundColor = UIColor.clear
         
@@ -252,7 +270,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -265,12 +283,28 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
 //
 //        }else
         if(indexPath.row == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Powerup", for: indexPath) as! PowerupTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Report", for: indexPath) as! ReportTableViewCell
             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.selectionStyle = .none
             return cell
         }else if(indexPath.row == 1){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Equipped", for: indexPath) as! EquippedTableViewCell
+             cell.initalize(animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.selectionStyle = .none
+            return cell
+            
+            
+        }else if(indexPath.row == 2){
             let cell = tableView.dequeueReusableCell(withIdentifier: "LaserSelect", for: indexPath) as! LaserTableViewCell
+            cell.initalize(laserList: laserList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.selectionStyle = .none
+            return cell
+            
+            
+        }else if(indexPath.row == 3){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PowerupSelect", for: indexPath) as! PowerupTableViewCell
             cell.initalize(laserList: laserList, delegate: self, animationStatus: getAnimationStatus(indexPath: indexPath))
             cell.contentView.backgroundColor = UIColor.clear
             cell.selectionStyle = .none
@@ -303,11 +337,21 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 350
+            if(x_style){
+                return 350
+            }
+            if(phone678_style){
+                return 250
+            }
+            
             
         }else if(indexPath.row == 1){
             return 200
         }else if(indexPath.row == 2){
+            return 200
+            
+            
+        }else if(indexPath.row == 3){
             return 200
             
             
@@ -321,7 +365,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     //MARK: - protocol conform
-    func recieveLevelIndex(index: Int){
+    func recieveLaserIndex(index: Int){
         print(index)
         
         if(!unlockedLasers[index]){
@@ -341,12 +385,18 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if(purchasedLasers[index]){
             PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
         }
-        let reloadIndexPathTable = IndexPath(row: 1, section: 0)
-        let cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as! LaserTableViewCell
+        let reloadIndexPathTable = IndexPath(row: 2, section: 0)
+        let cell = welcomeTableView.cellForRow(at: reloadIndexPathTable) as? LaserTableViewCell
         let reloadIndexPathCollection = IndexPath(row: index, section: 0)
-        cell.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
+        cell?.laserCollectionView.reloadItems(at: [reloadIndexPathCollection])
         
+        let reloadEquippedIndexPath = IndexPath(row: 1, section: 0)
+        let cell2 = welcomeTableView.cellForRow(at: reloadEquippedIndexPath) as? EquippedTableViewCell
+        cell2?.initalize(animationStatus: false)
         
+    }
+    func recievePowerupIndex(index: Int) {
+        print(index)
     }
     
 }
