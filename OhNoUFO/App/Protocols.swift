@@ -20,5 +20,8 @@ protocol PlayerLocationAccessDelegate {
 }
 
 protocol LaserCellDelegate {
-    func recieveLevelIndex(index: Int)
+    func recieveLaserIndex(index: Int)
+}
+protocol PowerupCellDelegate {
+    func recievePowerupIndex(index: Int)
 }

@@ -97,6 +97,15 @@ class Enemy{
         pos = enemyNode.convertPosition(position, to: nil)
         dir = (pov.position) - pos
         
+        
+        
+        //This stops enemies shooting from behind
+        let zeroPosition = SCNVector3Make(0, 0, 0)
+        let zeroPositionEnemyRel = enemyNode.convertPosition(position, to: nil)
+        if(zeroPositionEnemyRel.z > 0){
+            return
+        }
+        
         let sphereGeometry = SCNSphere(radius: 0.01)
         let sphereMaterial = SCNMaterial()
         sphereMaterial.diffuse.contents = UIColor.clear

@@ -1,15 +1,16 @@
 //
-//  LevelCollectionViewCell.swift
+//  PowerupCollectionViewCell.swift
 //  OhNoUFO
 //
-//  Created by Henry Boswell on 3/19/18.
+//  Created by Henry Boswell on 4/23/18.
 //  Copyright © 2018 Henry Boswell. All rights reserved.
 //
 
 
+
 import UIKit
 
-class LaserCollectionViewCell : UICollectionViewCell {
+class PowerupCollectionViewCell: UICollectionViewCell {
     
     
     //MARK: - instance varriables
@@ -17,16 +18,16 @@ class LaserCollectionViewCell : UICollectionViewCell {
     var roundview: UIView?
     var lineview: UIView?
     var imageView: UIImageView?
-    var laser: Laser?
-    var delegate: LaserCellDelegate?
+    var powerup: Powerup?
+    var delegate: PowerupCellDelegate?
     
     var priceLabel: UILabel?
     var purchased: Bool?
     var unlocked: Bool?
     
-
+    
     //MARK: - lifecycle
-    func initalize(laser: Laser, delegate: LaserCellDelegate, purchased: Bool, unlocked: Bool){
+    func initalize(powerup: Powerup, delegate: PowerupCellDelegate, purchased: Bool, unlocked: Bool){
         self.delegate = delegate
         imageView?.image = nil
         imageView = nil
@@ -35,7 +36,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
         self.purchased = purchased
         self.unlocked = unlocked
         
-        self.laser = laser
+        self.powerup = powerup
         makeDetailView()
         
         if(unlocked){
@@ -59,7 +60,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
         priceLabel?.textAlignment = .center
         priceLabel?.textColor = .white
         if(!purchased!){
-            priceLabel?.text = String(laser!.cost)
+            priceLabel?.text = String(powerup!.cost)
         }else{
             priceLabel?.text = ""
         }
@@ -83,7 +84,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
     {
         print("tapped")
         let indexPath :IndexPath = (self.superview as! UICollectionView).indexPath(for: self)!
-        delegate?.recieveLaserIndex(index: indexPath.row)
+        delegate?.recievePowerupIndex(index: indexPath.row)
         print(indexPath.row)
     }
     
@@ -91,7 +92,7 @@ class LaserCollectionViewCell : UICollectionViewCell {
     {
         print("longpressed")
     }
-
+    
     //MARK: UI elemaents
     func makeDetailView(){
         if (roundview == nil) {
@@ -105,24 +106,24 @@ class LaserCollectionViewCell : UICollectionViewCell {
         roundview?.layer.cornerRadius = 8.0
         roundview?.clipsToBounds = true
         roundview?.backgroundColor = UIColor.clear
-       
-       
+        
+        
         self.contentView.addSubview(roundview!)
     }
     func makeRetImageView(){
         if (imageView == nil) {
-            imageView = UIImageView(image: laser?.retImage)
-             roundview?.addSubview(imageView!)
+            imageView = UIImageView(image: powerup?.retImage)
+            roundview?.addSubview(imageView!)
         }
         if(purchased)!{
             imageView?.frame = CGRect(x: 5, y: 5, width: 120, height: 120)
             imageView?.alpha = 1
         }else{
-            imageView?.frame = CGRect(x: 15, y: 20, width: 100, height: 100)
-            imageView?.alpha = 0.3
+            imageView?.frame = CGRect(x: 20, y: 30, width: 80, height: 80)
+            imageView?.alpha = 1
         }
         
-       
+        
     }
     func makeLockedView(){
         if (imageView == nil) {
