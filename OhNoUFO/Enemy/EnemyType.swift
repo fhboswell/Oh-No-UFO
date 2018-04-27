@@ -12,6 +12,8 @@ import SceneKit
 struct EnemyType{
     var resourceName : String
     
+    var scale: SCNVector3?
+    
     var controlNodeLocation : SCNVector3?
     var offsetInControlNode : SCNVector3?
     
@@ -22,16 +24,20 @@ struct EnemyType{
         return generateEnemyNodeAction()
     }
     
+    
+    
     private var generateControlNodeAction : () -> SCNAction?
     private var generateEnemyNodeAction : () -> SCNAction?
 
     init(_ resourceName : String,
+         _ scale : SCNVector3?,
          _ controlNodeLocation : SCNVector3?,
          _ offsetInControlNode : SCNVector3?,
          _ generateControlNodeAction : @escaping () -> SCNAction?,
          _ generateEnemyNodeAction : @escaping () -> SCNAction?){
         
         self.resourceName = resourceName
+        self.scale = scale
         self.controlNodeLocation = controlNodeLocation
         self.offsetInControlNode = offsetInControlNode
         self.generateControlNodeAction = generateControlNodeAction
