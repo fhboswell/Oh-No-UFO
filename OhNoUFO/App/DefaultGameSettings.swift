@@ -104,7 +104,7 @@ class DefaultGameSettings{
         var closureToGenerateControlAction7 = { () -> SCNAction in //name these with human names "parade action"
             var random = arc4random_uniform(200)
             var interval = Double(random)/100.0
-            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.1), z: 0, duration: 5)
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.05), z: 0, duration: 5)
             moveAction.timingMode = .easeInEaseOut
             let waitAction = SCNAction.wait(duration: interval)
             return SCNAction.group([waitAction,moveAction])
@@ -112,7 +112,7 @@ class DefaultGameSettings{
         var closureToGenerateControlAction8 = { () -> SCNAction in //name these with human names "parade action left"
             let random = arc4random_uniform(200)
             let interval = Double(random)/100.0
-            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.1), z: 0, duration: 5)
+            let moveAction = SCNAction.rotateBy(x: 0, y: -CGFloat(Double.pi - 0.05), z: 0, duration: 5)
             moveAction.timingMode = .easeInEaseOut
             let waitAction = SCNAction.wait(duration: interval)
             return SCNAction.group([waitAction, moveAction])
@@ -121,7 +121,7 @@ class DefaultGameSettings{
         var closureToGenerateControlAction9 = { () -> SCNAction in //name these with human names "parade action"
             var random = arc4random_uniform(200)
             var interval = Double(random)/100.0
-            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.3), z: 0, duration: 5)
+            let moveAction = SCNAction.rotateBy(x: 0, y: CGFloat(Double.pi - 0.2), z: 0, duration: 5)
             moveAction.timingMode = .easeInEaseOut
             let waitAction = SCNAction.wait(duration: interval)
             return SCNAction.group([waitAction,moveAction])
