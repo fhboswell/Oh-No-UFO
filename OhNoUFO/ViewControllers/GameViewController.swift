@@ -319,7 +319,9 @@ extension GameViewController : SCNPhysicsContactDelegate {
         systemNode.position = convertedPosition!
         sceneView.scene.rootNode.addChildNode(systemNode)
         if (bullet != nil){
+            bullet?.removeAllActions()
             bullet?.removeFromParentNode()
+            
         }
         if (enemy != nil){
             enemy?.removeFromParentNode()
