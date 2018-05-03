@@ -162,11 +162,11 @@ var purchasedPowerups: [Bool]{
 
 var unlockedPowerups: [Bool]{
     get {
-        return UserDefaults.standard.object(forKey: "unlockedLasers") as? [Bool] ?? [true,true,true,false,false,false,false]
+        return UserDefaults.standard.object(forKey: "unlockedpowerups") as? [Bool] ?? [true,true,true,false,false,false,false]
     }
     set {
         let defaults = UserDefaults.standard
-        defaults.set(newValue, forKey: "unlockedLasers")
+        defaults.set(newValue, forKey: "unlockedpowerups")
         defaults.synchronize()
     }
 };

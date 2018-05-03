@@ -363,6 +363,13 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     func buyLaser(index: Int){
         purchasedLasers[index] = true
     }
+    func buyPowerup(index: Int) -> Bool{
+        if( PlayerAttributes.sharedPlayerAttributes.getPowerups().count < 3){
+            PlayerAttributes.sharedPlayerAttributes.addPowerup(index: index)
+            return true
+        }
+        return false
+    }
     
     //MARK: - protocol conform
     func recieveLaserIndex(index: Int){
@@ -397,7 +404,24 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func recievePowerupIndex(index: Int) {
         print(index)
+        if(!unlockedPowerups[index]){
+            print("notunlocked")
+            animateInOutDataView()
+        }else if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(powerupList[index].cost)!){
+            if(buyPowerup(index: index)){
+                print("purchase sucessful")
+                let reloadEquippedIndexPath = IndexPath(row: 1, section: 0)
+                let cell2 = welcomeTableView.cellForRow(at: reloadEquippedIndexPath) as? EquippedTableViewCell
+                cell2?.makePowerUpImages()
+            }else{
+                print("cant buy")
+            }
+        }else{
+            print("not enout points")
+        }
+            
     }
+    
     
 }
 
