@@ -23,11 +23,11 @@ class PlayerAttributes{
     };
     private var powerups:[Int]{
         get {
-            return UserDefaults.standard.object(forKey: "powerups") as? [Int] ?? []
+            return UserDefaults.standard.object(forKey: "powerups2") as? [Int] ?? []
         }
         set {
             let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "powerups")
+            defaults.set(newValue, forKey: "powerups2")
             defaults.synchronize()
         }
     };
@@ -353,8 +353,12 @@ class PlayerAttributes{
         print(lastRoundEnemiesDestroyedStar)
         print(lastRoundScoreStar)
     }
-    
-    
+    public func getPowerups() -> [Int]{
+        return powerups
+    }
+    public func addPowerup(index: Int){
+        powerups.append(index)
+    }
     
     public func getLastRoundLasersFired() -> Int{
         return lastRoundLasersFired

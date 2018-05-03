@@ -36,6 +36,12 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var healthView: UIView?
     var healthViewColor: UIView?
     
+    var powerup1: UIImageView?
+    var powerup2: UIImageView?
+    var powerup3: UIImageView?
+    var powerupContainerView: UIView?
+    
+    
     
     var score = 0
     var enemiesDestroyed = 0
@@ -77,6 +83,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         animateDataViewIn()
         addHealthView()
         animateHealthViewIn()
+        makePowerUpImages()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -98,6 +105,65 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
             frameBottomImageView.frame = CGRect(x: 0, y: (self.dataView?.frame.height)!, width: self.view.frame.width, height: 80)
             dataView?.addSubview(frameBottomImageView)
         }
+    }
+    func makePowerUpImages(){
+        print("here powerup")
+        
+        powerup1?.image = nil
+        powerup2?.image = nil
+        powerup3?.image = nil
+        if (self.powerup1 != nil) {
+            self.powerup1 = nil
+            
+        }
+        if (self.powerup2 != nil) {
+            self.powerup2 = nil
+            
+        }
+        if (self.powerup3 != nil) {
+            self.powerup3 = nil
+            
+        }
+        
+        if powerupContainerView == nil {
+            powerupContainerView = UIView(frame: CGRect(x: 80, y: 0, width: self.view.frame.width, height: 120))
+            //powerupContainerView?.backgroundColor = UIColor.blue
+            dataView?.addSubview(powerupContainerView!)
+        }
+        var powerups = PlayerAttributes.sharedPlayerAttributes.getPowerups()
+        if(powerups.count > 0){
+            self.powerup1 = UIImageView(image: powerupList[powerups[0]].retImage)
+            self.powerup1?.tag = 1
+            self.powerup1?.frame = CGRect(x: 0, y: 30, width: 60, height: 60)
+            powerupContainerView?.addSubview(self.powerup1!)
+            powerup1?.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play(sender:)))
+            powerup1?.addGestureRecognizer(tapGestureRecognizer)
+        }
+        if(powerups.count > 1){
+            self.powerup2 = UIImageView(image: powerupList[powerups[1]].retImage)
+            self.powerup2?.tag = 2
+            self.powerup2?.frame = CGRect(x: 75, y: 30, width: 60, height: 60)
+            powerupContainerView?.addSubview(self.powerup2!)
+            powerup2?.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play(sender:)))
+            powerup2?.addGestureRecognizer(tapGestureRecognizer)
+        }
+        if(powerups.count > 2){
+            self.powerup3 = UIImageView(image: powerupList[powerups[2]].retImage)
+            self.powerup3?.tag = 3
+            self.powerup3?.frame = CGRect(x: 150, y: 30, width: 60, height: 60)
+            powerupContainerView?.addSubview(self.powerup3!)
+            powerup3?.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(play(sender:)))
+            powerup3?.addGestureRecognizer(tapGestureRecognizer)
+        }
+        
+      
+    }
+    @objc func play(sender:  UIGestureRecognizer){
+            let viewTapped = sender.view
+            print(viewTapped?.tag)
     }
     
     func addHealthView(){
@@ -319,7 +385,9 @@ extension GameViewController : SCNPhysicsContactDelegate {
         systemNode.position = convertedPosition!
         sceneView.scene.rootNode.addChildNode(systemNode)
         if (bullet != nil){
+            bullet?.removeAllActions()
             bullet?.removeFromParentNode()
+            
         }
         if (enemy != nil){
             enemy?.removeFromParentNode()
