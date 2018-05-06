@@ -163,7 +163,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addTouchView(){
-         var touchview = UIView()
+        var touchview = UIView()
         if(x_style){
             touchview.frame = CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100)
         }else{
