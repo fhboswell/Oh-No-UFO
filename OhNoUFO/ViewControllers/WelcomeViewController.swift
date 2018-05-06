@@ -27,6 +27,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     var animationStatus:[Bool] = [false, false,false,false,false]
 
     var totalScoreLabel: UILabel?
+     var dataTitle: UILabel?
+    var dataText: UILabel?
     var pointsView: UIView?
     
     var dataView: UIView?
@@ -121,8 +123,10 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     //MARK: - Data view animation control{
-    func animateInOutDataView(){
+    func animateInOutDataView(title: String, text: String){
         if(canAnimateDataView){
+            dataText?.text = text
+            dataTitle?.text = title
             canAnimateDataView = false
             dataView?.center.x = 550
             UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
@@ -159,7 +163,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addTouchView(){
-         var touchview = UIView()
+        var touchview = UIView()
         if(x_style){
             touchview.frame = CGRect(x: 0, y: self.view.frame.height/2 - 150, width: self.view.frame.width, height: 100)
         }else{
@@ -188,6 +192,26 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             let frameBottomImageView = UIImageView(image: frameBottomImage!)
             frameBottomImageView.frame = CGRect(x: 0, y: (self.dataView?.frame.height)!, width: self.view.frame.width - 25, height: 40)
             dataView?.addSubview(frameBottomImageView)
+            
+        }
+        if( dataTitle == nil){
+            dataTitle = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+            dataView!.addSubview(self.dataTitle!)
+            dataTitle?.textAlignment = .center
+            dataTitle?.text = "kjabdkladhksldhskdjh"
+            dataTitle?.font = UIFont(name: "neuropol", size: 20)
+            dataTitle?.textColor = .white
+            print("making labels properly\n\nproper\n")
+        }
+        if( dataText == nil){
+            dataText?.backgroundColor = UIColor.green
+            dataText = UILabel(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 50))
+            dataView?.addSubview(self.dataText!)
+            dataText?.textAlignment = .center
+            dataText?.text = "kjabdkladhksldhskdjh"
+            dataText?.font = UIFont(name: "neuropol", size: 20)
+            dataText?.textColor = .white
+            print("making labels properly\n\nproper\n")
         }
     }
     
@@ -362,6 +386,15 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func buyLaser(index: Int){
         purchasedLasers[index] = true
+        PlayerAttributes.sharedPlayerAttributes.reduceScore(price: Int(laserList[index].cost)!)
+    }
+    func buyPowerup(index: Int) -> Bool{
+        if( PlayerAttributes.sharedPlayerAttributes.getPowerups().count < 3){
+            PlayerAttributes.sharedPlayerAttributes.addPowerup(index: index)
+            PlayerAttributes.sharedPlayerAttributes.reduceScore(price: Int(powerupList[index].cost)!)
+            return true
+        }
+        return false
     }
     
     //MARK: - protocol conform
@@ -370,17 +403,20 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if(!unlockedLasers[index]){
             print("notunlocked")
-            animateInOutDataView()
+            animateInOutDataView(title: "Lasers", text: "Laser not unlocked")
         }else if(!purchasedLasers[index]){
             if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(laserList[index].cost)!){
                 buyLaser(index: index)
                 print("purchase sucessful")
+                animateInOutDataView(title: "Lasers", text: "Laser Selected")
             }else{
                 print("not enout points")
+                animateInOutDataView(title: "Lasers", text: "Not Enough Points")
             }
             
         }else if(PlayerAttributes.sharedPlayerAttributes.getLaserIndex() == index){
             print("laser already equipped")
+            animateInOutDataView(title: "Lasers", text: "Already Equipped")
             
         }else if(purchasedLasers[index]){
             PlayerAttributes.sharedPlayerAttributes.setLaser(laser: index)
@@ -397,7 +433,27 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func recievePowerupIndex(index: Int) {
         print(index)
+        if(!unlockedPowerups[index]){
+            print("notunlocked")
+            animateInOutDataView(title: "Powerups", text: "Powerup not unlocked")
+        }else if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(powerupList[index].cost)!){
+            if(buyPowerup(index: index)){
+                print("purchase sucessful")
+                animateInOutDataView(title: "Powerups", text: "Purchase Sucessful")
+                let reloadEquippedIndexPath = IndexPath(row: 1, section: 0)
+                let cell2 = welcomeTableView.cellForRow(at: reloadEquippedIndexPath) as? EquippedTableViewCell
+                cell2?.makePowerUpImages()
+            }else{
+                print("cant buy")
+                animateInOutDataView(title: "Powerups", text: "All Slots Full")
+            }
+        }else{
+            print("not enout points")
+            animateInOutDataView(title: "Powerups", text: "Not Enough Points")
+        }
+            
     }
+    
     
 }
 

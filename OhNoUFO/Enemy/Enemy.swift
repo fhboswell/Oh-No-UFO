@@ -43,7 +43,9 @@ class Enemy{
         enemyNode.position = offsetInControlNode!
         
         //some of these folowing should probably be broken out into EnemyType or discerned from the Scene itself
-        enemyNode.scale = SCNVector3(0.2, 0.2, 0.2)
+        enemyNode.scale  = enemyType.scale!
+        
+            //SCNVector3(0.2, 0.2, 0.2)
         enemyNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
         let sphereGeometry = SCNSphere(radius: 0.2)
