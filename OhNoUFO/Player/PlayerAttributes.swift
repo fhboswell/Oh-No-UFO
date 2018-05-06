@@ -246,7 +246,9 @@ class PlayerAttributes{
     
     private var immunity = false
     
-    
+    public func reduceScore(price: Int){
+        score = score - price
+    }
     
     public func addToCurrentGameScore(amount: Int) -> Int{
         currentGameScore = currentGameScore + amount
