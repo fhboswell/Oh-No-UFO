@@ -18,7 +18,7 @@ class ReportTableViewCell: UITableViewCell {
     var lazersLabel: UILabel?
     var acuracyLabel: UILabel?
     
-    var bonusLabel: UILabel?
+    var maxLabel: UILabel?
     var pepTalkLabel: UILabel?
     
     var scoreStarImageView: UIImageView?
@@ -38,7 +38,7 @@ class ReportTableViewCell: UITableViewCell {
         makeEnemysLabel()
         makeLasersLabel()
         makeAcuracyLabel()
-        makeBonusLabel()
+        makeWaveLabel()
         if(x_style){
             makePepTalkLabel()
         }
@@ -121,7 +121,7 @@ class ReportTableViewCell: UITableViewCell {
         scoreLabel?.backgroundColor = .clear
         scoreLabel?.textAlignment = .left
         scoreLabel?.textColor = .white
-        scoreLabel?.text = "Score \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundScore())
+        scoreLabel?.text = "Score \t" + String(RoundReport.lastRoundReport?.roundStatistics.score ?? 0)
         scoreLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
@@ -134,7 +134,7 @@ class ReportTableViewCell: UITableViewCell {
         enemyLabel?.backgroundColor = .clear
         enemyLabel?.textAlignment = .left
         enemyLabel?.textColor = .white
-        enemyLabel?.text = "UFOs \t\t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundEnemiesDestroyed())
+        enemyLabel?.text = "UFOs \t\t" + String(RoundReport.lastRoundReport?.roundStatistics.enemiesDestroyed ?? 0)
         enemyLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
@@ -147,7 +147,7 @@ class ReportTableViewCell: UITableViewCell {
         lazersLabel?.backgroundColor = .clear
         lazersLabel?.textAlignment = .left
         lazersLabel?.textColor = .white
-        lazersLabel?.text = "Lasers \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastRoundLasersFired())
+        lazersLabel?.text = "Lasers \t" + String(RoundReport.lastRoundReport?.roundStatistics.lasersFired ?? 0)
         lazersLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
@@ -162,32 +162,32 @@ class ReportTableViewCell: UITableViewCell {
         acuracyLabel?.textAlignment = .left
         acuracyLabel?.textColor = .white
         
-        acuracyLabel?.text = "Accu \t\t" + String(format: "%.2f", PlayerAttributes.sharedPlayerAttributes.getLastRoundAccuracy())
+        acuracyLabel?.text = "Accu \t\t" + String(format: "%.2f", RoundReport.lastRoundReport?.roundStatistics.accuracy ?? 0)
         acuracyLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
     
-    func makeBonusLabel(){
-        if bonusLabel == nil {
+    func makeWaveLabel(){
+        if maxLabel == nil {
             if(phone678_style){
-                bonusLabel = UILabel(frame: CGRect(x: 40, y: 160, width: self.contentView.frame.width - 80, height: 50))
+                maxLabel = UILabel(frame: CGRect(x: 40, y: 160, width: self.contentView.frame.width - 80, height: 50))
             }
             else{
-                bonusLabel = UILabel(frame: CGRect(x: 40, y: 170, width: self.contentView.frame.width - 80, height: 50))
+                maxLabel = UILabel(frame: CGRect(x: 40, y: 170, width: self.contentView.frame.width - 80, height: 50))
             }
             
-            roundView?.addSubview(bonusLabel!)
+            roundView?.addSubview(maxLabel!)
         }
         
-        bonusLabel?.backgroundColor = .clear
-        bonusLabel?.textAlignment = .center
-        bonusLabel?.textColor = .white
-        if(PlayerAttributes.sharedPlayerAttributes.getLastWave() > PlayerAttributes.sharedPlayerAttributes.getMaxWave()){
-            bonusLabel?.textColor = .red
+        maxLabel?.backgroundColor = .clear
+        maxLabel?.textAlignment = .center
+        maxLabel?.textColor = .white
+        if(RoundReport.lastRoundReport?.roundStatistics.wave ?? 0 > GlobalStatistics.sharedGlobalStatistics.maxWave){
+            maxLabel?.textColor = .red
         }
        
-        bonusLabel?.text = "Wave \t" + String(PlayerAttributes.sharedPlayerAttributes.getLastWave()) + "\t |\t  Max \t " + String(PlayerAttributes.sharedPlayerAttributes.getMaxWave())
-        bonusLabel?.font = UIFont(name: "neuropol", size: 20)
+        maxLabel?.text = "Wave \t" + String(RoundReport.lastRoundReport?.roundStatistics.wave ?? 0) + "\t |\t  Max \t " + String(GlobalStatistics.sharedGlobalStatistics.maxWave)
+        maxLabel?.font = UIFont(name: "neuropol", size: 20)
         
     }
     
@@ -201,11 +201,7 @@ class ReportTableViewCell: UITableViewCell {
         pepTalkLabel?.textAlignment = .center
         pepTalkLabel?.textColor = .white
         
-        var stars = PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getLaserStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getScoreStars()
-        stars += PlayerAttributes.sharedPlayerAttributes.getEnemyStars()
-        pepTalkLabel?.text = pepTalk[stars]
+        pepTalkLabel?.text = pepTalk[RoundReport.lastRoundReport?.totalStars ?? 0]
         pepTalkLabel?.font = UIFont(name: "neuropol", size: 50)
         
     }
@@ -216,7 +212,7 @@ class ReportTableViewCell: UITableViewCell {
             roundView?.addSubview(scoreStarImageView!)
         }
         scoreStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 50, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getScoreStars()) + ".png"
+        let imageString = String(RoundReport.lastRoundReport?.scoreStars ?? 0) + ".png"
         let image = UIImage(named: imageString)
         scoreStarImageView?.image = image
        
@@ -227,7 +223,7 @@ class ReportTableViewCell: UITableViewCell {
             roundView?.addSubview(enemyStarImageView!)
         }
         enemyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 80, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getEnemyStars()) + ".png"
+        let imageString = String(RoundReport.lastRoundReport?.enemiesDestroyedStars ?? 0) + ".png"
         let image = UIImage(named: imageString)
         enemyStarImageView?.image = image
         
@@ -238,7 +234,7 @@ class ReportTableViewCell: UITableViewCell {
             roundView?.addSubview(lasersStarImageView!)
         }
         lasersStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 110, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getLaserStars()) + ".png"
+        let imageString = String(RoundReport.lastRoundReport?.lasersFiredStars ?? 0) + ".png"
         let image = UIImage(named: imageString)
         lasersStarImageView?.image = image
         
@@ -250,7 +246,7 @@ class ReportTableViewCell: UITableViewCell {
             roundView?.addSubview(accuracyStarImageView!)
         }
         accuracyStarImageView?.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.width/3, y: 140, width: self.contentView.frame.width/4 , height: 30)
-        let imageString = String(PlayerAttributes.sharedPlayerAttributes.getAccuracyStars()) + ".png"
+        let imageString = String(RoundReport.lastRoundReport?.accuracyStars ?? 0) + ".png"
         let image = UIImage(named: imageString)
         accuracyStarImageView?.image = image
         
