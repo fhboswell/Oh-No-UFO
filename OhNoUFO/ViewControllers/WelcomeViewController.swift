@@ -247,7 +247,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func setTotalScoreWithZeros(){
-         totalScoreLabel?.text = String(format: "%010d", PlayerAttributes.sharedPlayerAttributes.getScore())
+         totalScoreLabel?.text = String(format: "%010d", GlobalStatistics.sharedGlobalStatistics.totalScore)
     }
     
     func setAnimationStatusTrue(){
@@ -284,7 +284,6 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     //MARK: - Game Setup Logic
     func prepareToPlay(){
         PlayerAttributes.sharedPlayerAttributes.resetLives()
-        PlayerAttributes.sharedPlayerAttributes.resetScore()
         
     }
     
@@ -386,12 +385,12 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func buyLaser(index: Int){
         purchasedLasers[index] = true
-        PlayerAttributes.sharedPlayerAttributes.reduceScore(price: Int(laserList[index].cost)!)
+        GlobalStatistics.sharedGlobalStatistics.spendScore(cost: Int(laserList[index].cost)!)
     }
     func buyPowerup(index: Int) -> Bool{
         if( PlayerAttributes.sharedPlayerAttributes.getPowerups().count < 3){
             PlayerAttributes.sharedPlayerAttributes.addPowerup(index: index)
-            PlayerAttributes.sharedPlayerAttributes.reduceScore(price: Int(powerupList[index].cost)!)
+            GlobalStatistics.sharedGlobalStatistics.spendScore(cost: Int(powerupList[index].cost)!)
             return true
         }
         return false
@@ -405,7 +404,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             print("notunlocked")
             animateInOutDataView(title: "Lasers", text: "Laser not unlocked")
         }else if(!purchasedLasers[index]){
-            if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(laserList[index].cost)!){
+            if( GlobalStatistics.sharedGlobalStatistics.canSpendScore(cost:Int(laserList[index].cost)!)){
                 buyLaser(index: index)
                 print("purchase sucessful")
                 animateInOutDataView(title: "Lasers", text: "Laser Selected")
@@ -436,7 +435,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         if(!unlockedPowerups[index]){
             print("notunlocked")
             animateInOutDataView(title: "Powerups", text: "Powerup not unlocked")
-        }else if( PlayerAttributes.sharedPlayerAttributes.getScore() > Int(powerupList[index].cost)!){
+        }else if( GlobalStatistics.sharedGlobalStatistics.canSpendScore(cost: Int(powerupList[index].cost)!)){
             if(buyPowerup(index: index)){
                 print("purchase sucessful")
                 animateInOutDataView(title: "Powerups", text: "Purchase Sucessful")

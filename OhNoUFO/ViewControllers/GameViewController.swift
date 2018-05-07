@@ -41,12 +41,6 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     var powerup3: UIImageView?
     var powerupContainerView: UIView?
     
-    
-    
-    var score = 0
-    var enemiesDestroyed = 0
-    var lasersFired = 0
-    
     var scoreLabel: UILabel?
     var waveLabel: UILabel?
     
@@ -72,7 +66,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         addGestures()
         prepareLazerController()
         prepareEnemyController()
-       
+        prepareRoundStatistics()
         initLaserReticle()
         
     }
@@ -219,7 +213,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     func fireLazer(){
         let userLocationTuple = getUserVector()
         playerLazersController?.fireLaser(dir: userLocationTuple.0, pos: userLocationTuple.1)
-        lasersFired += 1
+        RoundStatistics.currentRoundStatistics.lasersFired += 1
     }
     
     
@@ -248,6 +242,9 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         self.gameController = GameController(level: 1)
         gameController?.incrementWave()
        
+    }
+    func prepareRoundStatistics(){
+        RoundStatistics.currentRoundStatistics.reset()
     }
     
     //MARK: - Root Scene reqs
@@ -339,7 +336,8 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     }
     func adjustScore(amount: Int){
         DispatchQueue.main.async {
-            self.scoreLabel?.text = String(format: "%011d", PlayerAttributes.sharedPlayerAttributes.addToCurrentGameScore(amount: amount))
+            RoundStatistics.currentRoundStatistics.score += amount
+            self.scoreLabel?.text = String(format: "%011d", RoundStatistics.currentRoundStatistics.score)
         }
     }
 }
@@ -394,7 +392,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
         }
         gameController!.hitEnemyWithNode(enemy!)
         adjustScore(amount: 100)
-        enemiesDestroyed += 1
+        RoundStatistics.currentRoundStatistics.enemiesDestroyed += 1
         updateWaveLabel()
     }
    
@@ -403,9 +401,9 @@ extension GameViewController : SCNPhysicsContactDelegate {
     func hitPlayer(){
         if(!PlayerAttributes.sharedPlayerAttributes.removeOneLife()){
             
-            PlayerAttributes.sharedPlayerAttributes.updateLaserEnemyCount(lasersCount: lasersFired, enemyCount: enemiesDestroyed, wave: self.gameController!.currentWave)
-            lasersFired = 0
-            enemiesDestroyed = 0
+            RoundReport.lastRoundReport = RoundReport(statistics: RoundStatistics.currentRoundStatistics)
+            GlobalStatistics.sharedGlobalStatistics.updateFromReport(report: RoundReport.lastRoundReport!)
+
             
             self.sceneView.scene.isPaused = true
             

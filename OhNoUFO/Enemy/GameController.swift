@@ -18,7 +18,7 @@ class GameController{
     let level:Int
     var currentWave = 0
     var wavesInPlay = [WaveController]()
-    
+    var health = 300
     
     
     var hits = 0
@@ -38,6 +38,7 @@ class GameController{
     }
     func incrementWave(){
         currentWave = currentWave + 1
+        RoundStatistics.currentRoundStatistics.wave += 1
         let nextCuratedWaveIndex = Int(arc4random_uniform(UInt32(DefaultGameSettings.preCuratedWavesList.count)))
 
         let nextWaveParameters = DefaultGameSettings.preCuratedWavesList[nextCuratedWaveIndex]

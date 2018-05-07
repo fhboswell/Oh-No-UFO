@@ -86,6 +86,9 @@
 		BDB70A0620633114006575C3 /* WaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A0520633114006575C3 /* WaveController.swift */; };
 		BDB70A0820633312006575C3 /* PotentiallyUnsafeGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A0720633312006575C3 /* PotentiallyUnsafeGlobals.swift */; };
 		BDB70A0A206339BC006575C3 /* DefaultGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB70A09206339BC006575C3 /* DefaultGameSettings.swift */; };
+		BDEF8275209FC667009DBFE0 /* RoundReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEF8274209FC667009DBFE0 /* RoundReport.swift */; };
+		BDEF8277209FC67C009DBFE0 /* RoundStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEF8276209FC67C009DBFE0 /* RoundStatistics.swift */; };
+		BDEF8279209FC864009DBFE0 /* GlobalStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEF8278209FC864009DBFE0 /* GlobalStatistics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +195,9 @@
 		BDB70A0520633114006575C3 /* WaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveController.swift; sourceTree = "<group>"; };
 		BDB70A0720633312006575C3 /* PotentiallyUnsafeGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotentiallyUnsafeGlobals.swift; sourceTree = "<group>"; };
 		BDB70A09206339BC006575C3 /* DefaultGameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGameSettings.swift; sourceTree = "<group>"; };
+		BDEF8274209FC667009DBFE0 /* RoundReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundReport.swift; sourceTree = "<group>"; };
+		BDEF8276209FC67C009DBFE0 /* RoundStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundStatistics.swift; sourceTree = "<group>"; };
+		BDEF8278209FC864009DBFE0 /* GlobalStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatistics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +452,7 @@
 		94B6E8ED20574F9C006F9CFC /* OhNoUFO */ = {
 			isa = PBXGroup;
 			children = (
+				BDEF8273209FC631009DBFE0 /* Statistics */,
 				948E4E69205CD8F000DC6FF9 /* App */,
 				948E4E68205CD8C500DC6FF9 /* Enemy */,
 				948E4E6A205CD92500DC6FF9 /* Player */,
@@ -493,6 +500,16 @@
 				94621AD0205F379F00CCB73B /* UFO1 */,
 			);
 			path = "3D Objects";
+			sourceTree = "<group>";
+		};
+		BDEF8273209FC631009DBFE0 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				BDEF8274209FC667009DBFE0 /* RoundReport.swift */,
+				BDEF8276209FC67C009DBFE0 /* RoundStatistics.swift */,
+				BDEF8278209FC864009DBFE0 /* GlobalStatistics.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +704,7 @@
 				BDB70A0A206339BC006575C3 /* DefaultGameSettings.swift in Sources */,
 				94D661F3206093230085A698 /* LaserTableViewCell.swift in Sources */,
 				9464352120606964008A472A /* ArcadeModeTableViewCell.swift in Sources */,
+				BDEF8277209FC67C009DBFE0 /* RoundStatistics.swift in Sources */,
 				BD0A48F7205F496100A9E9AD /* Enemy.swift in Sources */,
 				948E4E6C205CDACC00DC6FF9 /* PlayerAttributes.swift in Sources */,
 				94F4989A208DD91900498539 /* PowerupTableViewCell.swift in Sources */,
@@ -696,6 +714,7 @@
 				94171C0E208D5A0400C81710 /* EquippedTableViewCell.swift in Sources */,
 				9445B8F12058A17200B64F9C /* Extensions.swift in Sources */,
 				94D661F72060941A0085A698 /* Structs.swift in Sources */,
+				BDEF8275209FC667009DBFE0 /* RoundReport.swift in Sources */,
 				BDB70A0620633114006575C3 /* WaveController.swift in Sources */,
 				94B6E8F320574F9C006F9CFC /* GameViewController.swift in Sources */,
 				946A48E72057C20E0083899E /* Protocols.swift in Sources */,
@@ -703,6 +722,7 @@
 				BD0A48F9205F49EF00A9E9AD /* EnemyType.swift in Sources */,
 				94ABDB6B2086991C00B8BFA4 /* ReportTableViewCell.swift in Sources */,
 				94B6E8EF20574F9C006F9CFC /* AppDelegate.swift in Sources */,
+				BDEF8279209FC864009DBFE0 /* GlobalStatistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,7 +893,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NN7HR27RDT;
+				DEVELOPMENT_TEAM = 27RHNLCLG4;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.boswell.ohnoufo;
@@ -888,7 +908,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NN7HR27RDT;
+				DEVELOPMENT_TEAM = 27RHNLCLG4;
 				INFOPLIST_FILE = OhNoUFO/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.boswell.ohnoufo;
