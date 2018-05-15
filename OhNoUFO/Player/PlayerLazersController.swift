@@ -113,12 +113,7 @@ class PlayerLazersController{
         laserNode.position = dubPos
         laserNode.opacity = 1
         
-        //        laserNode.light = SCNLight()
-        //        laserNode.scale = SCNVector3(1,1,1)
-        //        laserNode.light?.intensity = 5000
-        //        laserNode.light?.type = SCNLight.LightType.spot
-        //        laserNode.light?.color = UIColor.red
-        
+       
         
         let particleSystem = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
         particleSystem?.particleColor = UIColor.orange

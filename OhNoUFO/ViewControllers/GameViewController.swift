@@ -162,8 +162,22 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
       
     }
     @objc func play(sender:  UIGestureRecognizer){
-            let viewTapped = sender.view
-            print(viewTapped?.tag)
+        let viewTapped = sender.view
+        print(viewTapped?.tag)
+        PlayerAttributes.sharedPlayerAttributes.usePowerup(index: (viewTapped?.tag)!)
+        if(viewTapped?.tag == 1){
+            powerup1?.image = nil
+            powerup1?.gestureRecognizers = nil
+        }
+        if(viewTapped?.tag == 2){
+            powerup2?.image = nil
+            powerup2?.gestureRecognizers = nil
+        }
+        if(viewTapped?.tag == 3){
+            powerup3?.image = nil
+            powerup3?.gestureRecognizers = nil
+        }
+        
     }
     
     func addHealthView(){
@@ -428,6 +442,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                PlayerAttributes.sharedPlayerAttributes.realignPowerups()
                 self.dismiss(animated: true, completion: nil)
             }
             
