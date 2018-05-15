@@ -109,8 +109,8 @@ class PlayerLazersController{
         laserNode.physicsBody?.categoryBitMask = PhysicsMask.playerLazer
         laserNode.physicsBody?.contactTestBitMask = PhysicsMask.enemyShip
         laserNode.physicsBody?.isAffectedByGravity = false
-        
-        laserNode.position = pos
+        var dubPos = SCNVector3(pos.x + 0.05, pos.y, pos.z)
+        laserNode.position = dubPos
         laserNode.opacity = 1
         
         //        laserNode.light = SCNLight()
@@ -121,7 +121,7 @@ class PlayerLazersController{
         
         
         let particleSystem = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
-        particleSystem?.particleColor = UIColor.blue
+        particleSystem?.particleColor = UIColor.orange
         
         laserNode.addParticleSystem(particleSystem!)
         
@@ -132,6 +132,46 @@ class PlayerLazersController{
         
         self.delegate?.addToRootNode(nodeToAdd: laserNode)
         
+        
+        let sphereGeometry2 = SCNSphere(radius: 0.01)
+        
+        
+        let sphereMaterial2 = SCNMaterial()
+        sphereMaterial2.diffuse.contents = UIColor.clear
+        sphereGeometry2.materials = [sphereMaterial2]
+        let laserNode2 = SCNNode(geometry: sphereGeometry2)
+        
+        
+        let shape2 = SCNPhysicsShape(geometry: sphereGeometry2, options: nil)
+        let sphere1Body2 = SCNPhysicsBody(type: .kinematic, shape: shape2)
+        laserNode2.physicsBody = sphere1Body2
+        laserNode2.physicsBody?.categoryBitMask = PhysicsMask.playerLazer
+        laserNode2.physicsBody?.contactTestBitMask = PhysicsMask.enemyShip
+        laserNode2.physicsBody?.isAffectedByGravity = false
+        var dubPos2 = SCNVector3(pos.x - 0.05, pos.y, pos.z)
+        laserNode2.position = dubPos2
+        laserNode2.opacity = 1
+        
+        //        laserNode.light = SCNLight()
+        //        laserNode.scale = SCNVector3(1,1,1)
+        //        laserNode.light?.intensity = 5000
+        //        laserNode.light?.type = SCNLight.LightType.spot
+        //        laserNode.light?.color = UIColor.red
+        
+        
+        let particleSystem2 = SCNParticleSystem(named: "smok3.scnp", inDirectory: nil)
+        particleSystem2?.particleColor = UIColor.orange
+        
+        laserNode2.addParticleSystem(particleSystem2!)
+        
+        //        let convertedPosition = bullet.convertPosition(bullet.position, to: nil)
+        //        systemNode.position = convertedPosition
+        //      laserNode.addChildNode(systemNode)
+        
+        
+        self.delegate?.addToRootNode(nodeToAdd: laserNode)
+        self.delegate?.addToRootNode(nodeToAdd: laserNode2)
+        
         DispatchQueue.main.async(){
             let remove = SCNAction.run { (laser) in
                 laser.removeFromParentNode()
@@ -140,7 +180,15 @@ class PlayerLazersController{
             let pulseThreeTimes = SCNAction.repeat(action, count: 3)
             let sequence = SCNAction.sequence([pulseThreeTimes, remove])
             laserNode.runAction(sequence)
-            self.lazerNodes.append(laserNode)
+            self.lazerNodes.append(laserNode2)
+            let remove2 = SCNAction.run { (laser) in
+                laser.removeFromParentNode()
+            }
+            let action2 = SCNAction.moveBy(x: CGFloat(dir.normalized().x), y: CGFloat(dir.normalized().y), z: CGFloat(dir.normalized().z), duration: 0.1)
+            let pulseThreeTimes2 = SCNAction.repeat(action, count: 3)
+            let sequence2 = SCNAction.sequence([pulseThreeTimes2, remove2])
+            laserNode2.runAction(sequence2)
+            self.lazerNodes.append(laserNode2)
         }
     }
     
