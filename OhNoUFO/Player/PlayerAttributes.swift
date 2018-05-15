@@ -401,6 +401,9 @@ class PlayerAttributes{
     public func setLaser(laser: Int){
         self.laser = laser
     }
+    public func getLaserInt() -> Int{
+        return self.laser
+    }
     
     public func resetLives(){
         self.lives = 3

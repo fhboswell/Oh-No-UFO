@@ -58,7 +58,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         super.viewDidLoad()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-        //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
+        sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
    
     }
 
@@ -92,7 +92,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     }
     
     
-    //MARK: UIElements
+    //MARK: - UIElements
     
     
     func addDataView(){
@@ -381,13 +381,19 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
         let systemNode = SCNNode()
         systemNode.addParticleSystem(particleSystem!)
-        let convertedPosition = bullet?.convertPosition((bullet?.position)!, to: nil)
+        let convertedPosition = enemy?.convertPosition((enemy?.position)!, to: nil)
+        //if enemy?.name == 1
+      //  var newPos = SCNVector3(convertedPosition!.x, convertedPosition!.y - 0.5, convertedPosition!.z)
         systemNode.position = convertedPosition!
+        
         sceneView.scene.rootNode.addChildNode(systemNode)
-        if (bullet != nil){
-            bullet?.removeAllActions()
-            bullet?.removeFromParentNode()
-            
+        
+        DispatchQueue.main.async(){
+            if (bullet != nil){
+                bullet?.removeAllActions()
+                bullet?.removeFromParentNode()
+                
+            }
         }
         if (enemy != nil){
             enemy?.removeFromParentNode()
