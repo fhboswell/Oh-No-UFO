@@ -48,8 +48,9 @@ class Enemy{
             //SCNVector3(0.2, 0.2, 0.2)
         enemyNode.rotation = SCNVector4(x: 1, y: 0, z: 0, w: -Float(Double.pi / 2) + 0.1)
         
-        let sphereGeometry = SCNSphere(radius: 0.2)
+        let sphereGeometry = SCNBox(width: 0.4, height: 0.4, length: 0.1, chamferRadius: 0.2)
         let shape = SCNPhysicsShape(geometry: sphereGeometry, options: nil)
+       
         let sphere1Body = SCNPhysicsBody(type: .kinematic, shape: shape)
         enemyNode.physicsBody = sphere1Body
         enemyNode.physicsBody?.categoryBitMask = PhysicsMask.enemyShip

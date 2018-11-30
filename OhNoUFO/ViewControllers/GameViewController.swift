@@ -52,7 +52,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
         super.viewDidLoad()
         sceneView.delegate = self
         sceneView.scene.physicsWorld.contactDelegate = self
-        //sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
+        sceneView.debugOptions = SCNDebugOptions.showPhysicsShapes
    
     }
 
@@ -86,7 +86,7 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
     }
     
     
-    //MARK: UIElements
+    //MARK: - UIElements
     
     
     func addDataView(){
@@ -156,8 +156,22 @@ class GameViewController: UIViewController, SceneRootNodeAccessDelegate, PlayerL
       
     }
     @objc func play(sender:  UIGestureRecognizer){
-            let viewTapped = sender.view
-            print(viewTapped?.tag)
+        let viewTapped = sender.view
+        print(viewTapped?.tag)
+        PlayerAttributes.sharedPlayerAttributes.usePowerup(index: (viewTapped?.tag)!)
+        if(viewTapped?.tag == 1){
+            powerup1?.image = nil
+            powerup1?.gestureRecognizers = nil
+        }
+        if(viewTapped?.tag == 2){
+            powerup2?.image = nil
+            powerup2?.gestureRecognizers = nil
+        }
+        if(viewTapped?.tag == 3){
+            powerup3?.image = nil
+            powerup3?.gestureRecognizers = nil
+        }
+        
     }
     
     func addHealthView(){
@@ -379,13 +393,19 @@ extension GameViewController : SCNPhysicsContactDelegate {
         let particleSystem = SCNParticleSystem(named: "Explosion", inDirectory: nil)
         let systemNode = SCNNode()
         systemNode.addParticleSystem(particleSystem!)
-        let convertedPosition = bullet?.convertPosition((bullet?.position)!, to: nil)
+        let convertedPosition = enemy?.convertPosition((enemy?.position)!, to: nil)
+        //if enemy?.name == 1
+      //  var newPos = SCNVector3(convertedPosition!.x, convertedPosition!.y - 0.5, convertedPosition!.z)
         systemNode.position = convertedPosition!
+        
         sceneView.scene.rootNode.addChildNode(systemNode)
-        if (bullet != nil){
-            bullet?.removeAllActions()
-            bullet?.removeFromParentNode()
-            
+        
+        DispatchQueue.main.async(){
+            if (bullet != nil){
+                bullet?.removeAllActions()
+                bullet?.removeFromParentNode()
+                
+            }
         }
         if (enemy != nil){
             enemy?.removeFromParentNode()
@@ -420,6 +440,7 @@ extension GameViewController : SCNPhysicsContactDelegate {
            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                PlayerAttributes.sharedPlayerAttributes.realignPowerups()
                 self.dismiss(animated: true, completion: nil)
             }
             

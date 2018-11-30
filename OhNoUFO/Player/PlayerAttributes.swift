@@ -23,11 +23,11 @@ class PlayerAttributes{
     };
     private var powerups:[Int]{
         get {
-            return UserDefaults.standard.object(forKey: "powerups2") as? [Int] ?? []
+            return UserDefaults.standard.object(forKey: "powerups4") as? [Int] ?? []
         }
         set {
             let defaults = UserDefaults.standard
-            defaults.set(newValue, forKey: "powerups2")
+            defaults.set(newValue, forKey: "powerups4")
             defaults.synchronize()
         }
     };
@@ -80,6 +80,16 @@ class PlayerAttributes{
     //needs to be an int to get set to defaults
     public func setLaser(laser: Int){
         self.laser = laser
+    }
+    public func usePowerup(index: Int){
+        powerups[index - 1] = 100
+        
+    }
+    public func realignPowerups(){
+        powerups = powerups.filter { $0 != 100 }
+    }
+    public func getLaserInt() -> Int{
+        return self.laser
     }
     
     public func resetLives(){
