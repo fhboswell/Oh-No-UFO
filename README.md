@@ -12,11 +12,6 @@ Seeing how far you can get going level by level like pacman
 
 Win level by level each unlocking the next or some mutation of that
 
-# Proposal (04/03/2018)
-
-## Team
-I will be programming with my brother for this project and Satjit Bola (sidbola) will be acting as my code reviewer.
-
 
 ## Features
 
@@ -36,9 +31,9 @@ These points can be used to buy different things:
 
 
 - Gameplay 
-	- Multiple Enemy types ---Hours: 10
-	- Multiple Laser Types ---Hours: 5
-	- Multiple Enemy animations ---Hours: 15
+	- Multiple Enemy types
+	- Multiple Laser Types
+	- Multiple Enemy animations 
 
 - Arkit ---Hours:10
 	- Use of 3D Graphics (possible to use 2D graphic in Arkit)
@@ -51,41 +46,41 @@ These points can be used to buy different things:
 	- To be determined
 
 - Good Welcome Screen
-	- 3D Graphics in small embedded Scenekits ---Hours:4
-	- Arcade Mode ---Hours:5
+	- 3D Graphics in small embedded Scenekits
+	- Arcade Mode 
 		- Wave after wave of Enemies 
 		- Play Until Enemy Lasers Contact The Hitbox Bounding The Scenekit POV
-	- Buy With Points (Once Purchased added to a carousel and can be selected at any time the Player is in the Welcome Screen) ---Hours:10
+	- Buy With Points (Once Purchased added to a carousel and can be selected at any time the Player is in the Welcome Screen) 
 		- Player Laser Selection 
 		- Enemy Ship Selection
 		- High score details
 
 ### Nice To Have Features 
 
-- Gameplay ---Hours:5
+- Gameplay
 	- Multiple PowerUp types
 - Arkit
-	- try for ability to pause and resume ---Hours:4
-	- increase robustness ---Hours:4
-	- Ground Enemy type ---Hours:15
+	- try for ability to pause and resume 
+	- increase robustness
+	- Ground Enemy type 
 
 - Connecting with Other Players 
-	- Sharing points ---Hours:3
-	- Sharing Laser types ---Hours:3
+	- Sharing points 
+	- Sharing Laser types 
 
 - Connecting to Developer 
-	- New Wave types added over internet ---Hours:10
-	- New UFO Assets available over internet  ---Hours:2
-	- New Laser types available over internet ---Hours:2
-	- New Power-up types over internet ---Hours:2
+	- New Wave types added over internet 
+	- New UFO Assets available over internet 
+	- New Laser types available over internet
+	- New Power-up types over internet 
 
 
-- Good Welcome Screen ---Hours:4
+- Good Welcome Screen 
 	- 3D Graphics in small embedded Scenekits
 		- Use this Extensively in selection Carousels
-	- Arcade Mode ---Hours:2
+	- Arcade Mode 
 		- add intermittent boss wave
-	- Level select mode ---Hours:5
+	- Level select mode
 	- Different Pre-Determined wave sequences
 
 - Possible View Controller Breakout
